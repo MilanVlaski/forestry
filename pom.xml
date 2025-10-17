@@ -10,8 +10,8 @@
         <relativePath/>
     </parent>
 
-    <artifactId>simpleapp-jpa</artifactId>
-    <groupId>org.apache.causeway.starters</groupId>
+    <artifactId>forestry</artifactId>
+    <groupId>com.akimi</groupId>
     <version>3.4.0</version>
 
     <name>SimpleApp (JPA) - Parent</name>
@@ -43,6 +43,11 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>simpleapp-jpa-module-simple</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>forest-inventory</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

@@ -21,7 +21,7 @@ import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.persistence.TypedQuery;
 
-@Named(ForestInventoryModule.NAMESPACE + ".SimpleObjects")
+@Named(ForestInventoryModule.NAMESPACE + ".Forests")
 @DomainService
 @Priority(PriorityPrecedence.EARLY)
 @RequiredArgsConstructor(onConstructor_ = {@Inject} )

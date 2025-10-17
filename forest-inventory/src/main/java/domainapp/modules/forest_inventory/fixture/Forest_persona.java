@@ -59,15 +59,13 @@ public enum Forest_persona implements Persona<Forest, Forest_persona.Builder> {
         @Override
         protected Forest buildResult(final ExecutionContext ec) {
 
-            val simpleObject = wrap(simpleObjects).create(persona.name);
+            val simpleObject = wrap(forests).create(persona.name);
 
             if (persona.contentFileName != null) {
                 val bytes = toBytes(persona.contentFileName);
                 val attachment = new Blob(persona.contentFileName, "application/pdf", bytes);
                 simpleObject.updateAttachment(attachment);
             }
-
-            simpleObject.setLastCheckedIn(clockService.getClock().nowAsLocalDate().plusDays(fakeDataService.ints().between(-10, +10)));
 
             return simpleObject;
         }
@@ -89,7 +87,7 @@ public enum Forest_persona implements Persona<Forest, Forest_persona.Builder> {
 
         // -- DEPENDENCIES
 
-        @Inject Forests simpleObjects;
+        @Inject Forests forests;
         @Inject ClockService clockService;
         @Inject FakeDataService fakeDataService;
     }

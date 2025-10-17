@@ -1,7 +1,5 @@
 package domainapp.modules.forest_inventory.forest;
 
-import java.time.LocalTime;
-import java.time.ZoneOffset;
 import java.util.Comparator;
 
 import org.springframework.lang.Nullable;
@@ -11,7 +9,6 @@ import org.apache.causeway.applib.annotation.ActionLayout;
 import org.apache.causeway.applib.annotation.BookmarkPolicy;
 import org.apache.causeway.applib.annotation.DomainObject;
 import org.apache.causeway.applib.annotation.DomainObjectLayout;
-import org.apache.causeway.applib.annotation.Editing;
 import org.apache.causeway.applib.annotation.MemberSupport;
 import org.apache.causeway.applib.annotation.Optionality;
 import org.apache.causeway.applib.annotation.PromptStyle;
@@ -26,8 +23,6 @@ import org.apache.causeway.applib.services.message.MessageService;
 import org.apache.causeway.applib.services.repository.RepositoryService;
 import org.apache.causeway.applib.services.title.TitleService;
 import org.apache.causeway.applib.value.Blob;
-import org.apache.causeway.extensions.fullcalendar.applib.CalendarEventable;
-import org.apache.causeway.extensions.fullcalendar.applib.value.CalendarEvent;
 import org.apache.causeway.extensions.pdfjs.applib.annotations.PdfJsViewer;
 import org.apache.causeway.persistence.jpa.applib.integration.CausewayEntityListener;
 import org.apache.causeway.persistence.jpa.applib.types.BlobJpaEmbeddable;
@@ -69,19 +64,19 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @Table(
         schema = ForestInventoryModule.SCHEMA,
         uniqueConstraints = {
-                @UniqueConstraint(name = "SimpleObject__name__UNQ", columnNames = {"name"})
+                @UniqueConstraint(name = "Forest__name__UNQ", columnNames = {"name"})
         }
 )
 @NamedQueries({
         @NamedQuery(
                 name = Forest.NAMED_QUERY__FIND_BY_NAME_LIKE,
-                query = "SELECT so " +
-                        "FROM Forest so " +
-                        "WHERE so.name LIKE :name"
+                query = "SELECT f " +
+                        "FROM Forest f " +
+                        "WHERE f.name LIKE :name"
         )
 })
 @EntityListeners(CausewayEntityListener.class)
-@Named(ForestInventoryModule.NAMESPACE + ".SimpleObject")
+@Named(ForestInventoryModule.NAMESPACE + ".Forest")
 @DomainObject(entityChangePublishing = Publishing.ENABLED)
 @DomainObjectLayout(
         tableDecorator = TableDecorator.DatatablesNet.class,
@@ -89,9 +84,9 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @XmlJavaTypeAdapter(PersistentEntityAdapter.class)
 @ToString(onlyExplicitlyIncluded = true)
-public class Forest implements Comparable<Forest>, CalendarEventable {
+public class Forest implements Comparable<Forest> {
 
-    static final String NAMED_QUERY__FIND_BY_NAME_LIKE = "SimpleObject.findByNameLike";
+    static final String NAMED_QUERY__FIND_BY_NAME_LIKE = "Forest.findByNameLike";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -146,29 +141,6 @@ public class Forest implements Comparable<Forest>, CalendarEventable {
 
     public void setAttachment(final Blob attachment) {
         this.attachment = BlobJpaEmbeddable.fromBlob(attachment);
-    }
-
-
-    @Property(optionality = Optionality.OPTIONAL, editing = Editing.ENABLED)
-    @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "3")
-    @Column(nullable = true)
-    @Getter @Setter
-    private java.time.LocalDate lastCheckedIn;
-
-
-    @Override
-    public String getCalendarName() {
-        return "Last checked-in";
-    }
-
-    @Override
-    public CalendarEvent toCalendarEvent() {
-        if (getLastCheckedIn() != null) {
-            long epochMillis = getLastCheckedIn().toEpochSecond(LocalTime.MIDNIGHT, ZoneOffset.systemDefault().getRules().getOffset(getLastCheckedIn().atStartOfDay())) * 1000L;
-            return new CalendarEvent(epochMillis, getCalendarName(), titleService.titleOf(this), getNotes());
-        } else {
-            return null;
-        }
     }
 
 

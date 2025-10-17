@@ -92,6 +92,12 @@
             <artifactId>simpleapp-jpa-module-simple</artifactId>
         </dependency>
 
+        <!-- Breaks the build -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>forest-inventory</artifactId>
+        </dependency>
+
         <!-- causeway -->
         <dependency>
             <groupId>org.apache.causeway.mavendeps</groupId>

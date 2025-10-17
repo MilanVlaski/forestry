@@ -28,8 +28,8 @@ import domainapp.modules.forest_inventory.forest.Forest;
 @EntityScan(basePackageClasses = {ForestInventoryModule.class})
 public class ForestInventoryModule implements ModuleWithFixtures {
 
-    public static final String NAMESPACE = "simple";
-    public static final String SCHEMA = "simple";
+    public static final String NAMESPACE = "forest";
+    public static final String SCHEMA = "forest";
 
     @Override
     public FixtureScript getTeardownFixture() {

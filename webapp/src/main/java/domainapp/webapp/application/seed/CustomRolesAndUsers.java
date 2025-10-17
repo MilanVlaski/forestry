@@ -40,7 +40,8 @@ public class CustomRolesAndUsers extends FixtureScript {
             newPermissions(
                     ApplicationPermissionRule.ALLOW,
                     ApplicationPermissionMode.CHANGING,
-                    Can.of(ApplicationFeatureId.newNamespace("simple"))
+                    Can.of(ApplicationFeatureId.newNamespace("simple"),
+                            ApplicationFeatureId.newNamespace("forest"))
             );
         }
     }
