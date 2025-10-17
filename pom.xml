@@ -92,6 +92,7 @@
         <module>module-simple-tests</module>
         <module>webapp</module>
         <module>webapp-tests</module>
+        <module>forest-inventory</module>
     </modules>
 
     <profiles>
