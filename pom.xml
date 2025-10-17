@@ -92,7 +92,6 @@
         <module>module-simple-tests</module>
         <module>webapp</module>
         <module>webapp-tests</module>
-        <module>forest</module>
     </modules>
 
     <profiles>
