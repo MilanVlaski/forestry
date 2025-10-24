@@ -1,13 +1,9 @@
 package domainapp.modules.forest_inventory.fixture;
 
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-
-import org.springframework.core.io.ClassPathResource;
+import java.math.BigDecimal;
 
 import org.apache.causeway.applib.services.clock.ClockService;
 import org.apache.causeway.applib.services.registry.ServiceRegistry;
-import org.apache.causeway.applib.value.Blob;
 import org.apache.causeway.testing.fakedata.applib.services.FakeDataService;
 import org.apache.causeway.testing.fixtures.applib.personas.BuilderScriptWithResult;
 import org.apache.causeway.testing.fixtures.applib.personas.Persona;
@@ -16,30 +12,24 @@ import org.apache.causeway.testing.fixtures.applib.setup.PersonaEnumPersistAll;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import lombok.SneakyThrows;
 import lombok.val;
 import lombok.experimental.Accessors;
 
 import domainapp.modules.forest_inventory.forest.Forest;
 import domainapp.modules.forest_inventory.forest.Forests;
+import domainapp.modules.forest_inventory.inventory.Inventory;
+import domainapp.modules.forest_inventory.plot.Plot;
+import domainapp.modules.forest_inventory.tree.Tree;
 import jakarta.inject.Inject;
 
 @RequiredArgsConstructor
 public enum Forest_persona implements Persona<Forest, Forest_persona.Builder> {
 
-    FOO("Foo", "Foo.pdf"),
-    BAR("Bar", "Bar.pdf"),
-    BAZ("Baz", null),
-    FRODO("Frodo", "Frodo.pdf"),
-    FROYO("Froyo", null),
-    FIZZ("Fizz", "Fizz.pdf"),
-    BIP("Bip", null),
-    BOP("Bop", null),
-    BANG("Bang", "Bang.pdf"),
-    BOO("Boo", null);
+    JANJ("Janj"),
+    LOM("Lom"),
+    PERUCICA("Perućica");
 
     private final String name;
-    private final String contentFileName;
 
     @Override
     public Builder builder() {
@@ -59,30 +49,17 @@ public enum Forest_persona implements Persona<Forest, Forest_persona.Builder> {
         @Override
         protected Forest buildResult(final ExecutionContext ec) {
 
-            val simpleObject = wrap(forests).create(persona.name);
+            val forest = wrap(forests).create(persona.name);
+            val inventory = new Inventory();
+            val plot = new Plot();
+            val tree = new Tree(BigDecimal.valueOf(10), BigDecimal.valueOf(10),
+                    null, null, null);
 
-            if (persona.contentFileName != null) {
-                val bytes = toBytes(persona.contentFileName);
-                val attachment = new Blob(persona.contentFileName, "application/pdf", bytes);
-                simpleObject.updateAttachment(attachment);
-            }
+            forest.addInventory(inventory);
+            inventory.addPlot(plot);
+            plot.addTree(tree);
 
-            return simpleObject;
-        }
-
-        @SneakyThrows
-        private byte[] toBytes(String fileName){
-            InputStream inputStream = new ClassPathResource(fileName, getClass()).getInputStream();
-            ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-
-            int nRead;
-            byte[] data = new byte[16384];
-
-            while ((nRead = inputStream.read(data, 0, data.length)) != -1) {
-                buffer.write(data, 0, nRead);
-            }
-
-            return buffer.toByteArray();
+            return forest;
         }
 
         // -- DEPENDENCIES

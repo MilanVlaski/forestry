@@ -1,12 +1,16 @@
 package domainapp.modules.forest_inventory.forest;
 
 import java.util.Comparator;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import org.springframework.lang.Nullable;
 
 import org.apache.causeway.applib.annotation.Action;
 import org.apache.causeway.applib.annotation.ActionLayout;
 import org.apache.causeway.applib.annotation.BookmarkPolicy;
+import org.apache.causeway.applib.annotation.Collection;
+import org.apache.causeway.applib.annotation.CollectionLayout;
 import org.apache.causeway.applib.annotation.DomainObject;
 import org.apache.causeway.applib.annotation.DomainObjectLayout;
 import org.apache.causeway.applib.annotation.MemberSupport;
@@ -38,12 +42,14 @@ import lombok.ToString;
 import lombok.val;
 
 import domainapp.modules.forest_inventory.ForestInventoryModule;
+import domainapp.modules.forest_inventory.inventory.Inventory;
 import domainapp.modules.forest_inventory.types.Name;
 import domainapp.modules.forest_inventory.types.Notes;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.AttributeOverrides;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -53,6 +59,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import jakarta.persistence.UniqueConstraint;
@@ -90,7 +97,6 @@ public class Forest implements Comparable<Forest> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
     private Long id;
 
     @Version
@@ -99,10 +105,14 @@ public class Forest implements Comparable<Forest> {
     @Getter @Setter
     private long version;
 
+    public Forest(String name) {
+        this.name = name;
+    }
+
     public static Forest withName(final String name) {
-        val simpleObject = new Forest();
-        simpleObject.setName(name);
-        return simpleObject;
+        val forest = new Forest();
+        forest.setName(name);
+        return forest;
     }
 
     @Inject @Transient RepositoryService repositoryService;
@@ -185,6 +195,16 @@ public class Forest implements Comparable<Forest> {
         return getAttachment();
     }
 
+    @OneToMany(mappedBy = "forest", cascade = CascadeType.ALL)
+    @Collection
+    @CollectionLayout
+    @Getter
+    public SortedSet<Inventory> inventories = new TreeSet<>();
+
+    public void addInventory(Inventory inventory) {
+        inventories.add(inventory);
+        inventory.setForest(this);
+    }
 
     @Action(semantics = NON_IDEMPOTENT_ARE_YOU_SURE)
     @ActionLayout(

@@ -21,6 +21,7 @@
                 <mb3:serviceAction objectType="forest.Forests" id="findByName"/>
                 <mb3:serviceAction objectType="forest.Forests" id="findByNameLike"/>
                 <mb3:serviceAction objectType="forest.Forests" id="listAll"/>
+                <mb3:serviceAction objectType="forest.Forests" id="createTree"/>
             </mb3:section>
         </mb3:menu>
         <mb3:menu unreferencedActions="true">

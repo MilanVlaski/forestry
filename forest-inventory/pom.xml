@@ -71,6 +71,10 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
+        <dependency>
+            <groupId>org.apache.causeway.core</groupId>
+            <artifactId>causeway-core-config</artifactId>
+        </dependency>
 
     </dependencies>
 

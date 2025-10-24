@@ -8,7 +8,7 @@ classDiagram
     Tree --> Defect
     
     class Inventory {
-        
+        createdAt()
     }
     
     class Forest {
@@ -22,6 +22,7 @@ classDiagram
         condition() Condition
         height()
         note()
+        createdAt()
     }
     
     class Condition {
@@ -42,10 +43,11 @@ classDiagram
         
     }
     
+    note "Support localized names by adding a foreignName and language column. "
     class Species {
         code: String
         name: String
-        latinName() String 
+        latinName: String 
     }
     
     class Defect {
