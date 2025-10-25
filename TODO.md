@@ -1,5 +1,9 @@
 # To do
-- [ ] GREAT IDEA: Just have the Forest, Plot, Inventory, be  a String input, with choices coming from the appropriate names or ids of those entities. The choices COULD be dependent.
+- [ ] Add Species and Condition and a `data.sql`
+- [ ] Create Forest
+- [ ] Create inventory and add Plots
+- [ ] Show Trees in a table, by Forest/Inventory/Plot
+- [x] GREAT IDEA: Just have the Forest, Plot, Inventory, be  a String input, with choices coming from the appropriate names or ids of those entities. The choices COULD be dependent.
   - [ ] Requires some handling of null, e.g. by not using the thingy, but overall, pretty cool.
 - [ ] Design tree entry as a function, and build the entities from there   
   - [ ] Read docs, to figure out how to build the function and the underlying collection Dropdowns

@@ -15,11 +15,11 @@ import org.apache.causeway.applib.annotation.SemanticsOf;
 import org.apache.causeway.applib.services.repository.RepositoryService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.val;
 
 import domainapp.modules.forest_inventory.ForestInventoryModule;
 import domainapp.modules.forest_inventory.forest.ForestRepository;
 import domainapp.modules.forest_inventory.inventory.InventoryRepository;
-import domainapp.modules.forest_inventory.plot.Plot;
 import domainapp.modules.forest_inventory.plot.PlotRepository;
 import jakarta.annotation.Priority;
 import jakarta.inject.Inject;
@@ -43,8 +43,8 @@ public class Trees {
 //            final Forest forest,
 //            @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout
 //            final Inventory inventory,
-//            @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout
-//            final Plot plot,
+            @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout
+            final String plotSearch,
             @Parameter @ParameterLayout
             final BigDecimal dbh,
             @Parameter @ParameterLayout
@@ -56,14 +56,12 @@ public class Trees {
             @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout
             final String notes
     ) {
-        // User searches for a Forest name. If it doesn't exist, a new Forest gets createTreed.
-        // Users searches for an Inventory. If it doesn't exist, a new Inventory gets createTreed.
-        // Users searches for a Plot. If it doesn't match an existing, a new Plot gets createTreed.
-        // dbh and height are mandatory
-        // species is searched for, and condition as well, from the existing entities, but
-        // they are optional. Note is also optional.
-        var tree = new Tree(dbh, height, null, null, notes);
-//        tree.setPlot(plot);
+        val tree = new Tree(dbh, height, null, null, notes);
+        try {
+            val plot = plotRepository.findById(Long.valueOf(plotSearch));
+            plot.ifPresent(tree::setPlot);
+        } catch (NumberFormatException ignored) {}
+
 
 //        inventory.setForest(forest);
 //        plot.setInventory(inventory);
@@ -72,8 +70,13 @@ public class Trees {
     }
 
 
-    public List<Plot> autoComplete0CreateTree(final String search) {
-        return repositoryService.allInstances(Plot.class);
+    /**
+     * Search for plots.
+     * @param search
+     * @return a list of plot ids
+     */
+    public List<Long> autoComplete0CreateTree(final String search) {
+        return plotRepository.findIdsByIdLike(search);
     }
 
 }

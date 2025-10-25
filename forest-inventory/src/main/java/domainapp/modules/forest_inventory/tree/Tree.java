@@ -34,7 +34,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
@@ -70,7 +69,6 @@ public class Tree implements Comparable<Tree> {
     @Getter @Setter
     @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
     @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "1")
-    @OneToMany()
     private BigDecimal height_m;
 
     @ManyToOne
@@ -123,12 +121,13 @@ public class Tree implements Comparable<Tree> {
 
     @PrePersist
     public void onCreate() {
+        // TODO make this a relationship to user
         this.createdAt = LocalDateTime.now();
         this.createdBy = userService.currentUserNameElseNobody();
     }
 
     public String getTitle() {
-        return "Tree" + id;
+        return "Tree " + id;
     }
 
     private final static Comparator<Tree> comparator =
