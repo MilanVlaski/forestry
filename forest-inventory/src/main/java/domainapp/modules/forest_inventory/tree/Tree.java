@@ -24,6 +24,8 @@ import lombok.ToString;
 
 import domainapp.modules.forest_inventory.ForestInventoryModule;
 import domainapp.modules.forest_inventory.plot.Plot;
+import domainapp.modules.forest_inventory.tree.condition.Condition;
+import domainapp.modules.forest_inventory.tree.species.Species;
 import domainapp.modules.forest_inventory.types.Notes;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -54,10 +56,7 @@ public class Tree implements Comparable<Tree> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
     private Long id;
-
-
 
     @Column(precision = 7, scale = 2, nullable = false)
     @Getter @Setter

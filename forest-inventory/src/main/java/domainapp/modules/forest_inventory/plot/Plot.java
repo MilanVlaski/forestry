@@ -4,8 +4,6 @@ import java.util.Comparator;
 import java.util.Set;
 import java.util.TreeSet;
 
-import jakarta.persistence.CascadeType;
-
 import org.apache.causeway.applib.annotation.BookmarkPolicy;
 import org.apache.causeway.applib.annotation.Collection;
 import org.apache.causeway.applib.annotation.CollectionLayout;
@@ -29,6 +27,7 @@ import domainapp.modules.forest_inventory.ForestInventoryModule;
 import domainapp.modules.forest_inventory.inventory.Inventory;
 import domainapp.modules.forest_inventory.tree.Tree;
 import jakarta.inject.Named;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
@@ -53,7 +52,7 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 public class Plot implements Comparable<Plot> {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @ManyToOne

@@ -1,4 +1,4 @@
-package domainapp.modules.forest_inventory.tree;
+package domainapp.modules.forest_inventory.tree.species;
 
 import org.apache.causeway.applib.annotation.BookmarkPolicy;
 import org.apache.causeway.applib.annotation.DomainObject;
@@ -7,6 +7,7 @@ import org.apache.causeway.applib.annotation.Property;
 import org.apache.causeway.applib.annotation.PropertyLayout;
 import org.apache.causeway.applib.annotation.Publishing;
 import org.apache.causeway.applib.annotation.TableDecorator;
+import org.apache.causeway.applib.annotation.Title;
 import org.apache.causeway.applib.jaxb.PersistentEntityAdapter;
 import org.apache.causeway.applib.layout.LayoutConstants;
 import org.apache.causeway.persistence.jpa.applib.integration.CausewayEntityListener;
@@ -31,7 +32,7 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @Entity
 @Table(schema = ForestInventoryModule.SCHEMA)
 @EntityListeners(CausewayEntityListener.class)
-@Named(ForestInventoryModule.NAMESPACE + ".Condition")
+@Named(ForestInventoryModule.NAMESPACE + ".Species")
 @DomainObject(entityChangePublishing = Publishing.ENABLED)
 @DomainObjectLayout(
         tableDecorator = TableDecorator.DatatablesNet.class,
@@ -39,15 +40,28 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @XmlJavaTypeAdapter(PersistentEntityAdapter.class)
 @ToString(onlyExplicitlyIncluded = true)
-public class Condition {
+public class Species {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column
+    @Title
+    @Column(nullable = false, length = 50)
     @Getter @Setter
     @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
     @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "1")
     private String name;
+
+    @Column(nullable = false, length = 50)
+    @Getter @Setter
+    @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
+    @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "1")
+    private String latinName;
+
+
+    public Species(String name, String latinName) {
+        this.name = name;
+        this.latinName = latinName;
+    }
 }
