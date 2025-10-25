@@ -1,7 +1,7 @@
 package domainapp.modules.forest_inventory.inventory;
 
 import java.util.Comparator;
-import java.util.SortedSet;
+import java.util.Set;
 import java.util.TreeSet;
 
 import org.apache.causeway.applib.annotation.BookmarkPolicy;
@@ -65,7 +65,7 @@ public class Inventory implements Comparable<Inventory> {
     @Collection
     @CollectionLayout
     @Getter
-    private final SortedSet<Plot> plots =  new TreeSet<>();
+    private Set<Plot> plots = new TreeSet<>();
 
     public void addPlot(Plot plot) {
         plots.add(plot);

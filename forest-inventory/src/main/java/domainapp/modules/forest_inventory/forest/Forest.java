@@ -1,7 +1,7 @@
 package domainapp.modules.forest_inventory.forest;
 
 import java.util.Comparator;
-import java.util.SortedSet;
+import java.util.Set;
 import java.util.TreeSet;
 
 import org.springframework.lang.Nullable;
@@ -199,7 +199,7 @@ public class Forest implements Comparable<Forest> {
     @Collection
     @CollectionLayout
     @Getter
-    public SortedSet<Inventory> inventories = new TreeSet<>();
+    private Set<Inventory> inventories = new TreeSet<>();
 
     public void addInventory(Inventory inventory) {
         inventories.add(inventory);

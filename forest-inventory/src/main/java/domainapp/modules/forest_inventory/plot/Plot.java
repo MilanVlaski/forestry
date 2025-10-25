@@ -1,7 +1,7 @@
 package domainapp.modules.forest_inventory.plot;
 
 import java.util.Comparator;
-import java.util.SortedSet;
+import java.util.Set;
 import java.util.TreeSet;
 
 import jakarta.persistence.CascadeType;
@@ -66,7 +66,7 @@ public class Plot implements Comparable<Plot> {
     @Collection
     @CollectionLayout
     @Getter
-    private final SortedSet<Tree> trees = new TreeSet<>();
+    private Set<Tree> trees = new TreeSet<>();
 
 
     public String getTitle() {
