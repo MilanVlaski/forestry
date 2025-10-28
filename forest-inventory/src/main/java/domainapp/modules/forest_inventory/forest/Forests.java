@@ -9,7 +9,6 @@ import org.apache.causeway.applib.annotation.DomainService;
 import org.apache.causeway.applib.annotation.PriorityPrecedence;
 import org.apache.causeway.applib.annotation.PromptStyle;
 import org.apache.causeway.applib.annotation.SemanticsOf;
-import org.apache.causeway.applib.query.Query;
 import org.apache.causeway.applib.services.repository.RepositoryService;
 import org.apache.causeway.persistence.jpa.applib.services.JpaSupportService;
 
@@ -44,16 +43,6 @@ public class Forests {
         return Arrays.stream(names)
                 .map(this::create)
                 .toList();
-    }
-
-
-    @Action(semantics = SemanticsOf.NON_IDEMPOTENT)
-    @ActionLayout(promptStyle = PromptStyle.DIALOG_SIDEBAR)
-    public List<Forest> findByNameLike(
-            @Name final String name) {
-        return repositoryService.allMatches(
-                Query.named(Forest.class, Forest.NAMED_QUERY__FIND_BY_NAME_LIKE)
-                     .withParameter("name", "%" + name + "%"));
     }
 
 

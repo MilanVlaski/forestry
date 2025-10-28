@@ -32,6 +32,7 @@ import org.apache.causeway.persistence.jpa.applib.integration.CausewayEntityList
 import org.apache.causeway.persistence.jpa.applib.types.BlobJpaEmbeddable;
 
 import static org.apache.causeway.applib.annotation.SemanticsOf.IDEMPOTENT;
+import static org.apache.causeway.applib.annotation.SemanticsOf.NON_IDEMPOTENT;
 import static org.apache.causeway.applib.annotation.SemanticsOf.NON_IDEMPOTENT_ARE_YOU_SURE;
 
 import lombok.AccessLevel;
@@ -201,9 +202,12 @@ public class Forest implements Comparable<Forest> {
     @Getter
     private Set<Inventory> inventories = new TreeSet<>();
 
-    public void addInventory(Inventory inventory) {
+    @Action(semantics = NON_IDEMPOTENT)
+    public Inventory addInventory() {
+        var inventory = new Inventory();
         inventories.add(inventory);
         inventory.setForest(this);
+        return inventory;
     }
 
     @Action(semantics = NON_IDEMPOTENT_ARE_YOU_SURE)

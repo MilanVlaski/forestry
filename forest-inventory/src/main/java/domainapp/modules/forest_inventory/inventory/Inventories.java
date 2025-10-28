@@ -1,6 +1,5 @@
-package domainapp.modules.forest_inventory.tree.condition;
+package domainapp.modules.forest_inventory.inventory;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.apache.causeway.applib.annotation.Action;
@@ -18,28 +17,22 @@ import jakarta.annotation.Priority;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
-@Named(ForestInventoryModule.NAMESPACE + ".TreeConditions")
+@Named(ForestInventoryModule.NAMESPACE + ".Inventories")
 @DomainService
 @Priority(PriorityPrecedence.EARLY)
 @RequiredArgsConstructor(onConstructor_ = {@Inject} )
-public class TreeCondition {
+public class Inventories {
+
+    @Inject RepositoryService repositoryService;
 
     @Action(semantics = SemanticsOf.NON_IDEMPOTENT)
     @ActionLayout(promptStyle = PromptStyle.DIALOG_SIDEBAR)
-    public Condition create(String condition) {
-        return repositoryService.persist(new Condition(condition));
-    }
-
-    public List<Condition> createAll(String... conditions) {
-        return Arrays.stream(conditions)
-                .map(this::create)
-                .toList();
+    public Inventory create(){
+        return repositoryService.persist(new Inventory());
     }
 
     @Action(semantics = SemanticsOf.SAFE)
-    public List<Condition> listAll() {
-        return repositoryService.allInstances(Condition.class);
+    public List<Inventory> listAll() {
+        return repositoryService.allInstances(Inventory.class);
     }
-
-    @Inject RepositoryService repositoryService;
 }

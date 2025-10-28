@@ -7,6 +7,7 @@ import java.util.Comparator;
 import org.apache.causeway.applib.annotation.BookmarkPolicy;
 import org.apache.causeway.applib.annotation.DomainObject;
 import org.apache.causeway.applib.annotation.DomainObjectLayout;
+import org.apache.causeway.applib.annotation.ObjectSupport;
 import org.apache.causeway.applib.annotation.Property;
 import org.apache.causeway.applib.annotation.PropertyLayout;
 import org.apache.causeway.applib.annotation.Publishing;
@@ -125,12 +126,13 @@ public class Tree implements Comparable<Tree> {
         this.createdBy = userService.currentUserNameElseNobody();
     }
 
-    public String getTitle() {
+@ObjectSupport
+    public String title() {
         return "Tree " + id;
     }
 
     private final static Comparator<Tree> comparator =
-            Comparator.comparing(Tree::getTitle);
+            Comparator.comparing(Tree::title);
 
     @Override
     public int compareTo(final Tree other) {

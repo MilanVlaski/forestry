@@ -8,20 +8,52 @@
         <mb3:menu>
             <mb3:named>Simple Objects</mb3:named>
             <mb3:section>
+                <mb3:serviceAction objectType="simple.SimpleObjects" id="listAll"/>
                 <mb3:serviceAction objectType="simple.SimpleObjects" id="create"/>
                 <mb3:serviceAction objectType="simple.SimpleObjects" id="findByName"/>
-                <mb3:serviceAction objectType="simple.SimpleObjects" id="findByNameLike"/>
-                <mb3:serviceAction objectType="simple.SimpleObjects" id="listAll"/>
             </mb3:section>
         </mb3:menu>
         <mb3:menu>
             <mb3:named>Forests</mb3:named>
             <mb3:section>
+                <mb3:serviceAction objectType="forest.Forests" id="listAll"/>
                 <mb3:serviceAction objectType="forest.Forests" id="create"/>
                 <mb3:serviceAction objectType="forest.Forests" id="findByName"/>
-                <mb3:serviceAction objectType="forest.Forests" id="findByNameLike"/>
-                <mb3:serviceAction objectType="forest.Forests" id="listAll"/>
-                <mb3:serviceAction objectType="forest.Forests" id="createTree"/>
+            </mb3:section>
+        </mb3:menu>
+        <mb3:menu>
+            <mb3:named>Inventories</mb3:named>
+            <mb3:section>
+                <mb3:serviceAction objectType="forest.Inventories" id="listAll"/>
+                <mb3:serviceAction objectType="forest.Inventories" id="create"/>
+            </mb3:section>
+        </mb3:menu>
+        <mb3:menu>
+            <mb3:named>Plots</mb3:named>
+            <mb3:section>
+                <mb3:serviceAction objectType="forest.Plots" id="listAll"/>
+                <mb3:serviceAction objectType="forest.Plots" id="create"/>
+            </mb3:section>
+        </mb3:menu>
+        <mb3:menu>
+            <mb3:named>Trees</mb3:named>
+            <mb3:section>
+                <mb3:serviceAction objectType="forest.Plots" id="listAll"/>
+                <mb3:serviceAction objectType="forest.Trees" id="addTree"/>
+            </mb3:section>
+        </mb3:menu>
+        <mb3:menu>
+            <mb3:named>Species</mb3:named>
+            <mb3:section>
+                <mb3:serviceAction objectType="forest.TreeSpecies" id="listAll"/>
+                <mb3:serviceAction objectType="forest.TreeSpecies" id="create"/>
+            </mb3:section>
+        </mb3:menu>
+        <mb3:menu>
+            <mb3:named>Conditions</mb3:named>
+            <mb3:section>
+                <mb3:serviceAction objectType="forest.TreeConditions" id="listAll"/>
+                <mb3:serviceAction objectType="forest.TreeConditions" id="create"/>
             </mb3:section>
         </mb3:menu>
         <mb3:menu unreferencedActions="true">

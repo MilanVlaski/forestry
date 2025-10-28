@@ -41,5 +41,10 @@ public class TreeSpecies {
         return list;
     }
 
+    @Action(semantics = SemanticsOf.SAFE)
+    public List<Species> listAll() {
+        return repositoryService.allInstances(Species.class);
+    }
+
     @Inject RepositoryService repositoryService;
 }

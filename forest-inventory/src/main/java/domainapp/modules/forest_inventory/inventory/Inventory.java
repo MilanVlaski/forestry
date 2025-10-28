@@ -4,11 +4,13 @@ import java.util.Comparator;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.apache.causeway.applib.annotation.Action;
 import org.apache.causeway.applib.annotation.BookmarkPolicy;
 import org.apache.causeway.applib.annotation.Collection;
 import org.apache.causeway.applib.annotation.CollectionLayout;
 import org.apache.causeway.applib.annotation.DomainObject;
 import org.apache.causeway.applib.annotation.DomainObjectLayout;
+import org.apache.causeway.applib.annotation.ObjectSupport;
 import org.apache.causeway.applib.annotation.Property;
 import org.apache.causeway.applib.annotation.PropertyLayout;
 import org.apache.causeway.applib.annotation.Publishing;
@@ -16,6 +18,8 @@ import org.apache.causeway.applib.annotation.TableDecorator;
 import org.apache.causeway.applib.jaxb.PersistentEntityAdapter;
 import org.apache.causeway.applib.layout.LayoutConstants;
 import org.apache.causeway.persistence.jpa.applib.integration.CausewayEntityListener;
+
+import static org.apache.causeway.applib.annotation.SemanticsOf.NON_IDEMPOTENT;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -72,7 +76,8 @@ public class Inventory implements Comparable<Inventory> {
         plot.setInventory(this);
     }
 
-    public String getTitle() {
+@ObjectSupport
+    public String title() {
         return "Inventory " + id;
     }
 
@@ -80,8 +85,16 @@ public class Inventory implements Comparable<Inventory> {
         this.forest = forest;
     }
 
+    @Action(semantics = NON_IDEMPOTENT)
+    public Plot addPlot() {
+        var plot = new Plot();
+        plots.add(plot);
+        plot.setInventory(this);
+        return plot;
+    }
+
     private final static Comparator<Inventory> comparator =
-            Comparator.comparing(Inventory::getTitle);
+            Comparator.comparing(Inventory::title);
 
     @Override
     public int compareTo(final Inventory other) {

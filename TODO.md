@@ -1,12 +1,12 @@
 # To do
-- [ ] Add Species and Condition and a `data.sql`
-- [ ] Create Forest
-- [ ] Create inventory and add Plots
-- [ ] Show Trees in a table, by Forest/Inventory/Plot
-- [x] GREAT IDEA: Just have the Forest, Plot, Inventory, be  a String input, with choices coming from the appropriate names or ids of those entities. The choices COULD be dependent.
-  - [ ] Requires some handling of null, e.g. by not using the thingy, but overall, pretty cool.
-- [ ] Design tree entry as a function, and build the entities from there   
-  - [ ] Read docs, to figure out how to build the function and the underlying collection Dropdowns
+- [x] Add Species and Condition and a `data.sql`
+- [x] Create Forest
+- [ ] Assign Plot to Tree tree.assignToPlot. assignToOtherPlot if already has plot
+- [ ] Group some of the less important menus together
+  - [ ] Read the schema of  the menubars.layout.xml
+- [x] List species and condition. CRUD.
+- [ ] Tree: ~~C~~ ~~R~~ U D
+- [ ] When creating a Tree, make Forest, Plot and Inventory a bunch of dependent choices.
+- [x] Create inventory and add Plots
 - [ ] Have packages use groupId name
 - [ ] Make a forest fixture script, and run it at startup
-- forestry-webapp

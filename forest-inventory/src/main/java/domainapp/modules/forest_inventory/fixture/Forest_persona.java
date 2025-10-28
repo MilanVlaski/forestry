@@ -17,7 +17,6 @@ import lombok.experimental.Accessors;
 
 import domainapp.modules.forest_inventory.forest.Forest;
 import domainapp.modules.forest_inventory.forest.Forests;
-import domainapp.modules.forest_inventory.inventory.Inventory;
 import domainapp.modules.forest_inventory.plot.Plot;
 import domainapp.modules.forest_inventory.tree.Tree;
 import jakarta.inject.Inject;
@@ -50,12 +49,11 @@ public enum Forest_persona implements Persona<Forest, Forest_persona.Builder> {
         protected Forest buildResult(final ExecutionContext ec) {
 
             val forest = wrap(forests).create(persona.name);
-            val inventory = new Inventory();
             val plot = new Plot();
             val tree = new Tree(BigDecimal.valueOf(10), BigDecimal.valueOf(10),
                     null, null, null);
 
-            forest.addInventory(inventory);
+            var inventory = forest.addInventory();
             inventory.addPlot(plot);
             plot.addTree(tree);
 
