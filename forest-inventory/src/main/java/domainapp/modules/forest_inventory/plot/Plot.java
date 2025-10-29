@@ -114,6 +114,8 @@ public class Plot implements Comparable<Plot> {
         return repositoryService.allInstances(Condition.class);
     }
 
+
+
     @ObjectSupport
     public String title() {
         return "Plot " + id;

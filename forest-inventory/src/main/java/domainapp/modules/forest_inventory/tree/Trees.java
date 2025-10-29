@@ -19,8 +19,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.val;
 
 import domainapp.modules.forest_inventory.ForestInventoryModule;
+import domainapp.modules.forest_inventory.forest.Forest;
 import domainapp.modules.forest_inventory.forest.ForestRepository;
+import domainapp.modules.forest_inventory.inventory.Inventory;
 import domainapp.modules.forest_inventory.inventory.InventoryRepository;
+import domainapp.modules.forest_inventory.plot.Plot;
 import domainapp.modules.forest_inventory.plot.PlotRepository;
 import domainapp.modules.forest_inventory.tree.condition.Condition;
 import domainapp.modules.forest_inventory.tree.condition.ConditionRepository;
@@ -56,9 +59,16 @@ public class Trees {
             @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout
             final Condition condition,
             @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout
-            final String notes
+            final String notes,
+            @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout
+            final Forest forest,
+            @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout
+            final Inventory inventory,
+            @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout
+            final Plot plot
     ) {
         val tree = new Tree(dbh, height, species, condition, notes);
+        plot.addTree(tree);
         return repositoryService.persist(tree);
     }
 
@@ -72,5 +82,18 @@ public class Trees {
         return repositoryService.allInstances(Condition.class);
     }
 
+    @MemberSupport
+    public java.util.Collection<Forest> choices5AddTree() {
+        return repositoryService.allInstances(Forest.class);
+    }
 
+    @MemberSupport
+    public java.util.Collection<Inventory> choices6AddTree(Forest forest) {
+        return repositoryService.allInstances(Inventory.class);
+    }
+
+    @MemberSupport
+    public java.util.Collection<Plot> choices7AddTree(Plot plot) {
+        return repositoryService.allInstances(Plot.class);
+    }
 }
