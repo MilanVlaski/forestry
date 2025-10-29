@@ -2,18 +2,24 @@ package domainapp.modules.forest_inventory.tree;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.Comparator;
 
+import org.apache.causeway.applib.annotation.Action;
+import org.apache.causeway.applib.annotation.ActionLayout;
 import org.apache.causeway.applib.annotation.BookmarkPolicy;
 import org.apache.causeway.applib.annotation.DomainObject;
 import org.apache.causeway.applib.annotation.DomainObjectLayout;
+import org.apache.causeway.applib.annotation.MemberSupport;
 import org.apache.causeway.applib.annotation.ObjectSupport;
 import org.apache.causeway.applib.annotation.Property;
 import org.apache.causeway.applib.annotation.PropertyLayout;
 import org.apache.causeway.applib.annotation.Publishing;
+import org.apache.causeway.applib.annotation.SemanticsOf;
 import org.apache.causeway.applib.annotation.TableDecorator;
 import org.apache.causeway.applib.jaxb.PersistentEntityAdapter;
 import org.apache.causeway.applib.layout.LayoutConstants;
+import org.apache.causeway.applib.services.repository.RepositoryService;
 import org.apache.causeway.applib.services.user.UserService;
 import org.apache.causeway.persistence.jpa.applib.integration.CausewayEntityListener;
 
@@ -110,6 +116,7 @@ public class Tree implements Comparable<Tree> {
     private LocalDateTime createdAt;
 
     @Inject @Transient UserService userService;
+    @Inject @Transient RepositoryService repositoryService;
 
     public Tree(BigDecimal dbh, BigDecimal height, Species species, Condition condition, String notes) {
         this.dbh_cm = dbh;
@@ -126,9 +133,21 @@ public class Tree implements Comparable<Tree> {
         this.createdBy = userService.currentUserNameElseNobody();
     }
 
-@ObjectSupport
+    @ObjectSupport
     public String title() {
         return "Tree " + id;
+    }
+
+    @Action(semantics = SemanticsOf.IDEMPOTENT)
+    @ActionLayout(associateWith = "plot")
+    public Tree assignToPlot(Plot plot) {
+        plot.addTree(this);
+        return this;
+    }
+
+    @MemberSupport
+    public Collection<Plot> choices0AssignToPlot() {
+        return repositoryService.allInstances(Plot.class);
     }
 
     private final static Comparator<Tree> comparator =

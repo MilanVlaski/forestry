@@ -84,7 +84,7 @@ public class Plot implements Comparable<Plot> {
     private Set<Tree> trees = new TreeSet<>();
 
     @Action(semantics = SemanticsOf.NON_IDEMPOTENT)
-    @ActionLayout(promptStyle = PromptStyle.DIALOG_MODAL)
+    @ActionLayout(associateWith = "trees", promptStyle = PromptStyle.DIALOG_MODAL)
     public Plot addTree(
             @Parameter @ParameterLayout
             final BigDecimal dbh,
@@ -114,9 +114,9 @@ public class Plot implements Comparable<Plot> {
         return repositoryService.allInstances(Condition.class);
     }
 
-@ObjectSupport
+    @ObjectSupport
     public String title() {
-        return "Plot" + id;
+        return "Plot " + id;
     }
 
     public Plot(Inventory inventory) {

@@ -5,6 +5,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import org.apache.causeway.applib.annotation.Action;
+import org.apache.causeway.applib.annotation.ActionLayout;
 import org.apache.causeway.applib.annotation.BookmarkPolicy;
 import org.apache.causeway.applib.annotation.Collection;
 import org.apache.causeway.applib.annotation.CollectionLayout;
@@ -19,7 +20,7 @@ import org.apache.causeway.applib.jaxb.PersistentEntityAdapter;
 import org.apache.causeway.applib.layout.LayoutConstants;
 import org.apache.causeway.persistence.jpa.applib.integration.CausewayEntityListener;
 
-import static org.apache.causeway.applib.annotation.SemanticsOf.NON_IDEMPOTENT;
+import static org.apache.causeway.applib.annotation.SemanticsOf.IDEMPOTENT;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -85,7 +86,8 @@ public class Inventory implements Comparable<Inventory> {
         this.forest = forest;
     }
 
-    @Action(semantics = NON_IDEMPOTENT)
+    @Action(semantics = IDEMPOTENT)
+    @ActionLayout(associateWith = "plots")
     public Plot addPlot() {
         var plot = new Plot();
         plots.add(plot);

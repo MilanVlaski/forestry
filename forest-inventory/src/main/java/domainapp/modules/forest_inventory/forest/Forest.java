@@ -203,6 +203,7 @@ public class Forest implements Comparable<Forest> {
     private Set<Inventory> inventories = new TreeSet<>();
 
     @Action(semantics = NON_IDEMPOTENT)
+    @ActionLayout(associateWith = "inventories")
     public Inventory addInventory() {
         var inventory = new Inventory();
         inventories.add(inventory);

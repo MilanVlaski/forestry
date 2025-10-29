@@ -1,7 +1,7 @@
 # To do
 - [x] Add Species and Condition and a `data.sql`
 - [x] Create Forest
-- [ ] Assign Plot to Tree tree.assignToPlot. assignToOtherPlot if already has plot
+- [x] Assign Plot to Tree tree.assignToPlot. assignToOtherPlot if already has plot
 - [ ] Group some of the less important menus together
   - [ ] Read the schema of  the menubars.layout.xml
 - [x] List species and condition. CRUD.
@@ -9,4 +9,4 @@
 - [ ] When creating a Tree, make Forest, Plot and Inventory a bunch of dependent choices.
 - [x] Create inventory and add Plots
 - [ ] Have packages use groupId name
-- [ ] Make a forest fixture script, and run it at startup
+- [x] Make a forest fixture script, and run it at startup
