@@ -68,6 +68,8 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 public class Plot implements Comparable<Plot> {
 
     @Id
+    @Getter
+    @Property
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 

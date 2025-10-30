@@ -74,46 +74,46 @@ public class Tree implements Comparable<Tree> {
     @Column(precision = 5, scale = 2, nullable = false)
     @Getter @Setter
     @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
-    @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "1")
+    @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "2")
     private BigDecimal height_m;
 
     @ManyToOne
     @Getter @Setter
     @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
-    @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "1")
-    private Condition condition;
-
-    @ManyToOne
-    @Getter @Setter
-    @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
-    @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "1")
-    private Plot plot;
-
-    @ManyToOne
-    @Getter @Setter
-    @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
-    @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "1")
+    @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "3")
     private Species species;
 
-    @Notes
-    @Column(length = Notes.MAX_LEN, nullable = true)
+    @ManyToOne
     @Getter @Setter
     @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
-    @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "2")
-    private String notes;
+    @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "4")
+    private Condition condition;
 
+
+    @ManyToOne
+    @Getter @Setter
+    @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
+    @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "5")
+    private Plot plot;
 
     @Column
     @Getter @Setter
     @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
-    @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.METADATA, sequence = "2")
+    @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.METADATA, sequence = "6")
     private String createdBy;
 
     @Column
     @Getter @Setter
     @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
-    @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.METADATA, sequence = "3")
+    @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.METADATA, sequence = "7")
     private LocalDateTime createdAt;
+
+    @Notes
+    @Column(length = Notes.MAX_LEN, nullable = true)
+    @Getter @Setter
+    @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
+    @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "90")
+    private String notes;
 
     @Inject @Transient UserService userService;
     @Inject @Transient RepositoryService repositoryService;

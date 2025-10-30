@@ -34,9 +34,8 @@ public class TreeSpecies {
     public List<Species> createAll(String... names) {
         val list = new ArrayList<Species>();
         for( int i=0; i<names.length; i+=2 ) {
-            Species species = new Species(names[i], names[i + 1]);
+            var species = create(names[i], names[i + 1]);
             list.add(species);
-            repositoryService.persist(species);
         }
         return list;
     }

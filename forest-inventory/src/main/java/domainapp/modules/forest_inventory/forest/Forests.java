@@ -1,6 +1,5 @@
 package domainapp.modules.forest_inventory.forest;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.apache.causeway.applib.annotation.Action;
@@ -38,13 +37,6 @@ public class Forests {
             @Name final String name) {
         return repositoryService.persist(Forest.withName(name));
     }
-
-    public List<Forest> createAll(String... names) {
-        return Arrays.stream(names)
-                .map(this::create)
-                .toList();
-    }
-
 
     @Action(semantics = SemanticsOf.SAFE)
     @ActionLayout(promptStyle = PromptStyle.DIALOG_SIDEBAR)

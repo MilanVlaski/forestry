@@ -2,6 +2,11 @@
 - [x] Add Species and Condition and a `data.sql`
 - [x] Create Forest
 - [x] Assign Plot to Tree tree.assignToPlot. assignToOtherPlot if already has plot
+- [ ] Add inventory.id to .columnorder.txt of inventory. Same for plot.
+- [ ] Make forest.name unique, condition and species too
+- [ ] Add validation for forest.name (and anywhere else where name exists)
+- [ ] Put metadata behind the details, for Inventory, Plot and Tree. Achievable by copying the *.layout.xmls.
+- [ ] Make .columnOrder.txt
 - [ ] Group some of the less important menus together
   - [ ] Read the schema of  the menubars.layout.xml
 - [x] List species and condition. CRUD.

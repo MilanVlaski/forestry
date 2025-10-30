@@ -38,7 +38,7 @@
         <mb3:menu>
             <mb3:named>Trees</mb3:named>
             <mb3:section>
-                <mb3:serviceAction objectType="forest.Plots" id="listAll"/>
+                <mb3:serviceAction objectType="forest.Trees" id="listAll"/>
                 <mb3:serviceAction objectType="forest.Trees" id="addTree"/>
             </mb3:section>
         </mb3:menu>

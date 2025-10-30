@@ -1,0 +1,7 @@
+dbh_cm
+height_m
+species
+condition
+plot
+createdBy
+createdAt

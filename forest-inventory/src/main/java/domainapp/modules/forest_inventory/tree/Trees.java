@@ -2,6 +2,7 @@ package domainapp.modules.forest_inventory.tree;
 
 import java.math.BigDecimal;
 import java.util.Collection;
+import java.util.List;
 
 import org.apache.causeway.applib.annotation.Action;
 import org.apache.causeway.applib.annotation.ActionLayout;
@@ -20,15 +21,10 @@ import lombok.val;
 
 import domainapp.modules.forest_inventory.ForestInventoryModule;
 import domainapp.modules.forest_inventory.forest.Forest;
-import domainapp.modules.forest_inventory.forest.ForestRepository;
 import domainapp.modules.forest_inventory.inventory.Inventory;
-import domainapp.modules.forest_inventory.inventory.InventoryRepository;
 import domainapp.modules.forest_inventory.plot.Plot;
-import domainapp.modules.forest_inventory.plot.PlotRepository;
 import domainapp.modules.forest_inventory.tree.condition.Condition;
-import domainapp.modules.forest_inventory.tree.condition.ConditionRepository;
 import domainapp.modules.forest_inventory.tree.species.Species;
-import domainapp.modules.forest_inventory.tree.species.SpeciesRepository;
 import jakarta.annotation.Priority;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -40,13 +36,13 @@ import jakarta.inject.Named;
 public class Trees {
 
     final RepositoryService repositoryService;
-    final ForestRepository forestRepository;
-    final InventoryRepository inventoryRepository;
-    final PlotRepository plotRepository;
-    final SpeciesRepository speciesRepository;
-    final ConditionRepository conditionRepository;
 
-    // TODO add Forest, Inventory, Plot dependent inputs.
+    // TODO paging
+    @Action(semantics = SemanticsOf.SAFE)
+    public List<Tree> listAll() {
+        return repositoryService.allInstances(Tree.class);
+    }
+
     @Action(semantics = SemanticsOf.NON_IDEMPOTENT)
     @ActionLayout(promptStyle = PromptStyle.DIALOG_MODAL)
     public Tree addTree(
@@ -88,12 +84,12 @@ public class Trees {
     }
 
     @MemberSupport
-    public java.util.Collection<Inventory> choices6AddTree(Forest forest) {
+    public java.util.Collection<Inventory> choices6AddTree() {
         return repositoryService.allInstances(Inventory.class);
     }
 
     @MemberSupport
-    public java.util.Collection<Plot> choices7AddTree(Plot plot) {
+    public java.util.Collection<Plot> choices7AddTree() {
         return repositoryService.allInstances(Plot.class);
     }
 }

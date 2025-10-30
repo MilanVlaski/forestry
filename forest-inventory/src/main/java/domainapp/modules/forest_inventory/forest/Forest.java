@@ -206,8 +206,7 @@ public class Forest implements Comparable<Forest> {
     @ActionLayout(associateWith = "inventories")
     public Inventory addInventory() {
         var inventory = new Inventory();
-        inventories.add(inventory);
-        inventory.setForest(this);
+        addInventory(inventory);
         return inventory;
     }
 
@@ -231,4 +230,8 @@ public class Forest implements Comparable<Forest> {
         return comparator.compare(this, other);
     }
 
+    public void addInventory(Inventory inventory) {
+        inventories.add(inventory);
+        inventory.setForest(this);
+    }
 }

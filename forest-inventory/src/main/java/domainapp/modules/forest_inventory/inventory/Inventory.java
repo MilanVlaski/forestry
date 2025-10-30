@@ -57,6 +57,8 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 public class Inventory implements Comparable<Inventory> {
 
     @Id
+    @Getter
+    @Property
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
