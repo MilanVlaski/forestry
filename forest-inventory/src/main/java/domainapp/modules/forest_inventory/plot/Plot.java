@@ -70,6 +70,7 @@ public class Plot implements Comparable<Plot> {
     @Id
     @Getter
     @Property
+    @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.IDENTITY)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 

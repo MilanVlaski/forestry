@@ -26,7 +26,7 @@ public class CreateForestsAndEnums extends FixtureScript {
     @Override
     protected void execute(ExecutionContext ec) {
         var conditions = createAllConditions("Excellent", "Very Good", "Good", "Poor", "Very Poor");
-        var species = createAllSpecies("European beech", "Abies alba", "Silver fir", "Abies alba", "Norway spruce", "Picea abies",
+        var species = createAllSpecies("European beech", "Fagus sylvatica", "Silver fir", "Abies alba", "Norway spruce", "Picea abies",
                 "Oak", "Quercus robur", "Scots pine", "Pinus sylvestris", "European hornbeam", "Carpinus betulus",
                 "Silver birch", "Betula pendula");
         var forests = createAllForests("Janj", "Lom", "Perućica");
@@ -46,7 +46,7 @@ public class CreateForestsAndEnums extends FixtureScript {
             }
         }
 
-        forests.forEach(repositoryService::persistAndFlush);
+        forests.forEach(repositoryService::persist);
     }
 
     Random random = new Random();

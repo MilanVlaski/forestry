@@ -2,11 +2,14 @@
 - [x] Add Species and Condition and a `data.sql`
 - [x] Create Forest
 - [x] Assign Plot to Tree tree.assignToPlot. assignToOtherPlot if already has plot
-- [x] Add inventory.id to .columnorder.txt of inventory. Same for plot.
+- [x] Add inventory.id to .columnorder.txt of inventory. Same for plot.\
+- [ ] Recognize uniqueness exception with https://causeway.apache.org/refguide/3.3.0/applib/index/services/exceprecog/ExceptionRecognizer.html
+- [ ] Giving up on creating "sensible defaults" for `.layout.xml` files, as it depends on whether hiding metadata
+- [ ] Find out if there is a way to define a single X.layout.xml, without placing it in each entity package.
 - [ ] Make forest.name unique, condition and species too
-- [ ] Add validation for forest.name (and anywhere else where name exists)
-- [ ] Put metadata behind the details, for Inventory, Plot and Tree. Achievable by copying the *.layout.xmls.
-- [ ] Make .columnOrder.txt
+- [x] Add validation for forest.name (and anywhere else where name exists)
+- [x] Put metadata behind the details, for Inventory, Plot and Tree. Achievable by copying the *.layout.xmls.
+- [x] Make .columnOrder.txt
 - [ ] Group some of the less important menus together
   - [ ] Read the schema of  the menubars.layout.xml
 - [x] List species and condition. CRUD.

@@ -47,7 +47,7 @@ public class Condition {
     private Long id;
 
     @Title
-    @Column(nullable = false, length = 10)
+    @Column(nullable = false, length = 10, unique = true)
     @Getter @Setter
     @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
     @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "1")

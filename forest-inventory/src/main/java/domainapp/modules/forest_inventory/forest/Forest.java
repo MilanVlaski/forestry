@@ -63,18 +63,12 @@ import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
-import jakarta.persistence.UniqueConstraint;
 import jakarta.persistence.Version;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 @Entity
-@Table(
-        schema = ForestInventoryModule.SCHEMA,
-        uniqueConstraints = {
-                @UniqueConstraint(name = "Forest__name__UNQ", columnNames = {"name"})
-        }
-)
+@Table(schema = ForestInventoryModule.SCHEMA)
 @NamedQueries({
         @NamedQuery(
                 name = Forest.NAMED_QUERY__FIND_BY_NAME_LIKE,
@@ -123,7 +117,7 @@ public class Forest implements Comparable<Forest> {
 
     @Title
     @Name
-    @Column(length = Name.MAX_LEN, nullable = false, name = "name")
+    @Column(length = Name.MAX_LEN, nullable = false, unique = true)
     @Getter @Setter @ToString.Include
     @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.IDENTITY, sequence = "1")
     private String name;
