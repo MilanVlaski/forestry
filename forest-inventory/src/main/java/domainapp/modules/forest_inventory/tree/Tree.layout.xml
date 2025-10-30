@@ -14,10 +14,10 @@
             <bs3:row>
                 <bs3:col span="12">
                     <bs3:tabGroup>
-                        <bs3:tab name="Identity">
+                        <bs3:tab name="Details">
                             <bs3:row>
                                 <bs3:col span="12">
-                                    <cpt:fieldSet name="Identity" id="identity"/>
+                                    <cpt:fieldSet name="Details" id="details"/>
                                 </bs3:col>
                             </bs3:row>
                         </bs3:tab>
@@ -36,9 +36,6 @@
                             </bs3:row>
                         </bs3:tab>
                     </bs3:tabGroup>
-                </bs3:col>
-                <bs3:col span="12">
-                    <cpt:fieldSet name="Details" id="details"/>
                 </bs3:col>
             </bs3:row>
         </bs3:col>
