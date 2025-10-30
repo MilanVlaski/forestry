@@ -4,7 +4,7 @@
 - [x] Assign Plot to Tree tree.assignToPlot. assignToOtherPlot if already has plot
 - [x] Add inventory.id to .columnorder.txt of inventory. Same for plot.\
 - [ ] Recognize uniqueness exception with https://causeway.apache.org/refguide/3.3.0/applib/index/services/exceprecog/ExceptionRecognizer.html
-- [ ] Giving up on creating "sensible defaults" for `.layout.xml` files, as it depends on whether hiding metadata
+- [ ] If metadata is not shown for regular users, then will the tabgroup remain? It should be removed, as it's clutter.
 - [ ] Find out if there is a way to define a single X.layout.xml, without placing it in each entity package.
 - [ ] Make forest.name unique, condition and species too
 - [x] Add validation for forest.name (and anywhere else where name exists)
