@@ -1,11 +1,5 @@
 package domainapp.webapp;
 
-import org.apache.causeway.extensions.fullcalendar.wkt.ui.viewer.CausewayModuleExtFullCalendarWicketUi;
-import org.apache.causeway.extensions.layoutloaders.github.CausewayModuleExtLayoutLoadersGithub;
-
-
-import org.apache.causeway.viewer.graphql.viewer.CausewayModuleViewerGraphqlViewer;
-
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
@@ -21,6 +15,7 @@ import org.apache.causeway.extensions.commandlog.jpa.CausewayModuleExtCommandLog
 import org.apache.causeway.extensions.executionlog.jpa.CausewayModuleExtExecutionLogPersistenceJpa;
 import org.apache.causeway.extensions.executionoutbox.jpa.CausewayModuleExtExecutionOutboxPersistenceJpa;
 import org.apache.causeway.extensions.flyway.impl.CausewayModuleExtFlywayImpl;
+import org.apache.causeway.extensions.layoutloaders.github.CausewayModuleExtLayoutLoadersGithub;
 import org.apache.causeway.extensions.pdfjs.wkt.ui.CausewayModuleExtPdfjsWicketUi;
 import org.apache.causeway.extensions.secman.encryption.spring.CausewayModuleExtSecmanEncryptionSpring;
 import org.apache.causeway.extensions.secman.jpa.CausewayModuleExtSecmanPersistenceJpa;
@@ -31,12 +26,15 @@ import org.apache.causeway.testing.fixtures.applib.CausewayModuleTestingFixtures
 import org.apache.causeway.testing.h2console.ui.CausewayModuleTestingH2ConsoleUi;
 import org.apache.causeway.valuetypes.asciidoc.metamodel.CausewayModuleValAsciidocMetaModel;
 import org.apache.causeway.valuetypes.asciidoc.ui.wkt.CausewayModuleValAsciidocUiWkt;
+import org.apache.causeway.viewer.graphql.viewer.CausewayModuleViewerGraphqlViewer;
 import org.apache.causeway.viewer.restfulobjects.jaxrsresteasy.CausewayModuleViewerRestfulObjectsJaxrsResteasy;
 import org.apache.causeway.viewer.wicket.applib.CausewayModuleViewerWicketApplibMixins;
 import org.apache.causeway.viewer.wicket.viewer.CausewayModuleViewerWicketViewer;
 
 import domainapp.webapp.application.ApplicationModule;
 import domainapp.webapp.application.fixture.scenarios.DomainAppDemo;
+import domainapp.webapp.application.fixture.scenarios.CommonSecuritySetup;
+import domainapp.webapp.application.fixture.scenarios.PrototypingSecuritySetup;
 import domainapp.webapp.custom.CustomModule;
 import domainapp.webapp.quartz.QuartzModule;
 
@@ -82,7 +80,9 @@ import domainapp.webapp.quartz.QuartzModule;
 
 
         // discoverable fixtures
-        DomainAppDemo.class
+        DomainAppDemo.class,
+        CommonSecuritySetup.class,
+        PrototypingSecuritySetup.class,
 })
 @PropertySources({
         @PropertySource(CausewayPresets.DebugDiscovery),

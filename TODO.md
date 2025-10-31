@@ -3,6 +3,7 @@
   - Create a fixture script that the admin runs manually, once, to create all the users and roles. This runs automatically when prototyping, and must be ran manually, once, by an admin, to set up all the users.
 - Run app without prototyping on.
   - Figure out where to define a password for the admin, in production, as right now, there is a password.
+- Rename fixture.scenarios package to fixtures
 - [ ] Check if PetOwner already does that.
 - [ ] Local Postgres database tests, with Flyway.
   - I would personally have the schema get generated, and then copy it into Flyway. Seems a decent way to do it.

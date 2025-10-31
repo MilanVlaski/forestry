@@ -21,10 +21,11 @@ import domainapp.modules.forest_inventory.tree.species.Species;
 import domainapp.modules.forest_inventory.tree.species.TreeSpecies;
 import jakarta.inject.Inject;
 
-public class CreateForestsAndEnums extends FixtureScript {
+public class CreateForestsAndEnumsAndSampleData extends FixtureScript {
 
     @Override
     protected void execute(ExecutionContext ec) {
+        // TODO extract only this to a fixture script
         var conditions = createAllConditions("Excellent", "Very Good", "Good", "Poor", "Very Poor");
         var species = createAllSpecies("European beech", "Fagus sylvatica", "Silver fir", "Abies alba", "Norway spruce", "Picea abies",
                 "Oak", "Quercus robur", "Scots pine", "Pinus sylvestris", "European hornbeam", "Carpinus betulus",

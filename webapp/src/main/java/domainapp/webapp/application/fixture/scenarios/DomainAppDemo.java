@@ -3,7 +3,7 @@ package domainapp.webapp.application.fixture.scenarios;
 import org.apache.causeway.testing.fixtures.applib.fixturescripts.FixtureScript;
 import org.apache.causeway.testing.fixtures.applib.modules.ModuleWithFixturesService;
 
-import domainapp.modules.forest_inventory.fixture.CreateForestsAndEnums;
+import domainapp.modules.forest_inventory.fixture.CreateForestsAndEnumsAndSampleData;
 import domainapp.modules.simple.fixture.SimpleObject_persona;
 import jakarta.inject.Inject;
 
@@ -17,7 +17,7 @@ public class DomainAppDemo extends FixtureScript {
     protected void execute(final ExecutionContext ec) {
         ec.executeChildren(this, moduleWithFixturesService.getTeardownFixture());
         ec.executeChild(this, new SimpleObject_persona.PersistAll());
-        ec.executeChild(this, new CreateForestsAndEnums());
+        ec.executeChild(this, new CreateForestsAndEnumsAndSampleData());
     }
 
     @Inject ModuleWithFixturesService moduleWithFixturesService;

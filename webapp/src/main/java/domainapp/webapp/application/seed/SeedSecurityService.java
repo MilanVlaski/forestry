@@ -7,11 +7,12 @@ import org.apache.causeway.applib.annotation.PriorityPrecedence;
 import org.apache.causeway.applib.events.metamodel.MetamodelEvent;
 import org.apache.causeway.applib.services.xactn.TransactionService;
 import org.apache.causeway.core.config.environment.CausewaySystemEnvironment;
-import org.apache.causeway.testing.fixtures.applib.fixturescripts.FixtureScript;
 import org.apache.causeway.testing.fixtures.applib.fixturescripts.FixtureScripts;
 
 import lombok.RequiredArgsConstructor;
 
+import domainapp.webapp.application.fixture.scenarios.CommonSecuritySetup;
+import domainapp.webapp.application.fixture.scenarios.PrototypingSecuritySetup;
 import jakarta.annotation.Priority;
 import jakarta.inject.Inject;
 
@@ -35,27 +36,6 @@ public class SeedSecurityService {
             }
 
             transactionService.flushTransaction();
-        }
-    }
-
-    private static class PrototypingSecuritySetup extends FixtureScript {
-
-        @Override
-        protected void execute(ExecutionContext executionContext) {
-            executionContext.executeChildren(this,
-                    new Roles.SimpleModuleSuperuserRole(),
-                    new Users.SvenUser()
-            );
-        }
-    }
-
-    private static class CommonSecuritySetup extends FixtureScript {
-
-        @Override
-        protected void execute(ExecutionContext executionContext) {
-            executionContext.executeChildren(this,
-                    new Roles.ForestModuleSuperuserRole()
-            );
         }
     }
 
