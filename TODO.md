@@ -1,20 +1,36 @@
 # To do
+- [ ] Security. Users as domain objects.
+  - [ ] Check if PetOwner already does that.
+- [ ] Test what 
+- [ ] Local Postgres database tests, with Flyway.
+  - I would personally have the schema get generated, and then copy it into Flyway. Seems a decent way to do it.
+- [ ] Recognize uniqueness exception with https://causeway.apache.org/refguide/3.3.0/applib/index/services/exceprecog/ExceptionRecognizer.html
+  - [ ] Good place for integration test?
+  - [ ] Length constraint?
+  - [ ] Make a @Name annotation that's truly applicable everywhere
+    - [ ] Look at PetClinic name validation
+- [ ] Get rid of this verbose crap @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
+- [ ] If metadata is not shown for regular users, then will the tabgroup remain? It should be removed, as it's clutter.
+- [ ] Group some of the less important menus together
+  - [x] Read the schema of  the menubars.layout.xml
+- [ ] Tree: ~~C~~ ~~R~~ U D
+- [ ] When creating a Tree, make Plot entry possible
+- [ ] Have packages use groupId name
+- [ ] Internationalization
+- [ ] Custom color styling in tables when "Condition" is displayed
+- [ ] Can sort Trees by plot, but not by Condition
+  - It's because of implementing `Comparable`!
+- [x] Make forest.name unique, condition and species too
+- [x] Find out if there is a way to define a single X.layout.xml, without placing it in each entity package.
 - [x] Add Species and Condition and a `data.sql`
 - [x] Create Forest
 - [x] Assign Plot to Tree tree.assignToPlot. assignToOtherPlot if already has plot
-- [x] Add inventory.id to .columnorder.txt of inventory. Same for plot.\
-- [ ] Recognize uniqueness exception with https://causeway.apache.org/refguide/3.3.0/applib/index/services/exceprecog/ExceptionRecognizer.html
-- [ ] If metadata is not shown for regular users, then will the tabgroup remain? It should be removed, as it's clutter.
-- [ ] Find out if there is a way to define a single X.layout.xml, without placing it in each entity package.
-- [ ] Make forest.name unique, condition and species too
+- [x] Add inventory.id to .columnorder.txt of inventory. Same for plot.
 - [x] Add validation for forest.name (and anywhere else where name exists)
 - [x] Put metadata behind the details, for Inventory, Plot and Tree. Achievable by copying the *.layout.xmls.
 - [x] Make .columnOrder.txt
-- [ ] Group some of the less important menus together
-  - [ ] Read the schema of  the menubars.layout.xml
 - [x] List species and condition. CRUD.
-- [ ] Tree: ~~C~~ ~~R~~ U D
-- [ ] When creating a Tree, make Forest, Plot and Inventory a bunch of dependent choices.
-- [x] Create inventory and add Plots
-- [ ] Have packages use groupId name
 - [x] Make a forest fixture script, and run it at startup
+- [x] Create inventory and add Plots
+# Conventions
+- `applib.annotation.domain-object.editing=false`, makes it so setters "don't work". Which by default, they shouldn't. However, if a class is a bit dumb, just annotate it with `@DomainObject(editing = "true")`m, and for fine grained control, use `@Property(editing = true/false)`.

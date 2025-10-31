@@ -31,15 +31,6 @@ public class TreeSpecies {
         return repositoryService.persist(new Species(name, latinName));
     }
 
-    public List<Species> createAll(String... names) {
-        val list = new ArrayList<Species>();
-        for( int i=0; i<names.length; i+=2 ) {
-            var species = create(names[i], names[i + 1]);
-            list.add(species);
-        }
-        return list;
-    }
-
     @Action(semantics = SemanticsOf.SAFE)
     public List<Species> listAll() {
         return repositoryService.allInstances(Species.class);
