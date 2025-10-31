@@ -44,7 +44,7 @@ causeway:
           role-name: "causeway-ext-secman-admin"
           namespace-permissions:
             sticky: "simple"
-#            additional: ...
+            additional: "forest"
         regular-user:
           role-name: "causeway-ext-secman-user"
       permissions-evaluation-policy: allow_beats_veto

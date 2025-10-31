@@ -1,14 +1,17 @@
 # To do
 - [ ] Security. Users as domain objects.
-  - [ ] Check if PetOwner already does that.
-- [ ] Test what 
+  - Create a fixture script that the admin runs manually, once, to create all the users and roles. This runs automatically when prototyping, and must be ran manually, once, by an admin, to set up all the users.
+- Run app without prototyping on.
+  - Figure out where to define a password for the admin, in production, as right now, there is a password.
+- [ ] Check if PetOwner already does that.
 - [ ] Local Postgres database tests, with Flyway.
   - I would personally have the schema get generated, and then copy it into Flyway. Seems a decent way to do it.
 - [ ] Recognize uniqueness exception with https://causeway.apache.org/refguide/3.3.0/applib/index/services/exceprecog/ExceptionRecognizer.html
-  - [ ] Good place for integration test?
-  - [ ] Length constraint?
-  - [ ] Make a @Name annotation that's truly applicable everywhere
-    - [ ] Look at PetClinic name validation
+  - [ ] I would assume the error message is shown only in prototyping mode, but that has to be checked. 
+- [ ] Good place for integration test?
+- [ ] Length constraint? Do it with annotation.
+- [ ] Make a @Name annotation that's truly applicable everywhere
+  - [ ] Look at PetClinic name validation
 - [ ] Get rid of this verbose crap @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
 - [ ] If metadata is not shown for regular users, then will the tabgroup remain? It should be removed, as it's clutter.
 - [ ] Group some of the less important menus together

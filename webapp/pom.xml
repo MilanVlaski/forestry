@@ -164,6 +164,7 @@
 
         <dependency>
             <groupId>org.apache.causeway.extensions</groupId>
+        <!-- TODO might need causeway-extensions-secman-encryption-spring-jbcrypt -->
             <artifactId>causeway-extensions-secman-encryption-spring</artifactId>
         </dependency>
         <dependency>
