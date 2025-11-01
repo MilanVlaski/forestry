@@ -1,10 +1,7 @@
 # To do
 - [ ] Security. Users as domain objects.
-  - Create a fixture script that the admin runs manually, once, to create all the users and roles. This runs automatically when prototyping, and must be ran manually, once, by an admin, to set up all the users.
 - Run app without prototyping on.
   - Figure out where to define a password for the admin, in production, as right now, there is a password.
-- Rename fixture.scenarios package to fixtures
-- [ ] Check if PetOwner already does that.
 - [ ] Local Postgres database tests, with Flyway.
   - I would personally have the schema get generated, and then copy it into Flyway. Seems a decent way to do it.
 - [ ] Recognize uniqueness exception with https://causeway.apache.org/refguide/3.3.0/applib/index/services/exceprecog/ExceptionRecognizer.html
@@ -24,6 +21,7 @@
 - [ ] Custom color styling in tables when "Condition" is displayed
 - [ ] Can sort Trees by plot, but not by Condition
   - It's because of implementing `Comparable`!
+- [x] Add security fixturescript to admin menubar
 - [x] Make forest.name unique, condition and species too
 - [x] Find out if there is a way to define a single X.layout.xml, without placing it in each entity package.
 - [x] Add Species and Condition and a `data.sql`

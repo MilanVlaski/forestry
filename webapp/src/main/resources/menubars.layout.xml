@@ -66,14 +66,17 @@
             <mb3:section>
                 <mb3:named>Fixtures</mb3:named>
                 <mb3:serviceAction objectType="causeway.testing.fixtures.FixtureScripts" id="runFixtureScript"/>
-                <mb3:serviceAction objectType="causeway.testing.fixtures.FixtureScripts" id="recreateObjectsAndReturnFirst"/>
+                <mb3:serviceAction objectType="causeway.testing.fixtures.FixtureScripts"
+                                   id="recreateObjectsAndReturnFirst"/>
             </mb3:section>
             <mb3:section>
                 <mb3:named>Layouts</mb3:named>
                 <mb3:serviceAction objectType="causeway.applib.LayoutServiceMenu" id="downloadLayouts"/>
                 <mb3:serviceAction objectType="causeway.applib.LayoutServiceMenu" id="downloadMenuBarsLayout"/>
-                <mb3:serviceAction objectType="causeway.ext.layoutGithub.LayoutLoaderMenu" id="enableDynamicLayoutLoading"/>
-                <mb3:serviceAction objectType="causeway.ext.layoutGithub.LayoutLoaderMenu" id="disableDynamicLayoutLoading"/>
+                <mb3:serviceAction objectType="causeway.ext.layoutGithub.LayoutLoaderMenu"
+                                   id="enableDynamicLayoutLoading"/>
+                <mb3:serviceAction objectType="causeway.ext.layoutGithub.LayoutLoaderMenu"
+                                   id="disableDynamicLayoutLoading"/>
             </mb3:section>
             <mb3:section>
                 <mb3:named>Meta Model and Features</mb3:named>
@@ -94,18 +97,21 @@
                 <mb3:named>REST API</mb3:named>
                 <mb3:serviceAction objectType="causeway.viewer.roRendering.SwaggerServiceMenu" id="openSwaggerUi"/>
                 <mb3:serviceAction objectType="causeway.viewer.roRendering.SwaggerServiceMenu" id="openRestApi"/>
-                <mb3:serviceAction objectType="causeway.viewer.roRendering.SwaggerServiceMenu" id="downloadSwaggerSchemaDefinition"/>
+                <mb3:serviceAction objectType="causeway.viewer.roRendering.SwaggerServiceMenu"
+                                   id="downloadSwaggerSchemaDefinition"/>
             </mb3:section>
             <mb3:section>
                 <mb3:named>i18n</mb3:named>
                 <mb3:serviceAction objectType="causeway.applib.TranslationServicePoMenu" id="downloadTranslations"/>
                 <mb3:serviceAction objectType="causeway.applib.TranslationServicePoMenu" id="resetTranslationCache"/>
-                <mb3:serviceAction objectType="causeway.applib.TranslationServicePoMenu" id="switchToReadingTranslations"/>
-                <mb3:serviceAction objectType="causeway.applib.TranslationServicePoMenu" id="switchToWritingTranslations"/>
+                <mb3:serviceAction objectType="causeway.applib.TranslationServicePoMenu"
+                                   id="switchToReadingTranslations"/>
+                <mb3:serviceAction objectType="causeway.applib.TranslationServicePoMenu"
+                                   id="switchToWritingTranslations"/>
             </mb3:section>
             <mb3:section>
                 <mb3:named>Manual Testing</mb3:named>
-                <mb3:serviceAction objectType="causeway.applib.SitemapServiceMenu" id="downloadSitemap" >
+                <mb3:serviceAction objectType="causeway.applib.SitemapServiceMenu" id="downloadSitemap">
                     <cpt:named>Download Site-Map Template (Adoc)</cpt:named>
                 </mb3:serviceAction>
             </mb3:section>
@@ -157,13 +163,18 @@
             </mb3:section>
             <mb3:section>
                 <mb3:named>Permissions</mb3:named>
-                <mb3:serviceAction objectType="causeway.ext.secman.ApplicationPermissionMenu" id="allPermissions" />
-                <mb3:serviceAction objectType="causeway.ext.secman.ApplicationPermissionMenu" id="findOrphanedPermissions" />
+                <mb3:serviceAction objectType="causeway.ext.secman.ApplicationPermissionMenu" id="allPermissions"/>
+                <mb3:serviceAction objectType="causeway.ext.secman.ApplicationPermissionMenu"
+                                   id="findOrphanedPermissions"/>
             </mb3:section>
             <mb3:section>
                 <mb3:named>Tenancies</mb3:named>
                 <mb3:serviceAction objectType="causeway.ext.secman.ApplicationTenancyMenu" id="tenancyManager"/>
                 <mb3:serviceAction objectType="causeway.ext.secman.ApplicationTenancyMenu" id="findTenancies"/>
+            </mb3:section>
+            <mb3:section>
+                <mb3:named>Scripts</mb3:named>
+                <mb3:serviceAction objectType="causeway.testing.fixtures.FixtureScripts" id="runFixtureScript"/>
             </mb3:section>
         </mb3:menu>
     </mb3:secondary>
