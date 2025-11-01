@@ -1,4 +1,4 @@
-package domainapp.webapp.application.fixture.scenarios;
+package domainapp.webapp.application.fixtures.data;
 
 import org.apache.causeway.testing.fixtures.applib.fixturescripts.FixtureScript;
 import org.apache.causeway.testing.fixtures.applib.modules.ModuleWithFixturesService;

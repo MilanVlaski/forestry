@@ -111,9 +111,9 @@ causeway:
   testing:
     fixtures:
       fixture-scripts-specification:
-        package-prefix: domainapp.webapp.application.fixture.scenarios
-        run-script-default: domainapp.webapp.application.fixture.scenarios.DomainAppDemo
-        recreate: domainapp.webapp.application.fixture.scenarios.DomainAppDemo
+        package-prefix: domainapp.webapp.application.fixtures
+        run-script-default: domainapp.webapp.application.fixtures.data.DomainAppDemo
+        recreate: domainapp.webapp.application.fixtures.data.DomainAppDemo
         non-persisted-objects-strategy: persist
         multiple-execution-strategy: execute
   value-types:

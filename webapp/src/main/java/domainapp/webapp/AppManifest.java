@@ -32,9 +32,9 @@ import org.apache.causeway.viewer.wicket.applib.CausewayModuleViewerWicketApplib
 import org.apache.causeway.viewer.wicket.viewer.CausewayModuleViewerWicketViewer;
 
 import domainapp.webapp.application.ApplicationModule;
-import domainapp.webapp.application.fixture.scenarios.DomainAppDemo;
-import domainapp.webapp.application.fixture.scenarios.CommonSecuritySetup;
-import domainapp.webapp.application.fixture.scenarios.PrototypingSecuritySetup;
+import domainapp.webapp.application.fixtures.data.DomainAppDemo;
+import domainapp.webapp.application.fixtures.security.CommonSecuritySetup;
+import domainapp.webapp.application.fixtures.security.PrototypingSecuritySetup;
 import domainapp.webapp.custom.CustomModule;
 import domainapp.webapp.quartz.QuartzModule;
 

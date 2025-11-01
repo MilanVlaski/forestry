@@ -1,4 +1,4 @@
-package domainapp.webapp.application.fixture.scenarios;
+package domainapp.webapp.application.fixtures.security;
 
 import domainapp.webapp.application.seed.Roles;
 import org.apache.causeway.testing.fixtures.applib.fixturescripts.FixtureScript;

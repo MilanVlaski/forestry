@@ -11,8 +11,8 @@ import org.apache.causeway.testing.fixtures.applib.fixturescripts.FixtureScripts
 
 import lombok.RequiredArgsConstructor;
 
-import domainapp.webapp.application.fixture.scenarios.CommonSecuritySetup;
-import domainapp.webapp.application.fixture.scenarios.PrototypingSecuritySetup;
+import domainapp.webapp.application.fixtures.security.CommonSecuritySetup;
+import domainapp.webapp.application.fixtures.security.PrototypingSecuritySetup;
 import jakarta.annotation.Priority;
 import jakarta.inject.Inject;
 
