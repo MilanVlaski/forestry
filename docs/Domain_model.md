@@ -62,4 +62,8 @@ classDiagram
 Inventoryman <|-- Forester
 Inventoryman <|-- Arborist
 Inventoryman <|-- Silviculturist
+
+class Inventoryman {
+    Can put in Trees.
+}
 ```

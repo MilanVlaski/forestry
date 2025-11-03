@@ -1,7 +1,6 @@
 # To do
+- [ ] Add autocomplete to Plot, in addTree function, searching by id.
 - [ ] Security. Users as domain objects.
-- Run app without prototyping on.
-  - Figure out where to define a password for the admin, in production, as right now, there is a password.
 - [ ] Local Postgres database tests, with Flyway.
   - I would personally have the schema get generated, and then copy it into Flyway. Seems a decent way to do it.
 - [ ] Recognize uniqueness exception with https://causeway.apache.org/refguide/3.3.0/applib/index/services/exceprecog/ExceptionRecognizer.html
@@ -15,7 +14,6 @@
 - [ ] Group some of the less important menus together
   - [x] Read the schema of  the menubars.layout.xml
 - [ ] Tree: ~~C~~ ~~R~~ U D
-- [ ] When creating a Tree, make Plot entry possible
 - [ ] Have packages use groupId name
 - [ ] Internationalization
 - [ ] Custom color styling in tables when "Condition" is displayed
