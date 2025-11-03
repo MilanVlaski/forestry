@@ -1,5 +1,4 @@
 # To do
-- [ ] Add autocomplete to Plot, in addTree function, searching by id.
 - [ ] Security. Users as domain objects.
 - [ ] Local Postgres database tests, with Flyway.
   - I would personally have the schema get generated, and then copy it into Flyway. Seems a decent way to do it.
@@ -19,6 +18,7 @@
 - [ ] Custom color styling in tables when "Condition" is displayed
 - [ ] Can sort Trees by plot, but not by Condition
   - It's because of implementing `Comparable`!
+- [x] Add autocomplete to Plot, in addTree function, searching by id.
 - [x] Add security fixturescript to admin menubar
 - [x] Make forest.name unique, condition and species too
 - [x] Find out if there is a way to define a single X.layout.xml, without placing it in each entity package.

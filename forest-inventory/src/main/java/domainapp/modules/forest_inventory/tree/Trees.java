@@ -21,6 +21,7 @@ import lombok.val;
 
 import domainapp.modules.forest_inventory.ForestInventoryModule;
 import domainapp.modules.forest_inventory.plot.Plot;
+import domainapp.modules.forest_inventory.plot.PlotRepository;
 import domainapp.modules.forest_inventory.tree.condition.Condition;
 import domainapp.modules.forest_inventory.tree.species.Species;
 import jakarta.annotation.Priority;
@@ -34,6 +35,7 @@ import jakarta.inject.Named;
 public class Trees {
 
     final RepositoryService repositoryService;
+    private final PlotRepository plotRepository;
 
     // TODO paging
     @Action(semantics = SemanticsOf.SAFE)
@@ -89,7 +91,7 @@ public class Trees {
 //    }
 
     @MemberSupport
-    public java.util.Collection<Plot> choices5AddTree() {
-        return repositoryService.allInstances(Plot.class);
+    public java.util.Collection<Plot> autoComplete5AddTree(String search) {
+        return plotRepository.findByIdLike(search);
     }
 }
