@@ -1,5 +1,8 @@
 package domainapp.modules.forest_inventory.tree.condition;
 
+import java.math.BigDecimal;
+import java.util.Comparator;
+
 import org.apache.causeway.applib.annotation.BookmarkPolicy;
 import org.apache.causeway.applib.annotation.DomainObject;
 import org.apache.causeway.applib.annotation.DomainObjectLayout;
@@ -40,7 +43,7 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @XmlJavaTypeAdapter(PersistentEntityAdapter.class)
 @ToString(onlyExplicitlyIncluded = true)
-public class Condition {
+public class Condition implements Comparable<Condition> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -53,8 +56,27 @@ public class Condition {
     @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "1")
     private String name;
 
-    public Condition(String name) {
-        this.name = name;
+    @Column(nullable = false, precision = 2, scale = 1)
+    @Getter @Setter
+    @Property
+    @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "2")
+    private BigDecimal level;
+
+    public Condition(String name, int level) {
+        this(name, BigDecimal.valueOf(level));
     }
 
+    public Condition(String name, BigDecimal level) {
+        this.name = name;
+        this.level = level;
+    }
+
+    private final static Comparator<Condition> comparator =
+            Comparator.comparing(Condition::getLevel);
+
+
+    @Override
+    public int compareTo(Condition other) {
+        return comparator.compare(this, other);
+    }
 }

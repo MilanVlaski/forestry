@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.causeway.applib.services.repository.RepositoryService;
 import org.apache.causeway.testing.fixtures.applib.fixturescripts.FixtureScript;
@@ -26,7 +27,7 @@ public class CreateForestsAndEnumsAndSampleData extends FixtureScript {
     @Override
     protected void execute(ExecutionContext ec) {
         // TODO extract only this to a fixture script
-        var conditions = createAllConditions("Excellent", "Very Good", "Good", "Poor", "Very Poor");
+        var conditions = createAllConditions("Very Poor", "Poor", "Good", "Very Good", "Excellent");
         var species = createAllSpecies("European beech", "Fagus sylvatica", "Silver fir", "Abies alba", "Norway spruce", "Picea abies",
                 "Oak", "Quercus robur", "Scots pine", "Pinus sylvestris", "European hornbeam", "Carpinus betulus",
                 "Silver birch", "Betula pendula");
@@ -104,8 +105,9 @@ public class CreateForestsAndEnumsAndSampleData extends FixtureScript {
     }
 
     List<Condition> createAllConditions(String... conditions) {
+        var i = new AtomicInteger(1);
         return Arrays.stream(conditions)
-                .map(treeCondition::create)
+                .map(c -> treeCondition.create(c, BigDecimal.valueOf(i.getAndIncrement())))
                 .toList();
     }
 

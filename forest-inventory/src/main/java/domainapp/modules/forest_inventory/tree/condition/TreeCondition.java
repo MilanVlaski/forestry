@@ -1,5 +1,6 @@
 package domainapp.modules.forest_inventory.tree.condition;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.causeway.applib.annotation.Action;
@@ -25,8 +26,8 @@ public class TreeCondition {
 
     @Action(semantics = SemanticsOf.NON_IDEMPOTENT)
     @ActionLayout(promptStyle = PromptStyle.DIALOG_SIDEBAR)
-    public Condition create(String condition) {
-        return repositoryService.persist(new Condition(condition));
+    public Condition create(String condition, BigDecimal level) {
+        return repositoryService.persist(new Condition(condition, level));
     }
 
     @Action(semantics = SemanticsOf.SAFE)
