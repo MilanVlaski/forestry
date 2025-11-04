@@ -149,7 +149,6 @@
             </mb3:section>
         </mb3:menu>
         <mb3:menu>
-            <!-- TODO add security scripts here -->
             <mb3:named>Security</mb3:named>
             <mb3:section>
                 <mb3:named>Users</mb3:named>
