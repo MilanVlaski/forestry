@@ -29,4 +29,22 @@ public class Users {
         }
     }
 
+    public static class MariaTheArborist extends AbstractUserAndRolesFixtureScript {
+        public MariaTheArborist() {
+            super(() -> "maria", () -> "pass", () -> AccountType.LOCAL, new RoleSupplier());
+        }
+
+        private static class RoleSupplier implements Supplier<Can<String>> {
+            @Override
+            public Can<String> get() {
+                return Can.of(
+                        causewayConfiguration.getExtensions().getSecman().getSeed().getRegularUser().getRoleName(), // built-in stuff
+                        Roles.ArboristRole.ROLE_NAME,
+                        Roles.SimpleModuleSuperuserRole.ROLE_NAME // TODO temporarily allow Maria to view homepage
+                );
+            }
+            @Inject CausewayConfiguration causewayConfiguration;
+        }
+    }
+
 }

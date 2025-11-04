@@ -1,10 +1,13 @@
 package domainapp.webapp.application.seed;
 
 import org.apache.causeway.applib.services.appfeat.ApplicationFeatureId;
+import org.apache.causeway.applib.services.appfeat.ApplicationFeatureSort;
 import org.apache.causeway.commons.collections.Can;
 import org.apache.causeway.extensions.secman.applib.permission.dom.ApplicationPermissionMode;
 import org.apache.causeway.extensions.secman.applib.permission.dom.ApplicationPermissionRule;
 import org.apache.causeway.extensions.secman.applib.role.fixtures.AbstractRoleAndPermissionsFixtureScript;
+
+import domainapp.modules.forest_inventory.ForestInventoryModule;
 
 /**
  * Contains all possible Roles and Users.
@@ -44,6 +47,33 @@ public class Roles {
                     ApplicationPermissionRule.ALLOW,
                     ApplicationPermissionMode.CHANGING,
                     Can.of(ApplicationFeatureId.newNamespace("forest"))
+            );
+        }
+    }
+
+    public static class ArboristRole extends AbstractRoleAndPermissionsFixtureScript {
+
+        public static final String ROLE_NAME = "arborist";
+
+        public ArboristRole() {
+            super(ROLE_NAME, "Permission to add Trees, and assign them to Plots.");
+        }
+
+        @Override
+        protected void execute(ExecutionContext executionContext) {
+            newPermissions(
+                    ApplicationPermissionRule.ALLOW,
+                    ApplicationPermissionMode.CHANGING,
+                    Can.of(ApplicationFeatureId.newFeature(ApplicationFeatureSort.TYPE,
+                                    ForestInventoryModule.NAMESPACE + ".Tree"),
+                            ApplicationFeatureId.newFeature(ApplicationFeatureSort.TYPE,
+                                    ForestInventoryModule.NAMESPACE + ".Trees"),
+                            ApplicationFeatureId.newFeature(ApplicationFeatureSort.TYPE,
+                                    ForestInventoryModule.NAMESPACE + ".Plot"),
+                            ApplicationFeatureId.newFeature(ApplicationFeatureSort.TYPE,
+                                    ForestInventoryModule.NAMESPACE + ".Condition"),
+                            ApplicationFeatureId.newFeature(ApplicationFeatureSort.TYPE,
+                                    ForestInventoryModule.NAMESPACE + ".Species"))
             );
         }
     }

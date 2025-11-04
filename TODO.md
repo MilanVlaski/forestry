@@ -1,4 +1,7 @@
 # To do
+- [ ] Create homepage viewmodel which lists out the Forests.
+- [ ] Try disallowing metadata from arborist
+- [ ] How does reset password work?
 - [ ] Security. Users as domain objects.
 - [ ] Local Postgres database tests, with Flyway.
   - I would personally have the schema get generated, and then copy it into Flyway. Seems a decent way to do it.

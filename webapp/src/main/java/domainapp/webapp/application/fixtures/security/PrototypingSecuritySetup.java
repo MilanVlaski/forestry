@@ -1,8 +1,9 @@
 package domainapp.webapp.application.fixtures.security;
 
+import org.apache.causeway.testing.fixtures.applib.fixturescripts.FixtureScript;
+
 import domainapp.webapp.application.seed.Roles;
 import domainapp.webapp.application.seed.Users;
-import org.apache.causeway.testing.fixtures.applib.fixturescripts.FixtureScript;
 
 public class PrototypingSecuritySetup extends FixtureScript {
 
@@ -10,7 +11,8 @@ public class PrototypingSecuritySetup extends FixtureScript {
     protected void execute(ExecutionContext executionContext) {
         executionContext.executeChildren(this,
                 new Roles.SimpleModuleSuperuserRole(),
-                new Users.SvenUser()
+                new Users.SvenUser(),
+                new Users.MariaTheArborist()
         );
     }
 }
