@@ -171,10 +171,6 @@
                 <mb3:serviceAction objectType="causeway.ext.secman.ApplicationTenancyMenu" id="tenancyManager"/>
                 <mb3:serviceAction objectType="causeway.ext.secman.ApplicationTenancyMenu" id="findTenancies"/>
             </mb3:section>
-            <mb3:section>
-                <mb3:named>Scripts</mb3:named>
-                <mb3:serviceAction objectType="causeway.testing.fixtures.FixtureScripts" id="runFixtureScript"/>
-            </mb3:section>
         </mb3:menu>
     </mb3:secondary>
     <mb3:tertiary>
