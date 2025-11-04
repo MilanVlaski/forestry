@@ -6,14 +6,16 @@ Forest_manager(Forest manager)
 
 subgraph System 
     Manage_forests(Manage forests, inventories and plots)
-    Register_inventoryman(Register Inventoryman)
+    Register_arborist(Register Arborist)
     Take_inventory(Take inventory)
 end
 
-Forest_manager --> Register_inventoryman
+Forest_manager --> Register_arborist
 Forest_manager --> Take_inventory
 Forest_manager --> Manage_forests
-Inventoryman --> Take_inventory
+Forest_manager --> See_all_trees_submitted_by_particular_arborist
+
+Arborist --> Take_inventory
 ```
 # Use cases
 - Take inventory 
