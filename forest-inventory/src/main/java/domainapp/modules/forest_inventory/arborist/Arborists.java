@@ -12,6 +12,7 @@ import org.apache.causeway.applib.services.userreg.UserDetails;
 import org.apache.causeway.applib.services.userreg.UserRegistrationService;
 import org.apache.causeway.extensions.secman.applib.user.dom.ApplicationUserRepository;
 import org.apache.causeway.extensions.secman.jpa.role.dom.ApplicationRoleRepository;
+import org.apache.causeway.extensions.secman.jpa.user.dom.ApplicationUser;
 
 import lombok.RequiredArgsConstructor;
 
@@ -44,7 +45,7 @@ public class Arborists {
         userDetails.setEmailAddress(emailAddress);
 
         userRegistrationService.registerUser(userDetails);
-        var user = userRepository.findByUsername(userDetails.getUsername())
+        ApplicationUser user = (ApplicationUser) userRepository.findByUsername(userDetails.getUsername())
                 .orElseThrow(() -> new IllegalStateException("User not found"));
 
         var role = roleRepository.findByName("arborist")

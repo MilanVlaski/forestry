@@ -9,7 +9,7 @@ import org.apache.causeway.applib.annotation.Publishing;
 import org.apache.causeway.applib.annotation.TableDecorator;
 import org.apache.causeway.applib.annotation.Title;
 import org.apache.causeway.applib.jaxb.PersistentEntityAdapter;
-import org.apache.causeway.extensions.secman.applib.user.dom.ApplicationUser;
+import org.apache.causeway.extensions.secman.jpa.user.dom.ApplicationUser;
 import org.apache.causeway.persistence.jpa.applib.integration.CausewayEntityListener;
 
 import lombok.AccessLevel;
@@ -19,12 +19,13 @@ import lombok.ToString;
 
 import domainapp.modules.forest_inventory.ForestInventoryModule;
 import jakarta.inject.Named;
-import jakarta.persistence.Column;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
@@ -46,13 +47,13 @@ public class Arborist {
     private Long id;
 
     @Title
-    @Column(nullable = false)
+    @ManyToOne(cascade = CascadeType.ALL)
     @Getter
     @Property
     @PropertyLayout
-    private String name;
+    private ApplicationUser user;
 
     public Arborist(ApplicationUser user) {
-        this.name = user.getUsername();
+        this.user = user;
     }
 }
