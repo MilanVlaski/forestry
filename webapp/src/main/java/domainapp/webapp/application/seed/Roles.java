@@ -78,4 +78,28 @@ public class Roles {
         }
     }
 
+    /**
+     * Currently unused, but can be used once a distinction should be made between a role that can manage forests,
+     * but not administer any security.
+     */
+    public static class ForestManagerRole extends AbstractRoleAndPermissionsFixtureScript {
+
+        public static final String ROLE_NAME = "forest-manager";
+
+        public ForestManagerRole() {
+            super(ROLE_NAME, "Permission to register Arborists.");
+        }
+
+        @Override
+        protected void execute(ExecutionContext executionContext) {
+            newPermissions(
+                    ApplicationPermissionRule.ALLOW,
+                    ApplicationPermissionMode.CHANGING,
+                    Can.of(ApplicationFeatureId.newFeature(ApplicationFeatureSort.TYPE,
+                            ForestInventoryModule.NAMESPACE + ".Arborists")
+                    )
+            );
+        }
+    }
+
 }

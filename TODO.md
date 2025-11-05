@@ -1,5 +1,14 @@
 # To do
+- [ ] Test if ApplicationUser can be referenced by other entities.
+- [ ] Add a function so that ForestManager can 
+- [ ] Add ForestManager, which has permission to use Arborists functions.
+  - Arborists.register() implemented with ApplicationUserRepository. Granting the ArboristRole.
+  - 
 - [ ] Create homepage viewmodel which lists out the Forests.
+- [ ] Use Paging on Trees `@CollectionLayout(paged=15)`
+  - or It is also possible to specify a global default for the page size of parented collections, using the causeway.applib.annotation.collection-layout.paged configuration property.
+  - [ ] To filter Trees by Arborist, add an Action that attaches to the collection.
+  - [ ] Also filter Trees by forest, inventory and plot, where each of those is optional.
 - [ ] Try disallowing metadata from arborist
 - [ ] How does reset password work?
 - [ ] Security. Users as domain objects.
@@ -14,12 +23,11 @@
 - [ ] Get rid of this verbose crap @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
 - [ ] If metadata is not shown for regular users, then will the tabgroup remain? It should be removed, as it's clutter.
 - [ ] Group some of the less important menus together
-  - [x] Read the schema of  the menubars.layout.xml
-- [ ] Tree: ~~C~~ ~~R~~ U D
 - [ ] Have packages use groupId name
 - [ ] Internationalization
 - [ ] Custom color styling in tables when "Condition" is displayed
-- [ ] Can sort Trees by plot, but not by Condition
+- [x] Read the schema of  the menubars.layout.xml
+- [x] Can sort Trees by plot, but not by Condition
   - It's because of implementing `Comparable`!
 - [x] Add autocomplete to Plot, in addTree function, searching by id.
 - [x] Add security fixturescript to admin menubar

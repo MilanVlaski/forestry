@@ -6,4 +6,6 @@
 - default user can be a named user, with a dummy pass. Creating the user runs in prototyping mode.
 - That user may have the role `namespace-superuser`, with permission to change everything in the namespace.
 - The admin must have this role as well, in both in prototyping and in prod
+# Roles for subadmins
+- causeway-ext-secman-user
 - 

@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import org.apache.causeway.extensions.fullcalendar.applib.CausewayModuleExtFullCalendarApplib;
 import org.apache.causeway.extensions.pdfjs.applib.CausewayModuleExtPdfjsApplib;
+import org.apache.causeway.extensions.secman.jpa.CausewayModuleExtSecmanPersistenceJpa;
 import org.apache.causeway.persistence.jpa.applib.CausewayModulePersistenceJpaApplib;
 import org.apache.causeway.testing.fakedata.applib.CausewayModuleTestingFakeDataApplib;
 import org.apache.causeway.testing.fixtures.applib.fixturescripts.FixtureScript;
@@ -18,6 +19,7 @@ import domainapp.modules.forest_inventory.forest.Forest;
 
 @Configuration
 @Import({
+        CausewayModuleExtSecmanPersistenceJpa.class,
         CausewayModuleExtPdfjsApplib.class,
         CausewayModuleExtFullCalendarApplib.class,
         CausewayModuleTestingFakeDataApplib.class,

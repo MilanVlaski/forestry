@@ -11,9 +11,9 @@ import jakarta.inject.Inject;
 
 public class Users {
 
-    public static class SvenUser extends AbstractUserAndRolesFixtureScript {
-        public SvenUser() {
-            super(() -> "sven", () -> "pass", () -> AccountType.LOCAL, new RoleSupplier());
+    public static class MarcoTheForestManager extends AbstractUserAndRolesFixtureScript {
+        public MarcoTheForestManager() {
+            super(() -> "marco", () -> "pass", () -> AccountType.LOCAL, new RoleSupplier());
         }
 
         private static class RoleSupplier implements Supplier<Can<String>> {
@@ -25,6 +25,7 @@ public class Users {
                         Roles.ForestModuleSuperuserRole.ROLE_NAME
                 );
             }
+
             @Inject CausewayConfiguration causewayConfiguration;
         }
     }
@@ -43,6 +44,7 @@ public class Users {
                         Roles.SimpleModuleSuperuserRole.ROLE_NAME // TODO temporarily allow Maria to view homepage
                 );
             }
+
             @Inject CausewayConfiguration causewayConfiguration;
         }
     }

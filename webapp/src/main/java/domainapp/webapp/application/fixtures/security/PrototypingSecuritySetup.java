@@ -11,7 +11,7 @@ public class PrototypingSecuritySetup extends FixtureScript {
     protected void execute(ExecutionContext executionContext) {
         executionContext.executeChildren(this,
                 new Roles.SimpleModuleSuperuserRole(),
-                new Users.SvenUser(),
+                new Users.MarcoTheForestManager(),
                 new Users.MariaTheArborist()
         );
     }
