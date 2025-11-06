@@ -1,9 +1,4 @@
 # To do
-- [x] Test if ApplicationUser can be referenced by other entities-> It can!
-- [x] Add a function so that ForestManager can register Arborists
-- [ ] Add ForestManager, which has permission to use Arborists functions.
-  - Arborists.register() implemented with ApplicationUserRepository. Granting the ArboristRole.
-  - 
 - [ ] Create homepage viewmodel which lists out the Forests.
 - [ ] Use Paging on Trees `@CollectionLayout(paged=15)`
   - or It is also possible to specify a global default for the page size of parented collections, using the causeway.applib.annotation.collection-layout.paged configuration property.
@@ -26,6 +21,10 @@
 - [ ] Have packages use groupId name
 - [ ] Internationalization
 - [ ] Custom color styling in tables when "Condition" is displayed
+- [x] Test if ApplicationUser can be referenced by other entities-> It can!
+- [x] Add a function so that ForestManager can register Arborists
+- [x] Add ForestManager, which has permission to use Arborists functions. -> Already exists as `forest-superuser`
+  - Arborists.register() implemented with ApplicationUserRepository. Granting the ArboristRole.
 - [x] Read the schema of  the menubars.layout.xml
 - [x] Can sort Trees by plot, but not by Condition
   - It's because of implementing `Comparable`!

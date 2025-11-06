@@ -24,11 +24,12 @@
         <bs3:col span="6" unreferencedCollections="true">
             <bs3:row>
                 <bs3:col span="12">
-                    <cpt:collection id="objects" defaultView="table"/>
+                    <cpt:collection id="forests" defaultView="table"/>
                 </bs3:col>
             </bs3:row>
         </bs3:col>
         <bs3:col span="3">
+<!--            <cpt:serviceAction objectType="forest.Trees" id="addTree"/>-->
         </bs3:col>
     </bs3:row>
     <bs3:row>

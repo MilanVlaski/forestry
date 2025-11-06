@@ -11,9 +11,9 @@ import org.apache.causeway.applib.annotation.Nature;
 import org.apache.causeway.applib.annotation.ObjectSupport;
 import org.apache.causeway.applib.annotation.TableDecorator;
 
+import domainapp.modules.forest_inventory.forest.Forest;
+import domainapp.modules.forest_inventory.forest.Forests;
 import domainapp.modules.simple.SimpleModule;
-import domainapp.modules.simple.dom.so.SimpleObject;
-import domainapp.modules.simple.dom.so.SimpleObjects;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
@@ -24,14 +24,14 @@ import jakarta.inject.Named;
 public class HomePageViewModel {
 
     @ObjectSupport public String title() {
-        return getObjects().size() + " objects";
+        return getForests().size() + " forests";
     }
 
     @Collection
     @CollectionLayout(tableDecorator = TableDecorator.DatatablesNet.class)
-    public List<SimpleObject> getObjects() {
-        return simpleObjects.listAll();
+    public List<Forest> getForests() {
+        return forests.listAll();
     }
 
-    @Inject SimpleObjects simpleObjects;
+    @Inject Forests forests;
 }
