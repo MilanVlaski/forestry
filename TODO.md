@@ -1,6 +1,6 @@
 # To do
 - [x] Test if ApplicationUser can be referenced by other entities-> It can!
-- [ ] Add a function so that ForestManager can 
+- [x] Add a function so that ForestManager can register Arborists
 - [ ] Add ForestManager, which has permission to use Arborists functions.
   - Arborists.register() implemented with ApplicationUserRepository. Granting the ArboristRole.
   - 

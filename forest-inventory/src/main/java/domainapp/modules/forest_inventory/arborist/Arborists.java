@@ -1,5 +1,7 @@
 package domainapp.modules.forest_inventory.arborist;
 
+import java.util.List;
+
 import org.apache.causeway.applib.annotation.Action;
 import org.apache.causeway.applib.annotation.ActionLayout;
 import org.apache.causeway.applib.annotation.DomainService;
@@ -54,4 +56,10 @@ public class Arborists {
         roleRepository.addRoleToUser(role, user);
         return repositoryService.persist(new Arborist(user));
     }
+
+    @Action(semantics = SemanticsOf.SAFE)
+    public List<Arborist> listAll() {
+        return repositoryService.allInstances(Arborist.class);
+    }
+
 }
