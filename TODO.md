@@ -1,7 +1,6 @@
 # To do
-- [ ] Create homepage viewmodel which lists out the Forests.
-- [ ] Use Paging on Trees `@CollectionLayout(paged=15)`
-  - or It is also possible to specify a global default for the page size of parented collections, using the causeway.applib.annotation.collection-layout.paged configuration property.
+- [ ] Maria broken?
+- [x] Create homepage viewmodel which lists out the Forests.
   - [ ] To filter Trees by Arborist, add an Action that attaches to the collection.
   - [ ] Also filter Trees by forest, inventory and plot, where each of those is optional.
 - [ ] Try disallowing metadata from arborist
@@ -21,6 +20,8 @@
 - [ ] Have packages use groupId name
 - [ ] Internationalization
 - [ ] Custom color styling in tables when "Condition" is displayed
+- [x] Use Paging on Trees `@CollectionLayout(paged=15)`
+  - or It is also possible to specify a global default for the page size of parented collections, using the causeway.applib.annotation.collection-layout.paged configuration property.
 - [x] Test if ApplicationUser can be referenced by other entities-> It can!
 - [x] Add a function so that ForestManager can register Arborists
 - [x] Add ForestManager, which has permission to use Arborists functions. -> Already exists as `forest-superuser`

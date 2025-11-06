@@ -1,11 +1,15 @@
 package domainapp.webapp.application.seed;
 
 import org.apache.causeway.applib.services.appfeat.ApplicationFeatureId;
-import org.apache.causeway.applib.services.appfeat.ApplicationFeatureSort;
 import org.apache.causeway.commons.collections.Can;
-import org.apache.causeway.extensions.secman.applib.permission.dom.ApplicationPermissionMode;
-import org.apache.causeway.extensions.secman.applib.permission.dom.ApplicationPermissionRule;
 import org.apache.causeway.extensions.secman.applib.role.fixtures.AbstractRoleAndPermissionsFixtureScript;
+
+import static org.apache.causeway.applib.services.appfeat.ApplicationFeatureId.newFeature;
+import static org.apache.causeway.applib.services.appfeat.ApplicationFeatureSort.MEMBER;
+import static org.apache.causeway.applib.services.appfeat.ApplicationFeatureSort.TYPE;
+import static org.apache.causeway.extensions.secman.applib.permission.dom.ApplicationPermissionMode.CHANGING;
+import static org.apache.causeway.extensions.secman.applib.permission.dom.ApplicationPermissionMode.VIEWING;
+import static org.apache.causeway.extensions.secman.applib.permission.dom.ApplicationPermissionRule.ALLOW;
 
 import domainapp.modules.forest_inventory.ForestInventoryModule;
 
@@ -25,8 +29,7 @@ public class Roles {
         @Override
         protected void execute(ExecutionContext executionContext) {
             newPermissions(
-                    ApplicationPermissionRule.ALLOW,
-                    ApplicationPermissionMode.CHANGING,
+                    ALLOW, CHANGING,
                     Can.of(ApplicationFeatureId.newNamespace("simple"))
             );
         }
@@ -44,8 +47,7 @@ public class Roles {
         @Override
         protected void execute(ExecutionContext executionContext) {
             newPermissions(
-                    ApplicationPermissionRule.ALLOW,
-                    ApplicationPermissionMode.CHANGING,
+                    ALLOW, CHANGING,
                     Can.of(ApplicationFeatureId.newNamespace("forest"))
             );
         }
@@ -62,20 +64,39 @@ public class Roles {
         @Override
         protected void execute(ExecutionContext executionContext) {
             newPermissions(
-                    ApplicationPermissionRule.ALLOW,
-                    ApplicationPermissionMode.CHANGING,
-                    Can.of(ApplicationFeatureId.newFeature(ApplicationFeatureSort.TYPE,
-                                    ForestInventoryModule.NAMESPACE + ".Tree"),
-                            ApplicationFeatureId.newFeature(ApplicationFeatureSort.TYPE,
-                                    ForestInventoryModule.NAMESPACE + ".Trees"),
-                            ApplicationFeatureId.newFeature(ApplicationFeatureSort.TYPE,
-                                    ForestInventoryModule.NAMESPACE + ".Plot"),
-                            ApplicationFeatureId.newFeature(ApplicationFeatureSort.TYPE,
-                                    ForestInventoryModule.NAMESPACE + ".Condition"),
-                            ApplicationFeatureId.newFeature(ApplicationFeatureSort.TYPE,
-                                    ForestInventoryModule.NAMESPACE + ".Species"))
+                    ALLOW, VIEWING,
+                    Can.of(newFeature(TYPE, ForestInventoryModule.NAMESPACE + ".HomePageViewModel"))
             );
+            newPermissions(
+                    ALLOW, CHANGING,
+                    Can.of(
+                            newFeature(TYPE, ForestInventoryModule.NAMESPACE + ".Tree"),
+                            newFeature(TYPE, ForestInventoryModule.NAMESPACE + ".Trees"),
+                            newFeature(TYPE, ForestInventoryModule.NAMESPACE + ".Plot"),
+                            newFeature(TYPE, ForestInventoryModule.NAMESPACE + ".Condition"),
+                            newFeature(TYPE, ForestInventoryModule.NAMESPACE + ".Species"))
+            );
+            newPermissions(
+                    ALLOW, VIEWING,
+                    Can.of(
+                            newFeature(TYPE, ForestInventoryModule.NAMESPACE + ".Forest")
+                    )
+            );
+            newPermissions(
+                    ALLOW, CHANGING,
+                    Can.of(
+                            newFeature(MEMBER, ForestInventoryModule.NAMESPACE + ".Forests#listAll"),
+                            newFeature(MEMBER, ForestInventoryModule.NAMESPACE + ".Inventories#listAll"),
+                            newFeature(MEMBER, ForestInventoryModule.NAMESPACE + ".Plots#listAll"),
+                            newFeature(MEMBER, ForestInventoryModule.NAMESPACE + ".Species#listAll"),
+                            newFeature(MEMBER, ForestInventoryModule.NAMESPACE + ".Conditions#listAll"),
+                            newFeature(MEMBER, ForestInventoryModule.NAMESPACE + ".Arborists#listAll"),
+                            newFeature(MEMBER, ForestInventoryModule.NAMESPACE + ".Forests#listAll")
+                    )
+            );
+
         }
+
     }
 
     /**
@@ -93,9 +114,8 @@ public class Roles {
         @Override
         protected void execute(ExecutionContext executionContext) {
             newPermissions(
-                    ApplicationPermissionRule.ALLOW,
-                    ApplicationPermissionMode.CHANGING,
-                    Can.of(ApplicationFeatureId.newFeature(ApplicationFeatureSort.TYPE,
+                    ALLOW, CHANGING,
+                    Can.of(newFeature(TYPE,
                             ForestInventoryModule.NAMESPACE + ".Arborists")
                     )
             );
