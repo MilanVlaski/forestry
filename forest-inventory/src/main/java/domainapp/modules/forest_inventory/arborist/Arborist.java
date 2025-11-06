@@ -3,11 +3,11 @@ package domainapp.modules.forest_inventory.arborist;
 import org.apache.causeway.applib.annotation.BookmarkPolicy;
 import org.apache.causeway.applib.annotation.DomainObject;
 import org.apache.causeway.applib.annotation.DomainObjectLayout;
+import org.apache.causeway.applib.annotation.ObjectSupport;
 import org.apache.causeway.applib.annotation.Property;
 import org.apache.causeway.applib.annotation.PropertyLayout;
 import org.apache.causeway.applib.annotation.Publishing;
 import org.apache.causeway.applib.annotation.TableDecorator;
-import org.apache.causeway.applib.annotation.Title;
 import org.apache.causeway.applib.jaxb.PersistentEntityAdapter;
 import org.apache.causeway.extensions.secman.jpa.user.dom.ApplicationUser;
 import org.apache.causeway.persistence.jpa.applib.integration.CausewayEntityListener;
@@ -46,12 +46,16 @@ public class Arborist {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Title
     @ManyToOne(cascade = CascadeType.ALL)
     @Getter
     @Property
     @PropertyLayout
     private ApplicationUser user;
+
+    @ObjectSupport
+    public String title() {
+        return user.getUsername();
+    }
 
     public Arborist(ApplicationUser user) {
         this.user = user;
