@@ -1,25 +1,26 @@
 # To do
-- [ ] Maria broken?
 - [x] Create homepage viewmodel which lists out the Forests.
-  - [ ] To filter Trees by Arborist, add an Action that attaches to the collection.
-  - [ ] Also filter Trees by forest, inventory and plot, where each of those is optional.
-- [ ] Try disallowing metadata from arborist
-- [ ] How does reset password work?
-- [ ] Security. Users as domain objects.
+  - search tab 
+  - [ ] search -> searches by Forest + Inventory + Plot. Each is required.
+    - [ ] allTreesInForest
+    - [ ] allTreesOfInventory
+    - [ ] allTreesInPlot
+    - [ ] allTreesCreatedByUser
+    - [ ] allTreesCreatedByArborist (filter by createdBy.role)
 - [ ] Local Postgres database tests, with Flyway.
   - I would personally have the schema get generated, and then copy it into Flyway. Seems a decent way to do it.
 - [ ] Recognize uniqueness exception with https://causeway.apache.org/refguide/3.3.0/applib/index/services/exceprecog/ExceptionRecognizer.html
-  - [ ] I would assume the error message is shown only in prototyping mode, but that has to be checked. 
-- [ ] Good place for integration test?
+  - [ ] Just make the message more friendly
 - [ ] Length constraint? Do it with annotation.
 - [ ] Make a @Name annotation that's truly applicable everywhere
   - [ ] Look at PetClinic name validation
 - [ ] Get rid of this verbose crap @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
-- [ ] If metadata is not shown for regular users, then will the tabgroup remain? It should be removed, as it's clutter.
-- [ ] Group some of the less important menus together
+- [ ] Group some of the less important menus together. Like Condition and Species.
 - [ ] Have packages use groupId name
-- [ ] Internationalization
+- [ ] Internationalization -> to Serbian.
 - [ ] Custom color styling in tables when "Condition" is displayed
+- [ ] Customize urls of app
+- [ ] Try to make a REST API with only viewModels
 - [x] Use Paging on Trees `@CollectionLayout(paged=15)`
   - or It is also possible to specify a global default for the page size of parented collections, using the causeway.applib.annotation.collection-layout.paged configuration property.
 - [x] Test if ApplicationUser can be referenced by other entities-> It can!
