@@ -11,13 +11,13 @@ import org.apache.causeway.applib.annotation.Nature;
 import org.apache.causeway.applib.annotation.ObjectSupport;
 import org.apache.causeway.applib.annotation.TableDecorator;
 
+import domainapp.modules.forest_inventory.ForestInventoryModule;
 import domainapp.modules.forest_inventory.forest.Forest;
 import domainapp.modules.forest_inventory.forest.Forests;
-import domainapp.modules.simple.SimpleModule;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
-@Named(SimpleModule.NAMESPACE + ".HomePageViewModel")
+@Named(ForestInventoryModule.NAMESPACE + ".HomePageViewModel")
 @DomainObject(nature = Nature.VIEW_MODEL)
 @HomePage
 @DomainObjectLayout()

@@ -21,7 +21,7 @@ public class Users {
             public Can<String> get() {
                 return Can.of(
                         causewayConfiguration.getExtensions().getSecman().getSeed().getRegularUser().getRoleName(), // built-in stuff
-                        Roles.SimpleModuleSuperuserRole.ROLE_NAME,
+//                        Roles.SimpleModuleSuperuserRole.ROLE_NAME,
                         Roles.ForestModuleSuperuserRole.ROLE_NAME
                 );
             }
@@ -41,7 +41,7 @@ public class Users {
                 return Can.of(
                         causewayConfiguration.getExtensions().getSecman().getSeed().getRegularUser().getRoleName(), // built-in stuff
                         Roles.ArboristRole.ROLE_NAME,
-                        Roles.SimpleModuleSuperuserRole.ROLE_NAME // TODO temporarily allow Maria to view homepage
+                        Roles.SimpleModuleSuperuserRole.ROLE_NAME // TODO this person needs access to another HomePage :)
                 );
             }
 

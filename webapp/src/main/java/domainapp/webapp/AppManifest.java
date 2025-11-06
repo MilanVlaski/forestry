@@ -36,7 +36,6 @@ import domainapp.webapp.application.fixtures.data.DomainAppDemo;
 import domainapp.webapp.application.fixtures.security.CommonSecuritySetup;
 import domainapp.webapp.application.fixtures.security.PrototypingSecuritySetup;
 import domainapp.webapp.custom.CustomModule;
-import domainapp.webapp.quartz.QuartzModule;
 
 @Configuration
 @Import({
@@ -76,7 +75,6 @@ import domainapp.webapp.quartz.QuartzModule;
 
         ApplicationModule.class,
         CustomModule.class,
-        QuartzModule.class,
 
 
         // discoverable fixtures
