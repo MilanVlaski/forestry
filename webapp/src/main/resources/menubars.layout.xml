@@ -59,7 +59,7 @@
         <mb3:menu>
             <mb3:named>Arborists</mb3:named>
             <mb3:section>
-                <mb3:serviceAction objectType="forest.Arborists" id="listALl"/>
+                <mb3:serviceAction objectType="forest.Arborists" id="listAll"/>
                 <mb3:serviceAction objectType="forest.Arborists" id="register"/>
             </mb3:section>
         </mb3:menu>
