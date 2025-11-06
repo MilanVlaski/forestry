@@ -21,6 +21,8 @@ import org.apache.causeway.applib.jaxb.PersistentEntityAdapter;
 import org.apache.causeway.applib.layout.LayoutConstants;
 import org.apache.causeway.applib.services.repository.RepositoryService;
 import org.apache.causeway.applib.services.user.UserService;
+import org.apache.causeway.extensions.secman.applib.user.dom.ApplicationUserRepository;
+import org.apache.causeway.extensions.secman.jpa.user.dom.ApplicationUser;
 import org.apache.causeway.persistence.jpa.applib.integration.CausewayEntityListener;
 
 import lombok.AccessLevel;
@@ -36,6 +38,7 @@ import domainapp.modules.forest_inventory.tree.species.Species;
 import domainapp.modules.forest_inventory.types.Notes;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
@@ -96,11 +99,11 @@ public class Tree implements Comparable<Tree> {
     @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "5")
     private Plot plot;
 
-    @Column
-    @Getter @Setter
+    @ManyToOne(cascade = CascadeType.ALL)
+    @Getter
     @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
     @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.METADATA, sequence = "6")
-    private String createdBy;
+    private ApplicationUser createdBy;
 
     @Column
     @Getter @Setter
@@ -117,6 +120,7 @@ public class Tree implements Comparable<Tree> {
 
     @Inject @Transient UserService userService;
     @Inject @Transient RepositoryService repositoryService;
+    @Inject @Transient ApplicationUserRepository applicationUserRepository;
 
     public Tree(BigDecimal dbh, BigDecimal height, Species species, Condition condition, String notes) {
         this.dbh_cm = dbh;
@@ -128,9 +132,10 @@ public class Tree implements Comparable<Tree> {
 
     @PrePersist
     public void onCreate() {
-        // TODO make this a relationship to user
         this.createdAt = LocalDateTime.now();
-        this.createdBy = userService.currentUserNameElseNobody();
+        var userName = userService.currentUserName().orElseThrow(() -> new IllegalStateException("User not found."));
+        this.createdBy = (ApplicationUser) applicationUserRepository.findByUsername(userName)
+                .orElseThrow(() -> new IllegalStateException("User not found."));
     }
 
     @ObjectSupport
