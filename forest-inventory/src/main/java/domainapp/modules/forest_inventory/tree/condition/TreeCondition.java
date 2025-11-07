@@ -30,7 +30,7 @@ public class TreeCondition {
         return repositoryService.persist(new Condition(condition, level));
     }
 
-    @Action(semantics = SemanticsOf.SAFE)
+    @Action(semantics = SemanticsOf.SAFE_AND_REQUEST_CACHEABLE)
     public List<Condition> listAll() {
         return repositoryService.allInstances(Condition.class);
     }

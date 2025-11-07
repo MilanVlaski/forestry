@@ -1,6 +1,5 @@
 package domainapp.modules.forest_inventory.tree.species;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.causeway.applib.annotation.Action;
@@ -12,7 +11,6 @@ import org.apache.causeway.applib.annotation.SemanticsOf;
 import org.apache.causeway.applib.services.repository.RepositoryService;
 
 import lombok.RequiredArgsConstructor;
-import lombok.val;
 
 import domainapp.modules.forest_inventory.ForestInventoryModule;
 import jakarta.annotation.Priority;
@@ -31,7 +29,7 @@ public class TreeSpecies {
         return repositoryService.persist(new Species(name, latinName));
     }
 
-    @Action(semantics = SemanticsOf.SAFE)
+    @Action(semantics = SemanticsOf.SAFE_AND_REQUEST_CACHEABLE)
     public List<Species> listAll() {
         return repositoryService.allInstances(Species.class);
     }
