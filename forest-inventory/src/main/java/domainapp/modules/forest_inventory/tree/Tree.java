@@ -1,22 +1,16 @@
 package domainapp.modules.forest_inventory.tree;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.Comparator;
-
-import org.apache.causeway.applib.annotation.Action;
-import org.apache.causeway.applib.annotation.ActionLayout;
-import org.apache.causeway.applib.annotation.BookmarkPolicy;
-import org.apache.causeway.applib.annotation.DomainObject;
-import org.apache.causeway.applib.annotation.DomainObjectLayout;
-import org.apache.causeway.applib.annotation.MemberSupport;
-import org.apache.causeway.applib.annotation.ObjectSupport;
-import org.apache.causeway.applib.annotation.Property;
-import org.apache.causeway.applib.annotation.PropertyLayout;
-import org.apache.causeway.applib.annotation.Publishing;
-import org.apache.causeway.applib.annotation.SemanticsOf;
-import org.apache.causeway.applib.annotation.TableDecorator;
+import domainapp.modules.forest_inventory.ForestInventoryModule;
+import domainapp.modules.forest_inventory.plot.Plot;
+import domainapp.modules.forest_inventory.tree.condition.Condition;
+import domainapp.modules.forest_inventory.tree.species.Species;
+import domainapp.modules.forest_inventory.types.Notes;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import jakarta.persistence.*;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import lombok.*;
+import org.apache.causeway.applib.annotation.*;
 import org.apache.causeway.applib.jaxb.PersistentEntityAdapter;
 import org.apache.causeway.applib.layout.LayoutConstants;
 import org.apache.causeway.applib.services.repository.RepositoryService;
@@ -25,36 +19,17 @@ import org.apache.causeway.extensions.secman.applib.user.dom.ApplicationUserRepo
 import org.apache.causeway.extensions.secman.jpa.user.dom.ApplicationUser;
 import org.apache.causeway.persistence.jpa.applib.integration.CausewayEntityListener;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.Comparator;
 
-import domainapp.modules.forest_inventory.ForestInventoryModule;
-import domainapp.modules.forest_inventory.plot.Plot;
-import domainapp.modules.forest_inventory.tree.condition.Condition;
-import domainapp.modules.forest_inventory.tree.species.Species;
-import domainapp.modules.forest_inventory.types.Notes;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
-import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import static domainapp.modules.forest_inventory.tree.Tree.NAMESPACE;
 
 @Entity
 @Table(schema = ForestInventoryModule.SCHEMA)
 @EntityListeners(CausewayEntityListener.class)
-@Named(ForestInventoryModule.NAMESPACE + ".Tree")
+@Named(NAMESPACE + ".Tree")
 @DomainObject(entityChangePublishing = Publishing.ENABLED)
 @DomainObjectLayout(
         tableDecorator = TableDecorator.DatatablesNet.class,
@@ -63,6 +38,8 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlJavaTypeAdapter(PersistentEntityAdapter.class)
 @ToString(onlyExplicitlyIncluded = true)
 public class Tree implements Comparable<Tree> {
+
+    public static final String NAMESPACE = ForestInventoryModule.NAMESPACE + ".tree";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

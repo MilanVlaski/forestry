@@ -19,6 +19,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import domainapp.modules.forest_inventory.ForestInventoryModule;
+import domainapp.modules.forest_inventory.tree.Tree;
 import jakarta.inject.Named;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -30,9 +31,9 @@ import jakarta.persistence.Table;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @Entity
-@Table(schema = ForestInventoryModule.SCHEMA)
+@Table(schema = ForestInventoryModule.SCHEMA, name = "TreeSpecies")
 @EntityListeners(CausewayEntityListener.class)
-@Named(ForestInventoryModule.NAMESPACE + ".Species")
+@Named(Tree.NAMESPACE + ".Species")
 @DomainObject(entityChangePublishing = Publishing.ENABLED)
 @DomainObjectLayout(
         tableDecorator = TableDecorator.DatatablesNet.class,

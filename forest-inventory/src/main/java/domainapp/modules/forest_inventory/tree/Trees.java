@@ -1,6 +1,5 @@
 package domainapp.modules.forest_inventory.tree;
 
-import domainapp.modules.forest_inventory.ForestInventoryModule;
 import domainapp.modules.forest_inventory.arborist.ArboristRepository;
 import domainapp.modules.forest_inventory.forest.Forest;
 import domainapp.modules.forest_inventory.inventory.Inventory;
@@ -23,7 +22,7 @@ import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
 
-@Named(ForestInventoryModule.NAMESPACE + ".Trees")
+@Named(Tree.NAMESPACE + ".Trees")
 @DomainService
 @Priority(PriorityPrecedence.EARLY)
 @RequiredArgsConstructor(onConstructor_ = {@Inject})

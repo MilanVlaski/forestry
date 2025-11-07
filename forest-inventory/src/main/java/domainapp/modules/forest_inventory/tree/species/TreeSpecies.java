@@ -12,12 +12,12 @@ import org.apache.causeway.applib.services.repository.RepositoryService;
 
 import lombok.RequiredArgsConstructor;
 
-import domainapp.modules.forest_inventory.ForestInventoryModule;
+import domainapp.modules.forest_inventory.tree.Tree;
 import jakarta.annotation.Priority;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
-@Named(ForestInventoryModule.NAMESPACE + ".TreeSpecies")
+@Named(Tree.NAMESPACE + ".TreeSpecies")
 @DomainService
 @Priority(PriorityPrecedence.EARLY)
 @RequiredArgsConstructor(onConstructor_ = {@Inject} )
