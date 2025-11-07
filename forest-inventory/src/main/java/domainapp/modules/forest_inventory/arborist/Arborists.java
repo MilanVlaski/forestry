@@ -36,7 +36,7 @@ public class Arborists {
 
     @Action(semantics = SemanticsOf.IDEMPOTENT)
     @ActionLayout(promptStyle = PromptStyle.DIALOG_SIDEBAR)
-    public Arborist register(
+    public ApplicationUser  register(
             @Parameter String username,
             @Parameter String password,
             @Parameter String emailAddress
@@ -50,11 +50,12 @@ public class Arborists {
         ApplicationUser user = (ApplicationUser) userRepository.findByUsername(userDetails.getUsername())
                 .orElseThrow(() -> new IllegalStateException("User not found"));
 
+        // TODO replace magic 'arborist' string
         var role = roleRepository.findByName("arborist")
                 .orElseThrow(() -> new IllegalStateException("Role not found"));
 
         roleRepository.addRoleToUser(role, user);
-        return repositoryService.persist(new Arborist(user));
+        return repositoryService.persist(user);
     }
 
     @Action(semantics = SemanticsOf.SAFE)
