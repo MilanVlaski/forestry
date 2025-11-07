@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import org.apache.causeway.extensions.secman.applib.user.dom.ApplicationUser;
+
 import domainapp.modules.forest_inventory.forest.Forest;
 import domainapp.modules.forest_inventory.inventory.Inventory;
 import domainapp.modules.forest_inventory.plot.Plot;
@@ -52,4 +54,5 @@ interface TreeRepository extends JpaRepository<Tree, Long> {
     );
 
 
+    List<Tree> findByCreatedBy(ApplicationUser user);
 }
