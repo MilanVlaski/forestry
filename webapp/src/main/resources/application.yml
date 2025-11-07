@@ -72,6 +72,7 @@ causeway:
         show-chooser: true
         show-drop-down-on-footer: true
 
+
       max-title-length-in-standalone-tables: 0
       max-title-length-in-parented-tables: 0
 
@@ -98,6 +99,10 @@ causeway:
         decoration:
           data-tables-net:
             options: "info: false, pagingType: 'numbers'"
+
+      dialog-mode: sidebar
+      dialog-mode-for-menu: sidebar
+
     graphql:
       api-variant: query_with_mutations_non_spec_compliant
       authentication:
