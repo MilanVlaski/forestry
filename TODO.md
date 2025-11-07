@@ -2,8 +2,8 @@
 - [ ] SemanticsOf.SAFE_AND_REQUEST_CACHABLE on Condition and Species.
 - [x] Create homepage viewmodel which lists out the Forests.
   - search tab 
-  - [ ] search -> searches by Forest + Inventory + Plot. Each is required.
-    - [ ] allTreesInForest
+  - [x] search -> searches by Forest + Inventory + Plot. Each is required. -> Triple dependent choices is not possible. Can be hacked with autocomplete maybe, but I would prefer not to.
+    - [x] allTreesInForest
     - [ ] allTreesOfInventory
     - [ ] allTreesInPlot
     - [ ] allTreesCreatedByUser
@@ -15,7 +15,8 @@
 - [ ] Length constraint? Do it with annotation.
 - [ ] Make a @Name annotation that's truly applicable everywhere
   - [ ] Look at PetClinic name validation
-- [ ] Get rid of this verbose crap @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
+- [ ] Remove all @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
+- [ ] Remove all DIALOG_SIDEBAR usages, as it's there by default according to my convention
 - [ ] Group some of the less important menus together. Like Condition and Species.
 - [ ] Have packages use groupId name
 - [ ] Internationalization -> to Serbian.
@@ -45,5 +46,9 @@
 - [x] List species and condition. CRUD.
 - [x] Make a forest fixture script, and run it at startup
 - [x] Create inventory and add Plots
+
+# Test list
 # Conventions
-- `applib.annotation.domain-object.editing=false`, makes it so setters "don't work". Which by default, they shouldn't. However, if a class is a bit dumb, just annotate it with `@DomainObject(editing = "true")`m, and for fine grained control, use `@Property(editing = true/false)`.
+- `applib.annotation.domain-object.editing=false`, makes it so setters "don't work". Which by default, they shouldn't. However, if a class is a bit dumb, just annotate it with `@DomainObject(editing = "true")`, and for fine grained control, use `@Property(editing = true/false)`.
+- All create actions use a sidebar, with `dialog-mode: sidebar` and `dialog-mode-for-menu: sidebar` in `application.yml`.
+- 
