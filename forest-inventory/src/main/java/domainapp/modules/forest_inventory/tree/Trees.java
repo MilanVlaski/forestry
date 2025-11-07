@@ -1,6 +1,7 @@
 package domainapp.modules.forest_inventory.tree;
 
 import domainapp.modules.forest_inventory.ForestInventoryModule;
+import domainapp.modules.forest_inventory.arborist.ArboristRepository;
 import domainapp.modules.forest_inventory.forest.Forest;
 import domainapp.modules.forest_inventory.inventory.Inventory;
 import domainapp.modules.forest_inventory.inventory.InventoryRepository;
@@ -17,7 +18,6 @@ import org.apache.causeway.applib.annotation.*;
 import org.apache.causeway.applib.services.repository.RepositoryService;
 import org.apache.causeway.extensions.secman.applib.user.dom.ApplicationUser;
 import org.apache.causeway.extensions.secman.applib.user.dom.ApplicationUserRepository;
-import org.apache.causeway.extensions.secman.jpa.role.dom.ApplicationRoleRepository;
 
 import java.math.BigDecimal;
 import java.util.Collection;
@@ -34,7 +34,7 @@ public class Trees {
     final TreeRepository treeRepository;
     final InventoryRepository inventoryRepository;
     final ApplicationUserRepository applicationUserRepository;
-    final ApplicationRoleRepository applicationRoleRepository;
+    final ArboristRepository arboristRepository;
 
     // TODO paging
     @Action(semantics = SemanticsOf.SAFE)
@@ -167,13 +167,6 @@ public class Trees {
 
     @MemberSupport
     public Collection<String> autoComplete0AllTreesCreatedByArborist(String search) {
-        // TODO magic string
-        // TODO use a simpler query, or a custom repo
-        return applicationUserRepository.findMatching(search).stream()
-                .filter(u -> u.getRoles().stream()
-                        .anyMatch(role -> role.getName().equals("arborist"))
-                )
-                .map(ApplicationUser::getUsername)
-                .toList();
+        return arboristRepository.findAllArboristUsernamesWithUsernameLike(search);
     }
 }

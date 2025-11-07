@@ -33,6 +33,7 @@ public class Arborists {
     final ApplicationUserRepository userRepository;
     final ApplicationRoleRepository roleRepository;
     final RepositoryService repositoryService;
+    final ArboristRepository arboristRepository;
 
     @Action(semantics = SemanticsOf.IDEMPOTENT)
     @ActionLayout(promptStyle = PromptStyle.DIALOG_SIDEBAR)
@@ -55,12 +56,13 @@ public class Arborists {
                 .orElseThrow(() -> new IllegalStateException("Role not found"));
 
         roleRepository.addRoleToUser(role, user);
+        // missing secman default role
         return repositoryService.persist(user);
     }
 
     @Action(semantics = SemanticsOf.SAFE)
-    public List<Arborist> listAll() {
-        return repositoryService.allInstances(Arborist.class);
+    public List<ApplicationUser> listAll() {
+        return arboristRepository.findAllArborists();
     }
 
 }
