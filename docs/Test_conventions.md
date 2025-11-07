@@ -1,0 +1,3 @@
+- all query functions that require strings, and not JpaRepository functions
+- Trees#addTree
+- Arborist CANNOT insert forests (etc)

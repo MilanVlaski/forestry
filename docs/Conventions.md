@@ -1,0 +1,2 @@
+- `applib.annotation.domain-object.editing=false`, makes it so setters "don't work". Which by default, they shouldn't. However, if a class is a bit dumb, just annotate it with `@DomainObject(editing = "true")`, and for fine grained control, use `@Property(editing = true/false)`.
+- All create actions use a sidebar, with `dialog-mode: sidebar` and `dialog-mode-for-menu: sidebar` in `application.yml`.

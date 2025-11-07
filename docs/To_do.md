@@ -1,4 +1,3 @@
-# To do
 - [ ] SemanticsOf.SAFE_AND_REQUEST_CACHABLE on Condition and Species.
 - [x] Create homepage viewmodel which lists out the Forests.
   - search tab 
@@ -45,12 +44,3 @@
 - [x] List species and condition. CRUD.
 - [x] Make a forest fixture script, and run it at startup
 - [x] Create inventory and add Plots
-
-# Test list
-- all query functions that require strings, and not JpaRepository functions
-- Trees#addTree
-- Arborist CANNOT insert forests (etc)
-# Conventions
-- `applib.annotation.domain-object.editing=false`, makes it so setters "don't work". Which by default, they shouldn't. However, if a class is a bit dumb, just annotate it with `@DomainObject(editing = "true")`, and for fine grained control, use `@Property(editing = true/false)`.
-- All create actions use a sidebar, with `dialog-mode: sidebar` and `dialog-mode-for-menu: sidebar` in `application.yml`.
-- 
