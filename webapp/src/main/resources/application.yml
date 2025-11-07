@@ -77,22 +77,22 @@ causeway:
 
       themes:
         show-chooser: true
-        initial: Flatly
+        initial: Cosmo
         enabled:
-          - Cerulean
           - Cosmo
-          - Cyborg
-          - Darkly
+          - Yeti
           - Flatly
+          - Cerulean
+          - Sandstone
           - Journal
           - Lumen
-          - Sandstone
-          - Simplex
-          - Slate
-          - Spacelab
-          - Superhero
           - United
-          - Yeti
+          - Spacelab
+          - Slate
+          - Cyborg
+          - Darkly
+          - Superhero
+          - Simplex
 
       table:
         decoration:
