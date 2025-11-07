@@ -1,12 +1,4 @@
 - [ ] SemanticsOf.SAFE_AND_REQUEST_CACHABLE on Condition and Species.
-- [x] Create homepage viewmodel which lists out the Forests.
-  - search tab 
-  - [x] search -> searches by Forest + Inventory + Plot. Each is required. -> Triple dependent choices is not possible. Can be hacked with autocomplete maybe, but I would prefer not to.
-    - [x] allTreesInForest
-    - [x] allTreesOfInventory
-    - [x] allTreesInPlot
-    - [ ] allTreesCreatedByUser
-    - [ ] allTreesCreatedByArborist (filter by createdBy.role)
 - [ ] Local Postgres database tests, with Flyway.
   - I would personally have the schema get generated, and then copy it into Flyway. Seems a decent way to do it.
 - [ ] Recognize uniqueness exception with https://causeway.apache.org/refguide/3.3.0/applib/index/services/exceprecog/ExceptionRecognizer.html
@@ -21,6 +13,15 @@
 - [ ] Custom color styling in tables when "Condition" is displayed
 - [ ] Customize urls of app (no /wicket for GUI). Research other
 - [ ] Try to make a REST API with only viewModels. That would make it 100% customizable, using only mappings, and without a need for complex configuration.
+- [x] Remove Arborists entity
+- [x] Create homepage viewmodel which lists out the Forests.
+  - search tab 
+  - [x] search -> searches by Forest + Inventory + Plot. Each is required. -> Triple dependent choices is not possible. Can be hacked with autocomplete maybe, but I would prefer not to.
+    - [x] allTreesInForest
+    - [x] allTreesOfInventory
+    - [x] allTreesInPlot
+    - [x] allTreesCreatedByUser
+    - [x] allTreesCreatedByArborist (filter by createdBy.role)
 - [x] Use Paging on Trees `@CollectionLayout(paged=15)`
   - or It is also possible to specify a global default for the page size of parented collections, using the causeway.applib.annotation.collection-layout.paged configuration property.
 - [x] Test if ApplicationUser can be referenced by other entities-> It can!
