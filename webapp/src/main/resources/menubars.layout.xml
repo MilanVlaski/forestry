@@ -40,10 +40,11 @@
             <mb3:section>
                 <mb3:serviceAction objectType="forest.Trees" id="listAll"/>
                 <mb3:serviceAction objectType="forest.Trees" id="addTree"/>
-                <mb3:serviceAction objectType="forest.Trees" id="findTree"/>
                 <mb3:serviceAction objectType="forest.Trees" id="allTreesInForest"/>
                 <mb3:serviceAction objectType="forest.Trees" id="allTreesOfInventory"/>
                 <mb3:serviceAction objectType="forest.Trees" id="allTreesInPlot"/>
+                <mb3:serviceAction objectType="forest.Trees" id="allTreesInForestInventory"/>
+                <mb3:serviceAction objectType="forest.Trees" id="allTreesOfInventoryPlot"/>
                 <mb3:serviceAction objectType="forest.Trees" id="allTreesCreatedByUser"/>
                 <mb3:serviceAction objectType="forest.Trees" id="allTreesCreatedByArborist"/>
             </mb3:section>

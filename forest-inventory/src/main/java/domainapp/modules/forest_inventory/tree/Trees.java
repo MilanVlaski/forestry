@@ -3,6 +3,7 @@ package domainapp.modules.forest_inventory.tree;
 import domainapp.modules.forest_inventory.ForestInventoryModule;
 import domainapp.modules.forest_inventory.forest.Forest;
 import domainapp.modules.forest_inventory.inventory.Inventory;
+import domainapp.modules.forest_inventory.inventory.InventoryRepository;
 import domainapp.modules.forest_inventory.plot.Plot;
 import domainapp.modules.forest_inventory.plot.PlotRepository;
 import domainapp.modules.forest_inventory.tree.condition.Condition;
@@ -27,8 +28,9 @@ import java.util.List;
 public class Trees {
 
     final RepositoryService repositoryService;
-    private final PlotRepository plotRepository;
-    private final TreeRepository treeRepository;
+    final PlotRepository plotRepository;
+    final TreeRepository treeRepository;
+    final InventoryRepository inventoryRepository;
 
     // TODO paging
     @Action(semantics = SemanticsOf.SAFE)
@@ -36,6 +38,7 @@ public class Trees {
         return repositoryService.allInstances(Tree.class);
     }
 
+    // Remove 'final', as it's verbose.
     @Action(semantics = SemanticsOf.NON_IDEMPOTENT)
     @ActionLayout(promptStyle = PromptStyle.DIALOG_MODAL)
     public Tree addTree(
@@ -43,55 +46,14 @@ public class Trees {
             @Parameter @ParameterLayout final BigDecimal height,
             @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout final Species species,
             @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout final Condition condition,
-            @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout final String notes,
-            @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout final Plot plot
+            @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout final Plot plot,
+            @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout final String notes
     ) {
         val tree = new Tree(dbh, height, species, condition, notes);
         if (plot != null) {
             plot.addTree(tree);
         }
         return repositoryService.persist(tree);
-    }
-
-    @Action(semantics = SemanticsOf.SAFE )
-    public List<Tree> allTreesInForest(@Parameter Forest forest) {
-        return treeRepository.findByForest(forest);
-    }
-
-    @MemberSupport
-    public Collection<Forest> choices0AllTreesInForest() {
-        return repositoryService.allInstances(Forest.class);
-    }
-
-    public List<Tree> findTree(
-            @Parameter Forest forest,
-            @Parameter Inventory inventory,
-            @Parameter Plot plot
-    ) {
-        return Collections.emptyList();
-    }
-
-
-    public List<Tree> allTreesOfInventory(
-            @Parameter Inventory inventory
-    ) {
-        return Collections.emptyList();
-    }
-
-    public List<Tree> allTreesInPlot(
-            @Parameter Plot plot
-    ) {
-        return Collections.emptyList();
-    }
-    public List<Tree> allTreesCreatedByUser(
-            @Parameter String username
-    ) {
-        return Collections.emptyList();
-    }
-    public List<Tree> allTreesAddedByArborist(
-            @Parameter String username
-    ) {
-        return Collections.emptyList();
     }
 
     @MemberSupport
@@ -105,7 +67,85 @@ public class Trees {
     }
 
     @MemberSupport
-    public java.util.Collection<Plot> autoComplete5AddTree(String search) {
+    public java.util.Collection<Plot> autoComplete4AddTree(String search) {
         return plotRepository.findByIdLike(search);
     }
+
+    @Action(semantics = SemanticsOf.SAFE)
+    public List<Tree> allTreesInForest(@Parameter Forest forest) {
+        return treeRepository.findByForest(forest);
+    }
+
+    @Action(semantics = SemanticsOf.SAFE)
+    public List<Tree> allTreesOfInventory(@Parameter Inventory inventory) {
+        return treeRepository.findByInventory(inventory);
+    }
+
+    @MemberSupport
+    public Collection<Inventory> choices0AllTreesOfInventory() {
+        return inventoryRepository.findAll();
+    }
+
+    @MemberSupport
+    public Collection<Forest> choices0AllTreesInForest() {
+        return repositoryService.allInstances(Forest.class);
+    }
+
+    @Action(semantics = SemanticsOf.SAFE)
+    public List<Tree> allTreesInForestInventory(
+            @Parameter Forest forest,
+            @Parameter Inventory inventory
+    ) {
+        return treeRepository.findSpecific(forest, inventory);
+    }
+
+    @MemberSupport
+    public Collection<Forest> choices0AllTreesInForestInventory() {
+        return repositoryService.allInstances(Forest.class);
+    }
+
+    @MemberSupport
+    public Collection<Inventory> choices1AllTreesInForestInventory(Forest forest) {
+        return inventoryRepository.findByForest(forest);
+    }
+
+    @Action(semantics = SemanticsOf.SAFE)
+    public List<Tree> allTreesOfInventoryPlot(
+            @Parameter Inventory inventory,
+            @Parameter Plot plot
+    ) {
+        return treeRepository.findSpecific(inventory, plot);
+    }
+
+    @MemberSupport
+    public Collection<Inventory> choices0AllTreesOfInventoryPlot() {
+        return repositoryService.allInstances(Inventory.class);
+    }
+
+    @MemberSupport
+    public Collection<Plot> choices1AllTreesOfInventoryPlot(Inventory inventory) {
+        return plotRepository.findByInventory(inventory);
+    }
+
+    @Action(semantics = SemanticsOf.SAFE)
+    public List<Tree> allTreesInPlot(@Parameter Plot plot) {
+        return treeRepository.findByPlot(plot);
+    }
+
+    @MemberSupport
+    public Collection<Plot> autoComplete0AllTreesInPlot(String search) {
+        return plotRepository.findByIdLike(search);
+    }
+
+    public List<Tree> allTreesCreatedByUser(
+            @Parameter String username
+    ) {
+        return Collections.emptyList();
+    }
+    public List<Tree> allTreesAddedByArborist(
+            @Parameter String username
+    ) {
+        return Collections.emptyList();
+    }
+
 }
