@@ -4,8 +4,8 @@
   - search tab 
   - [x] search -> searches by Forest + Inventory + Plot. Each is required. -> Triple dependent choices is not possible. Can be hacked with autocomplete maybe, but I would prefer not to.
     - [x] allTreesInForest
-    - [ ] allTreesOfInventory
-    - [ ] allTreesInPlot
+    - [x] allTreesOfInventory
+    - [x] allTreesInPlot
     - [ ] allTreesCreatedByUser
     - [ ] allTreesCreatedByArborist (filter by createdBy.role)
 - [ ] Local Postgres database tests, with Flyway.
@@ -17,12 +17,11 @@
   - [ ] Look at PetClinic name validation
 - [ ] Remove all @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
 - [ ] Remove all DIALOG_SIDEBAR usages, as it's there by default according to my convention
-- [ ] Group some of the less important menus together. Like Condition and Species.
 - [ ] Have packages use groupId name
 - [ ] Internationalization -> to Serbian.
 - [ ] Custom color styling in tables when "Condition" is displayed
-- [ ] Customize urls of app
-- [ ] Try to make a REST API with only viewModels
+- [ ] Customize urls of app (no /wicket for GUI). Research other
+- [ ] Try to make a REST API with only viewModels. That would make it 100% customizable, using only mappings, and without a need for complex configuration.
 - [x] Use Paging on Trees `@CollectionLayout(paged=15)`
   - or It is also possible to specify a global default for the page size of parented collections, using the causeway.applib.annotation.collection-layout.paged configuration property.
 - [x] Test if ApplicationUser can be referenced by other entities-> It can!
@@ -48,6 +47,9 @@
 - [x] Create inventory and add Plots
 
 # Test list
+- all query functions that require strings, and not JpaRepository functions
+- Trees#addTree
+- Arborist CANNOT insert forests (etc)
 # Conventions
 - `applib.annotation.domain-object.editing=false`, makes it so setters "don't work". Which by default, they shouldn't. However, if a class is a bit dumb, just annotate it with `@DomainObject(editing = "true")`, and for fine grained control, use `@Property(editing = true/false)`.
 - All create actions use a sidebar, with `dialog-mode: sidebar` and `dialog-mode-for-menu: sidebar` in `application.yml`.
