@@ -1,4 +1,5 @@
 # To do
+- [ ] SemanticsOf.SAFE_AND_REQUEST_CACHABLE on Condition and Species.
 - [x] Create homepage viewmodel which lists out the Forests.
   - search tab 
   - [ ] search -> searches by Forest + Inventory + Plot. Each is required.
