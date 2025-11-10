@@ -1,18 +1,22 @@
-- [ ] SemanticsOf.SAFE_AND_REQUEST_CACHABLE on Condition and Species.
-- [ ] Local Postgres database tests, with Flyway.
-  - I would personally have the schema get generated, and then copy it into Flyway. Seems a decent way to do it.
-- [ ] Recognize uniqueness exception with https://causeway.apache.org/refguide/3.3.0/applib/index/services/exceprecog/ExceptionRecognizer.html
-  - [ ] Just make the message more friendly
+- [ ] Have packages use groupId name
+- [ ] Add `gitlab.ci`
+- [ ] Change project names in pom.xmls
+- [ ] Update readme 
 - [ ] Length constraint? Do it with annotation.
+- [ ] Implement integration tests with ForestInventoryModule at `webapp-tests/src/test/java/domainapp/webapp/integtests/smoke/Smoke_IntegTest.java`
+- [ ] Remove all @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
 - [ ] Make a @Name annotation that's truly applicable everywhere
   - [ ] Look at PetClinic name validation
-- [ ] Remove all @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
 - [ ] Remove all DIALOG_SIDEBAR usages, as it's there by default according to my convention
-- [ ] Have packages use groupId name
 - [ ] Internationalization -> to Serbian.
+- [ ] Local Postgres database tests, with Flyway.
+  - I would have the schema get generated, and then copy it into Flyway. Seems a decent way to do it.
+- [ ] Recognize uniqueness exception with https://causeway.apache.org/refguide/3.3.0/applib/index/services/exceprecog/ExceptionRecognizer.html
+  - [ ] Just make the message more friendly
 - [ ] Custom color styling in tables when "Condition" is displayed
-- [ ] Customize urls of app (no /wicket for GUI). Research other
+- [ ] Customize urls of app (no /wicket for GUI). Research other places where it applies, like logical names.
 - [ ] Try to make a REST API with only viewModels. That would make it 100% customizable, using only mappings, and without a need for complex configuration.
+- [x] SemanticsOf.SAFE_AND_REQUEST_CACHABLE on Condition and Species.
 - [x] Remove Arborists entity
 - [x] Create homepage viewmodel which lists out the Forests.
   - search tab 
