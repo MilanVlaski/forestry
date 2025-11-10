@@ -4,8 +4,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>simpleapp-jpa</artifactId>
-        <groupId>org.apache.causeway.starters</groupId>
+        <artifactId>forestry</artifactId>
+        <groupId>com.akimi</groupId>
         <version>3.4.0</version>
     </parent>
 
