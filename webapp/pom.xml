@@ -300,7 +300,7 @@
                                 <jvmFlags>
                                     <jvmFlag>-Xmx512m</jvmFlag>
                                 </jvmFlags>
-                                <mainClass>domainapp.webapp.SimpleApp</mainClass>
+                                <mainClass>com.akimi.webapp.SimpleApp</mainClass>
                                 <ports>
                                     <port>8080</port>
                                 </ports>

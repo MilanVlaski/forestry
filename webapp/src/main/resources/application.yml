@@ -116,9 +116,9 @@ causeway:
   testing:
     fixtures:
       fixture-scripts-specification:
-        package-prefix: domainapp.webapp.application.fixtures
-        run-script-default: domainapp.webapp.application.fixtures.data.DomainAppDemo
-        recreate: domainapp.webapp.application.fixtures.data.DomainAppDemo
+        package-prefix: com.akimi.webapp.application.fixtures
+        run-script-default: com.akimi.webapp.application.fixtures.data.DomainAppDemo
+        recreate: com.akimi.webapp.application.fixtures.data.DomainAppDemo
         non-persisted-objects-strategy: persist
         multiple-execution-strategy: execute
   value-types:
