@@ -10,8 +10,8 @@
         <version>3.4.0</version>
     </parent>
 
-    <artifactId>simpleapp-jpa-module-simple</artifactId>
-    <name>SimpleApp (JPA) - Simple Module</name>
+    <artifactId>forestry-module-simple</artifactId>
+    <name>Forestry - Simple Module</name>
 
     <build>
         <resources>

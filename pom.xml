@@ -15,7 +15,7 @@
     <!-- TODO version is kinda unnecessary -->
     <version>3.4.0</version>
 
-    <name>SimpleApp (JPA) - Parent</name>
+    <name>Forestry - Parent</name>
 
     <packaging>pom</packaging>
 
