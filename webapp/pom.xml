@@ -87,12 +87,12 @@
 
     <dependencies>
 
+        <!-- Try removing -->
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>simpleapp-jpa-module-simple</artifactId>
+            <artifactId>forestry-module-simple</artifactId>
         </dependency>
 
-        <!-- Breaks the build -->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>forest-inventory</artifactId>

@@ -36,7 +36,7 @@
 
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>simpleapp-jpa-webapp</artifactId>
+            <artifactId>forestry-webapp</artifactId>
             <scope>test</scope>
         </dependency>
 
