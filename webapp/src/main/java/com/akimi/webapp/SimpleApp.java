@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Import;
     AppManifest.class
 //    , XrayEnable.class
 })
+// TODO rename class
 public class SimpleApp extends SpringBootServletInitializer {
 
     /**

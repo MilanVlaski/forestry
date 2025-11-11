@@ -1,7 +1,4 @@
-- [ ] Have packages use groupId name
 - [ ] Add `gitlab.ci`
-- [ ] Change project names in pom.xmls
-- [ ] Update readme 
 - [ ] Length constraint? Do it with annotation.
 - [ ] Implement integration tests with ForestInventoryModule at `webapp-tests/src/test/java/domainapp/webapp/integtests/smoke/Smoke_IntegTest.java`
 - [ ] Remove all @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
@@ -16,6 +13,9 @@
 - [ ] Custom color styling in tables when "Condition" is displayed
 - [ ] Customize urls of app (no /wicket for GUI). Research other places where it applies, like logical names.
 - [ ] Try to make a REST API with only viewModels. That would make it 100% customizable, using only mappings, and without a need for complex configuration.
+- [x] Have packages use groupId name
+- [x] Change project names in pom.xmls
+- [x] Update readme 
 - [x] SemanticsOf.SAFE_AND_REQUEST_CACHABLE on Condition and Species.
 - [x] Remove Arborists entity
 - [x] Create homepage viewmodel which lists out the Forests.
