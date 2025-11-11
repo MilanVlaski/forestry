@@ -1,8 +1,8 @@
 package com.akimi.webapp.application.fixtures.security;
 
-import org.apache.causeway.testing.fixtures.applib.fixturescripts.FixtureScript;
-
 import com.akimi.webapp.application.seed.Roles;
+
+import org.apache.causeway.testing.fixtures.applib.fixturescripts.FixtureScript;
 
 public class CommonSecuritySetup extends FixtureScript {
 
