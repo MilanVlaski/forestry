@@ -1,7 +1,9 @@
+<img height="50" alt="icons8-forest-96" src="https://github.com/user-attachments/assets/ef59aafe-3de7-4815-9371-cfb141f8aec4" />
+
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/MilanVlaski/forestry/blob/main/LICENSE)
 <!-- ![Build](https://img.shields.io/github/actions/workflow/status/USER/REPO/ci.yml?branch=main) -->
 
-A web application for tracking **forest inventory**. Using this to teach myself the [Apache Causeway framework](https://causeway.apache.org/). It follows the [Naked Objects](https://wiki.c2.com/?NakedObjects), which involves exposing your classes, objects, or entities, directly to the user interface. 
+A web application for tracking **forest inventory**. Using this to teach myself the [Apache Causeway framework](https://causeway.apache.org/). It follows the [Naked Objects](https://wiki.c2.com/?NakedObjects) philosophy, which involves exposing your classes, objects, or entities, directly to the user interface. 
 
 ## How to run?
 To use the app, you must have JDK 21 installed, as well as Maven. We suggest installing both using [SDKMAN](https://sdkman.io/) for Linux, by running `sdk maven install` and `sdk install java`.
