@@ -5,7 +5,7 @@
 
 A web application for tracking **forest inventory**. Using this to teach myself the [Apache Causeway framework](https://causeway.apache.org/). It follows the [Naked Objects](https://wiki.c2.com/?NakedObjects) philosophy, which involves exposing your classes, objects, or entities, directly to the user interface. 
 
-## How to run?
+## Quick Start
 To use the app, you must have JDK 21 installed, as well as Maven. We suggest installing both using [SDKMAN](https://sdkman.io/) for Linux, by running `sdk maven install` and `sdk install java`.
 
 1. Run `mvn clean install`
