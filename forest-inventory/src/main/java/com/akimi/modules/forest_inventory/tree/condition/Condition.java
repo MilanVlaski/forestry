@@ -3,6 +3,9 @@ package com.akimi.modules.forest_inventory.tree.condition;
 import java.math.BigDecimal;
 import java.util.Comparator;
 
+import com.akimi.modules.forest_inventory.ForestInventoryModule;
+import com.akimi.modules.forest_inventory.tree.Tree;
+
 import org.apache.causeway.applib.annotation.BookmarkPolicy;
 import org.apache.causeway.applib.annotation.DomainObject;
 import org.apache.causeway.applib.annotation.DomainObjectLayout;
@@ -12,8 +15,9 @@ import org.apache.causeway.applib.annotation.Publishing;
 import org.apache.causeway.applib.annotation.TableDecorator;
 import org.apache.causeway.applib.annotation.Title;
 import org.apache.causeway.applib.jaxb.PersistentEntityAdapter;
-import org.apache.causeway.applib.layout.LayoutConstants;
 import org.apache.causeway.persistence.jpa.applib.integration.CausewayEntityListener;
+
+import static org.apache.causeway.applib.layout.LayoutConstants.FieldSetId.DETAILS;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -21,8 +25,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import com.akimi.modules.forest_inventory.ForestInventoryModule;
-import com.akimi.modules.forest_inventory.tree.Tree;
 import jakarta.inject.Named;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -53,14 +55,14 @@ public class Condition implements Comparable<Condition> {
     @Title
     @Column(nullable = false, length = 10, unique = true)
     @Getter @Setter
-    @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
-    @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "1")
+    @Property
+    @PropertyLayout(fieldSetId = DETAILS, sequence = "1")
     private String name;
 
     @Column(nullable = false, precision = 2, scale = 1)
     @Getter @Setter
     @Property
-    @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "2")
+    @PropertyLayout(fieldSetId = DETAILS, sequence = "2")
     private BigDecimal level;
 
     public Condition(String name, int level) {

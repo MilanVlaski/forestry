@@ -47,51 +47,51 @@ public class Tree implements Comparable<Tree> {
 
     @Column(precision = 7, scale = 2, nullable = false)
     @Getter @Setter
-    @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
+    @Property
     @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "1")
     private BigDecimal dbh_cm;
 
     @Column(precision = 5, scale = 2, nullable = false)
     @Getter @Setter
-    @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
+    @Property
     @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "2")
     private BigDecimal height_m;
 
     @ManyToOne
     @Getter @Setter
-    @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
+    @Property
     @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "3")
     private Species species;
 
     @ManyToOne
     @Getter @Setter
-    @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
+    @Property
     @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "4")
     private Condition condition;
 
 
     @ManyToOne
     @Getter @Setter
-    @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
+    @Property
     @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "5")
     private Plot plot;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @Getter
-    @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
+    @Property
     @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.METADATA, sequence = "6")
     private ApplicationUser createdBy;
 
     @Column
     @Getter @Setter
-    @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
+    @Property
     @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.METADATA, sequence = "7")
     private LocalDateTime createdAt;
 
     @Notes
     @Column(length = Notes.MAX_LEN, nullable = true)
     @Getter @Setter
-    @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
+    @Property
     @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "90")
     private String notes;
 

@@ -125,7 +125,7 @@ public class SimpleObject implements Comparable<SimpleObject>, CalendarEventable
     @Notes
     @Column(length = Notes.MAX_LEN, nullable = true)
     @Getter @Setter
-    @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
+    @Property
     @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "2")
     private String notes;
 

@@ -1,7 +1,6 @@
 - [ ] Add `gitlab.ci`
 - [ ] Length constraint? Do it with annotation.
 - [ ] Implement integration tests with ForestInventoryModule at `webapp-tests/src/test/java/domainapp/webapp/integtests/smoke/Smoke_IntegTest.java`
-- [ ] Remove all @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
 - [ ] Make a @Name annotation that's truly applicable everywhere
   - [ ] Look at PetClinic name validation
 - [ ] Remove all DIALOG_SIDEBAR usages, as it's there by default according to my convention
@@ -13,6 +12,7 @@
 - [ ] Custom color styling in tables when "Condition" is displayed
 - [ ] Customize urls of app (no /wicket for GUI). Research other places where it applies, like logical names.
 - [ ] Try to make a REST API with only viewModels. That would make it 100% customizable, using only mappings, and without a need for complex configuration.
+- [x] Remove all @Property
 - [x] Have packages use groupId name
 - [x] Change project names in pom.xmls
 - [x] Update readme 

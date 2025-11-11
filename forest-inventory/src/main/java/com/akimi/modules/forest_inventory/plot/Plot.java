@@ -76,7 +76,7 @@ public class Plot implements Comparable<Plot> {
 
     @ManyToOne
     @Getter @Setter
-    @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
+    @Property
     @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "2")
     private Inventory inventory;
 

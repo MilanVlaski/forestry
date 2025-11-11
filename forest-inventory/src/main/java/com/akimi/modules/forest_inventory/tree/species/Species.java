@@ -50,13 +50,13 @@ public class Species {
     @Title
     @Column(nullable = false, length = 50, unique = true)
     @Getter @Setter
-    @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
+    @Property
     @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "1")
     private String name;
 
     @Column(nullable = false, length = 50, unique = true)
     @Getter @Setter
-    @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
+    @Property
     @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "1")
     private String latinName;
 

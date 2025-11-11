@@ -65,7 +65,7 @@ public class Inventory implements Comparable<Inventory> {
 
     @ManyToOne
     @Getter @Setter
-    @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
+    @Property
     @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "2")
     private Forest forest;
 
