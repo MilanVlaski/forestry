@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Import;
 public class SimpleApp extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
+        // LOOOOOOOOOOOOOOLOOOOOOOOOOOOOOLOOOOOOOOOOOOOOLOOOOOOOOOOOOOOLOOOOOOOOOOOOOOLOOOOOOOOOOOOOOLOOOOOOOOOOOOOOLOOOOOOOOOOOOOO
         SpringApplication.run(new Class[]{SimpleApp.class}, args);
     }
 
