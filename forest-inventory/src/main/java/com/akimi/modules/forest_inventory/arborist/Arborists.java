@@ -13,6 +13,7 @@ import org.apache.causeway.applib.annotation.SemanticsOf;
 import org.apache.causeway.applib.services.repository.RepositoryService;
 import org.apache.causeway.applib.services.userreg.UserDetails;
 import org.apache.causeway.applib.services.userreg.UserRegistrationService;
+import org.apache.causeway.core.config.CausewayConfiguration;
 import org.apache.causeway.extensions.secman.applib.user.dom.ApplicationUserRepository;
 import org.apache.causeway.extensions.secman.jpa.role.dom.ApplicationRoleRepository;
 import org.apache.causeway.extensions.secman.jpa.user.dom.ApplicationUser;
@@ -37,7 +38,7 @@ public class Arborists {
 
     @Action(semantics = SemanticsOf.IDEMPOTENT)
     @ActionLayout
-    public ApplicationUser  register(
+    public ApplicationUser register(
             @Parameter String username,
             @Parameter String password,
             @Parameter String emailAddress
@@ -55,9 +56,14 @@ public class Arborists {
         // TODO replace magic 'arborist' string
         var role = roleRepository.findByName("arborist")
                 .orElseThrow(() -> new IllegalStateException("Role not found"));
+        var defaultRole = roleRepository.findByName(
+                        causewayConfiguration.getExtensions().getSecman()
+                                .getSeed().getRegularUser().getRoleName()
+                )
+                .orElseThrow(() -> new IllegalStateException("Role not found"));
 
         roleRepository.addRoleToUser(role, user);
-        // missing secman default role
+        roleRepository.addRoleToUser(defaultRole, user);
         return repositoryService.persist(user);
     }
 
@@ -66,4 +72,5 @@ public class Arborists {
         return arboristRepository.findAllArborists();
     }
 
+    @Inject CausewayConfiguration causewayConfiguration;
 }
