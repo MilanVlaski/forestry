@@ -10,6 +10,7 @@ import com.akimi.modules.forest_inventory.inventory.Inventory;
 import com.akimi.modules.forest_inventory.tree.Tree;
 import com.akimi.modules.forest_inventory.tree.condition.Condition;
 import com.akimi.modules.forest_inventory.tree.species.Species;
+import com.akimi.modules.forest_inventory.types.Notes;
 
 import org.apache.causeway.applib.annotation.Action;
 import org.apache.causeway.applib.annotation.ActionLayout;
@@ -20,9 +21,7 @@ import org.apache.causeway.applib.annotation.DomainObject;
 import org.apache.causeway.applib.annotation.DomainObjectLayout;
 import org.apache.causeway.applib.annotation.MemberSupport;
 import org.apache.causeway.applib.annotation.ObjectSupport;
-import org.apache.causeway.applib.annotation.Optionality;
 import org.apache.causeway.applib.annotation.Parameter;
-import org.apache.causeway.applib.annotation.ParameterLayout;
 import org.apache.causeway.applib.annotation.Property;
 import org.apache.causeway.applib.annotation.PropertyLayout;
 import org.apache.causeway.applib.annotation.Publishing;
@@ -33,6 +32,7 @@ import org.apache.causeway.applib.layout.LayoutConstants;
 import org.apache.causeway.applib.services.repository.RepositoryService;
 import org.apache.causeway.persistence.jpa.applib.integration.CausewayEntityListener;
 
+import static org.apache.causeway.applib.annotation.Optionality.OPTIONAL;
 import static org.apache.causeway.applib.annotation.PromptStyle.DIALOG_MODAL;
 import static org.apache.causeway.applib.layout.LayoutConstants.FieldSetId.DETAILS;
 
@@ -92,16 +92,14 @@ public class Plot implements Comparable<Plot> {
     @Action(semantics = SemanticsOf.NON_IDEMPOTENT)
     @ActionLayout(associateWith = "trees", promptStyle = DIALOG_MODAL)
     public Plot addTree(
-            @Parameter @ParameterLayout
-            final BigDecimal dbh,
-            @Parameter @ParameterLayout
-            final BigDecimal height,
-            @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout
-            final Species species,
-            @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout
-            final Condition condition,
-            @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout
-            final String notes
+            BigDecimal dbh,
+            BigDecimal height,
+            @Parameter(optionality = OPTIONAL)
+            Species species,
+            @Parameter(optionality = OPTIONAL)
+            Condition condition,
+            @Parameter(optionality = OPTIONAL)
+            @Notes String notes
     ) {
         val tree = new Tree(dbh, height, species, condition, notes);
         this.addTree(tree);

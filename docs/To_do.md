@@ -1,6 +1,7 @@
-- [ ] Make a @Name annotation that's truly applicable everywhere
-  - [ ] Look at PetClinic name validation
-  - Name in Forest, Condition, Species, with a length param.
+- [x] Make a @Name annotation that's truly applicable everywhere
+  - [ ] BigDecimals that are too big on the left side raise a JDBC exception. Too big on the right just get cut rounded. 
+  - [x] Look at PetClinic name validation
+  - [x] Name in Forest, Condition, Species, with a length param.
 - [ ] Implement integration tests with ForestInventoryModule at `webapp-tests/src/test/java/domainapp/webapp/integtests/smoke/Smoke_IntegTest.java`
 - [ ] Remove all DIALOG_SIDEBAR usages, as it's there by default according to my convention
 - [ ] Internationalization -> to Serbian.
