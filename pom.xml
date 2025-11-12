@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -22,17 +23,18 @@
     <properties>
         <java.version>21</java.version>
 
-        <datasource-proxy-spring-boot-starter.version>1.8.1</datasource-proxy-spring-boot-starter.version>
+        <datasource-proxy-spring-boot-starter.version>1.8.1
+        </datasource-proxy-spring-boot-starter.version>
         <maven-timeline.version>1.8</maven-timeline.version>
         <sql-formatter.version>2.0.4</sql-formatter.version>
     </properties>
 
-<!--    <pluginRepositories>-->
-<!--        <pluginRepository>-->
-<!--            <id>central</id>-->
-<!--            <url>https://repo.maven.apache.org/maven2</url>-->
-<!--        </pluginRepository>-->
-<!--    </pluginRepositories>-->
+    <!--    <pluginRepositories>-->
+    <!--        <pluginRepository>-->
+    <!--            <id>central</id>-->
+    <!--            <url>https://repo.maven.apache.org/maven2</url>-->
+    <!--        </pluginRepository>-->
+    <!--    </pluginRepositories>-->
 
     <build>
         <extensions>
@@ -41,34 +43,43 @@
                 <artifactId>maven-timeline</artifactId>
                 <version>${maven-timeline.version}</version>
             </extension>
+
         </extensions>
 
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-checkstyle-plugin</artifactId>
-                    <version>3.6.0</version>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.6.0</version>
 
-                    <dependencies>
-                        <dependency>
-                            <groupId>com.puppycrawl.tools</groupId>
-                            <artifactId>checkstyle</artifactId>
-                            <version>12.1.0</version>
-                        </dependency>
-                    </dependencies>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.puppycrawl.tools</groupId>
+                        <artifactId>checkstyle</artifactId>
+                        <version>12.1.0</version>
+                    </dependency>
+                </dependencies>
 
-                    <configuration>
-                        <configLocation>checkstyle.xml</configLocation>
-                        <suppressionsLocation>checkstyle-suppressions.xml</suppressionsLocation>
-                        <consoleOutput>true</consoleOutput>
-                        <failsOnError>true</failsOnError>
-                        <linkXRef>false</linkXRef>
-                    </configuration>
+                <configuration>
+                    <configLocation>checkstyle.xml</configLocation>
+                    <suppressionsLocation>checkstyle-suppressions.xml
+                    </suppressionsLocation>
+                    <consoleOutput>true</consoleOutput>
+                    <failsOnError>true</failsOnError>
+                    <linkXRef>false</linkXRef>
+                </configuration>
 
-                </plugin>
-            </plugins>
-        </pluginManagement>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
     </build>
 
     <dependencyManagement>
@@ -108,7 +119,8 @@
             <dependency>
                 <groupId>com.github.gavlyukovskiy</groupId>
                 <artifactId>datasource-proxy-spring-boot-starter</artifactId>
-                <version>${datasource-proxy-spring-boot-starter.version}</version>
+                <version>${datasource-proxy-spring-boot-starter.version}
+                </version>
             </dependency>
             <dependency>
                 <groupId>com.github.vertical-blank</groupId>
@@ -136,33 +148,33 @@
     </modules>
 
     <profiles>
-<!--        <profile>-->
-<!--            <id>staging</id>-->
-<!--            <activation>-->
-<!--                <property>-->
-<!--                    <name>!skip.staging</name>-->
-<!--                </property>-->
-<!--            </activation>-->
-<!--            <repositories>-->
-<!--                <repository>-->
-<!--                    <id>staging</id>-->
-<!--                    <url>https://repository.apache.org/content/groups/staging/</url>-->
-<!--                </repository>-->
-<!--            </repositories>-->
-<!--        </profile>-->
-<!--        <profile>-->
-<!--            <id>nightly</id>-->
-<!--            <activation>-->
-<!--                <property>-->
-<!--                    <name>!skip.nightly</name>-->
-<!--                </property>-->
-<!--            </activation>-->
-<!--            <repositories>-->
-<!--                <repository>-->
-<!--                    <id>nightly-builds</id>-->
-<!--                    <url>https://raw.githubusercontent.com/apache-causeway-committers/causeway-nightly/master/mvn-snapshots</url>-->
-<!--                </repository>-->
-<!--            </repositories>-->
-<!--        </profile>-->
+        <!--        <profile>-->
+        <!--            <id>staging</id>-->
+        <!--            <activation>-->
+        <!--                <property>-->
+        <!--                    <name>!skip.staging</name>-->
+        <!--                </property>-->
+        <!--            </activation>-->
+        <!--            <repositories>-->
+        <!--                <repository>-->
+        <!--                    <id>staging</id>-->
+        <!--                    <url>https://repository.apache.org/content/groups/staging/</url>-->
+        <!--                </repository>-->
+        <!--            </repositories>-->
+        <!--        </profile>-->
+        <!--        <profile>-->
+        <!--            <id>nightly</id>-->
+        <!--            <activation>-->
+        <!--                <property>-->
+        <!--                    <name>!skip.nightly</name>-->
+        <!--                </property>-->
+        <!--            </activation>-->
+        <!--            <repositories>-->
+        <!--                <repository>-->
+        <!--                    <id>nightly-builds</id>-->
+        <!--                    <url>https://raw.githubusercontent.com/apache-causeway-committers/causeway-nightly/master/mvn-snapshots</url>-->
+        <!--                </repository>-->
+        <!--            </repositories>-->
+        <!--        </profile>-->
     </profiles>
 </project>
