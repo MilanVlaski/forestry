@@ -48,7 +48,6 @@ public class Trees {
     final ApplicationUserRepository applicationUserRepository;
     final ArboristRepository arboristRepository;
 
-    // TODO paging
     @Action(semantics = SemanticsOf.SAFE)
     public List<Tree> listAll() {
         return repositoryService.allInstances(Tree.class);

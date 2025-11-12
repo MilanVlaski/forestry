@@ -1,4 +1,4 @@
-package com.akimi.modules.forest_inventory.types;
+package com.akimi.modules.forest_inventory.tree.species;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -17,9 +17,7 @@ import org.apache.causeway.applib.spec.AbstractSpecification;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Name {
 
-    int MAX_LEN = 40;
-
-    int maxLength() default MAX_LEN;
+    int MAX_LEN = 50;
 
     String PROHIBITED_CHARACTERS = "&%$!";
 

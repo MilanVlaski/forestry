@@ -1,4 +1,4 @@
-package com.akimi.modules.forest_inventory.types;
+package com.akimi.modules.forest_inventory.tree.condition;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -17,14 +17,13 @@ import org.apache.causeway.applib.spec.AbstractSpecification;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Name {
 
-    int MAX_LEN = 40;
-
-    int maxLength() default MAX_LEN;
+    int MAX_LEN = 10;
 
     String PROHIBITED_CHARACTERS = "&%$!";
 
     class Spec extends AbstractSpecification<String> {
-        @Override public String satisfiesSafely(String candidate) {
+        @Override
+        public String satisfiesSafely(String candidate) {
             for (char prohibitedCharacter : PROHIBITED_CHARACTERS.toCharArray()) {
                 if( candidate.contains("" + prohibitedCharacter)) {
                     return "Character '" + prohibitedCharacter + "' is not allowed.";

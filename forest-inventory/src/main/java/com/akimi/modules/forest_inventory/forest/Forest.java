@@ -121,7 +121,8 @@ public class Forest implements Comparable<Forest> {
     @PropertyLayout(fieldSetId = IDENTITY, sequence = "1")
     private String name;
 
-    @Notes @Column(length = Notes.MAX_LEN, nullable = true) @Getter @Setter
+    @Notes @Column(length = Notes.MAX_LEN, nullable = true)
+    @Getter @Setter
     @Property @PropertyLayout(fieldSetId = DETAILS, sequence = "2")
     private String notes;
 

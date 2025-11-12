@@ -26,7 +26,7 @@ public class TreeSpecies {
 
     @Action(semantics = SemanticsOf.NON_IDEMPOTENT)
     @ActionLayout(promptStyle = PromptStyle.DIALOG_SIDEBAR)
-    public Species create(String name, String latinName) {
+    public Species create(@Name String name, @Name String latinName) {
         return repositoryService.persist(new Species(name, latinName));
     }
 

@@ -1,5 +1,8 @@
 package com.akimi.modules.forest_inventory.tree.species;
 
+import com.akimi.modules.forest_inventory.ForestInventoryModule;
+import com.akimi.modules.forest_inventory.tree.Tree;
+
 import org.apache.causeway.applib.annotation.BookmarkPolicy;
 import org.apache.causeway.applib.annotation.DomainObject;
 import org.apache.causeway.applib.annotation.DomainObjectLayout;
@@ -18,8 +21,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import com.akimi.modules.forest_inventory.ForestInventoryModule;
-import com.akimi.modules.forest_inventory.tree.Tree;
 import jakarta.inject.Named;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -48,13 +49,14 @@ public class Species {
     private Long id;
 
     @Title
-    @Column(nullable = false, length = 50, unique = true)
+    @Name
+    @Column(nullable = false, length = Name.MAX_LEN, unique = true)
     @Getter @Setter
     @Property
     @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "1")
     private String name;
 
-    @Column(nullable = false, length = 50, unique = true)
+    @Column(nullable = false, length = Name.MAX_LEN, unique = true)
     @Getter @Setter
     @Property
     @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "1")

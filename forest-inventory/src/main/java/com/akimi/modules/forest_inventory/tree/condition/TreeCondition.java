@@ -27,7 +27,7 @@ public class TreeCondition {
 
     @Action(semantics = SemanticsOf.NON_IDEMPOTENT)
     @ActionLayout(promptStyle = PromptStyle.DIALOG_SIDEBAR)
-    public Condition create(String condition, BigDecimal level) {
+    public Condition create(@Name String condition, BigDecimal level) {
         return repositoryService.persist(new Condition(condition, level));
     }
 

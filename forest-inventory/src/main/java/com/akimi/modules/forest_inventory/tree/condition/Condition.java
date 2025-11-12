@@ -53,9 +53,9 @@ public class Condition implements Comparable<Condition> {
     private Long id;
 
     @Title
-    @Column(nullable = false, length = 10, unique = true)
+    @Name
+    @Column(nullable = false, length = Name.MAX_LEN, unique = true)
     @Getter @Setter
-    @Property
     @PropertyLayout(fieldSetId = DETAILS, sequence = "1")
     private String name;
 
