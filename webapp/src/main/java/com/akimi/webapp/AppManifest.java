@@ -1,5 +1,11 @@
 package com.akimi.webapp;
 
+import com.akimi.webapp.application.ApplicationModule;
+import com.akimi.webapp.application.fixtures.data.DomainAppDemo;
+import com.akimi.webapp.application.fixtures.security.CommonSecuritySetup;
+import com.akimi.webapp.application.fixtures.security.PrototypingSecuritySetup;
+import com.akimi.webapp.custom.CustomModule;
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
@@ -30,12 +36,6 @@ import org.apache.causeway.viewer.graphql.viewer.CausewayModuleViewerGraphqlView
 import org.apache.causeway.viewer.restfulobjects.jaxrsresteasy.CausewayModuleViewerRestfulObjectsJaxrsResteasy;
 import org.apache.causeway.viewer.wicket.applib.CausewayModuleViewerWicketApplibMixins;
 import org.apache.causeway.viewer.wicket.viewer.CausewayModuleViewerWicketViewer;
-
-import com.akimi.webapp.application.ApplicationModule;
-import com.akimi.webapp.application.fixtures.data.DomainAppDemo;
-import com.akimi.webapp.application.fixtures.security.CommonSecuritySetup;
-import com.akimi.webapp.application.fixtures.security.PrototypingSecuritySetup;
-import com.akimi.webapp.custom.CustomModule;
 
 @Configuration
 @Import({
@@ -70,7 +70,8 @@ import com.akimi.webapp.custom.CustomModule;
         // CausewayModuleExtFullCalendarWicketUi.class,
         CausewayModuleExtPdfjsWicketUi.class,
 
-        CausewayModuleValAsciidocMetaModel.class, // for pretty rendering of DTO objects such as CommandDto, InteractionDto
+    // for pretty rendering of DTO objects such as CommandDto, InteractionDto
+        CausewayModuleValAsciidocMetaModel.class,
         CausewayModuleValAsciidocUiWkt.class,
 
         ApplicationModule.class,

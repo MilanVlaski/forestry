@@ -2,6 +2,8 @@ package com.akimi.modules.forest_inventory.plot;
 
 import java.util.List;
 
+import com.akimi.modules.forest_inventory.ForestInventoryModule;
+
 import org.apache.causeway.applib.annotation.Action;
 import org.apache.causeway.applib.annotation.ActionLayout;
 import org.apache.causeway.applib.annotation.DomainService;
@@ -12,7 +14,6 @@ import org.apache.causeway.applib.services.repository.RepositoryService;
 
 import lombok.RequiredArgsConstructor;
 
-import com.akimi.modules.forest_inventory.ForestInventoryModule;
 import jakarta.annotation.Priority;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -20,14 +21,14 @@ import jakarta.inject.Named;
 @Named(ForestInventoryModule.NAMESPACE + ".Plots")
 @DomainService
 @Priority(PriorityPrecedence.EARLY)
-@RequiredArgsConstructor(onConstructor_ = {@Inject} )
+@RequiredArgsConstructor(onConstructor_ = {@Inject})
 public class Plots {
 
     @Inject RepositoryService repositoryService;
 
     @Action(semantics = SemanticsOf.NON_IDEMPOTENT)
     @ActionLayout(promptStyle = PromptStyle.DIALOG_SIDEBAR)
-    public Plot create(){
+    public Plot create() {
         return repositoryService.persist(new Plot());
     }
 

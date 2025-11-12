@@ -4,6 +4,10 @@ import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.util.Comparator;
 
+import com.akimi.modules.simple.SimpleModule;
+import com.akimi.modules.simple.types.Name;
+import com.akimi.modules.simple.types.Notes;
+
 import org.springframework.lang.Nullable;
 
 import org.apache.causeway.applib.annotation.Action;
@@ -21,7 +25,6 @@ import org.apache.causeway.applib.annotation.Publishing;
 import org.apache.causeway.applib.annotation.TableDecorator;
 import org.apache.causeway.applib.annotation.Title;
 import org.apache.causeway.applib.jaxb.PersistentEntityAdapter;
-import org.apache.causeway.applib.layout.LayoutConstants;
 import org.apache.causeway.applib.services.message.MessageService;
 import org.apache.causeway.applib.services.repository.RepositoryService;
 import org.apache.causeway.applib.services.title.TitleService;
@@ -34,6 +37,8 @@ import org.apache.causeway.persistence.jpa.applib.types.BlobJpaEmbeddable;
 
 import static org.apache.causeway.applib.annotation.SemanticsOf.IDEMPOTENT;
 import static org.apache.causeway.applib.annotation.SemanticsOf.NON_IDEMPOTENT_ARE_YOU_SURE;
+import static org.apache.causeway.applib.layout.LayoutConstants.FieldSetId.DETAILS;
+import static org.apache.causeway.applib.layout.LayoutConstants.FieldSetId.IDENTITY;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -42,9 +47,6 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.val;
 
-import com.akimi.modules.simple.SimpleModule;
-import com.akimi.modules.simple.types.Name;
-import com.akimi.modules.simple.types.Notes;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.persistence.AttributeOverride;
@@ -69,15 +71,16 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @Table(
         schema = SimpleModule.SCHEMA,
         uniqueConstraints = {
-                @UniqueConstraint(name = "SimpleObject__name__UNQ", columnNames = {"name"})
+                @UniqueConstraint(name = "SimpleObject__name__UNQ",
+                        columnNames = {"name"})
         }
 )
 @NamedQueries({
         @NamedQuery(
-                name = SimpleObject.NAMED_QUERY__FIND_BY_NAME_LIKE,
-                query = "SELECT so " +
-                        "FROM SimpleObject so " +
-                        "WHERE so.name LIKE :name"
+                name = SimpleObject.NAMED_QUERY_FIND_BY_NAME_LIKE,
+                query = "SELECT so "
+                        + "FROM SimpleObject so "
+                        + "WHERE so.name LIKE :name"
         )
 })
 @EntityListeners(CausewayEntityListener.class)
@@ -89,9 +92,10 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @XmlJavaTypeAdapter(PersistentEntityAdapter.class)
 @ToString(onlyExplicitlyIncluded = true)
-public class SimpleObject implements Comparable<SimpleObject>, CalendarEventable {
+public class SimpleObject
+        implements Comparable<SimpleObject>, CalendarEventable {
 
-    static final String NAMED_QUERY__FIND_BY_NAME_LIKE = "SimpleObject.findByNameLike";
+    static final String NAMED_QUERY_FIND_BY_NAME_LIKE = "SimpleObject.findByNameLike";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -119,20 +123,23 @@ public class SimpleObject implements Comparable<SimpleObject>, CalendarEventable
     @Name
     @Column(length = Name.MAX_LEN, nullable = false, name = "name")
     @Getter @Setter @ToString.Include
-    @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.IDENTITY, sequence = "1")
+    @PropertyLayout(fieldSetId = IDENTITY, sequence = "1")
     private String name;
 
     @Notes
     @Column(length = Notes.MAX_LEN, nullable = true)
     @Getter @Setter
     @Property
-    @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "2")
+    @PropertyLayout(fieldSetId = DETAILS, sequence = "2")
     private String notes;
 
     @AttributeOverrides({
-            @AttributeOverride(name = "name", column = @Column(name = "attachment_name")),
-            @AttributeOverride(name = "mimeType", column = @Column(name = "attachment_mimeType")),
-            @AttributeOverride(name = "bytes", column = @Column(name = "attachment_bytes"))
+            @AttributeOverride(
+                    name = "name", column = @Column(name = "attachment_name")),
+            @AttributeOverride(name = "mimeType",
+                    column = @Column(name = "attachment_mimeType")),
+            @AttributeOverride(name = "bytes",
+                    column = @Column(name = "attachment_bytes"))
     })
     @Embedded
     private BlobJpaEmbeddable attachment;
@@ -150,7 +157,7 @@ public class SimpleObject implements Comparable<SimpleObject>, CalendarEventable
 
 
     @Property(optionality = Optionality.OPTIONAL, editing = Editing.ENABLED)
-    @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "3")
+    @PropertyLayout(fieldSetId = DETAILS, sequence = "3")
     @Column(nullable = true)
     @Getter @Setter
     private java.time.LocalDate lastCheckedIn;
@@ -164,18 +171,23 @@ public class SimpleObject implements Comparable<SimpleObject>, CalendarEventable
     @Override
     public CalendarEvent toCalendarEvent() {
         if (getLastCheckedIn() != null) {
-            long epochMillis = getLastCheckedIn().toEpochSecond(LocalTime.MIDNIGHT, ZoneOffset.systemDefault().getRules().getOffset(getLastCheckedIn().atStartOfDay())) * 1000L;
-            return new CalendarEvent(epochMillis, getCalendarName(), titleService.titleOf(this), getNotes());
+            long epochMillis = getLastCheckedIn().toEpochSecond(
+                    LocalTime.MIDNIGHT, ZoneOffset.systemDefault().getRules().
+                            getOffset(getLastCheckedIn().atStartOfDay()))
+                    * 1000L;
+            return new CalendarEvent(epochMillis, getCalendarName(),
+                    titleService.titleOf(this), getNotes());
         } else {
             return null;
         }
     }
 
 
-    @Action(semantics = IDEMPOTENT, commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
+    @Action(semantics = IDEMPOTENT)
     @ActionLayout(
             associateWith = "name", promptStyle = PromptStyle.INLINE,
-            describedAs = "Updates the name of this object, certain characters (" + PROHIBITED_CHARACTERS + ") are not allowed.")
+            describedAs = "Updates the name of this object, certain characters"
+                    + " (" + PROHIBITED_CHARACTERS + ") are not allowed.")
     public SimpleObject updateName(
             @Name final String name) {
         setName(name);
@@ -200,7 +212,7 @@ public class SimpleObject implements Comparable<SimpleObject>, CalendarEventable
     static final String PROHIBITED_CHARACTERS = "&%$!";
 
 
-    @Action(semantics = IDEMPOTENT, commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
+    @Action(semantics = IDEMPOTENT)
     @ActionLayout(associateWith = "attachment", position = ActionLayout.Position.PANEL)
     public SimpleObject updateAttachment(
             @Nullable final Blob attachment) {
@@ -216,7 +228,7 @@ public class SimpleObject implements Comparable<SimpleObject>, CalendarEventable
 
     @Action(semantics = NON_IDEMPOTENT_ARE_YOU_SURE)
     @ActionLayout(
-            fieldSetId = LayoutConstants.FieldSetId.IDENTITY,
+            fieldSetId = IDENTITY,
             position = ActionLayout.Position.PANEL,
             describedAs = "Deletes this object from the persistent datastore")
     public void delete() {
@@ -226,12 +238,12 @@ public class SimpleObject implements Comparable<SimpleObject>, CalendarEventable
     }
 
 
-    private final static Comparator<SimpleObject> comparator =
+    private static final Comparator<SimpleObject> COMPARATOR =
             Comparator.comparing(SimpleObject::getName);
 
     @Override
     public int compareTo(final SimpleObject other) {
-        return comparator.compare(this, other);
+        return COMPARATOR.compare(this, other);
     }
 
 }

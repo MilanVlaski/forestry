@@ -4,6 +4,10 @@ import java.util.Comparator;
 import java.util.Set;
 import java.util.TreeSet;
 
+import com.akimi.modules.forest_inventory.ForestInventoryModule;
+import com.akimi.modules.forest_inventory.forest.Forest;
+import com.akimi.modules.forest_inventory.plot.Plot;
+
 import org.apache.causeway.applib.annotation.Action;
 import org.apache.causeway.applib.annotation.ActionLayout;
 import org.apache.causeway.applib.annotation.BookmarkPolicy;
@@ -21,6 +25,7 @@ import org.apache.causeway.applib.layout.LayoutConstants;
 import org.apache.causeway.persistence.jpa.applib.integration.CausewayEntityListener;
 
 import static org.apache.causeway.applib.annotation.SemanticsOf.IDEMPOTENT;
+import static org.apache.causeway.applib.layout.LayoutConstants.FieldSetId.DETAILS;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -28,9 +33,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import com.akimi.modules.forest_inventory.ForestInventoryModule;
-import com.akimi.modules.forest_inventory.forest.Forest;
-import com.akimi.modules.forest_inventory.plot.Plot;
 import jakarta.inject.Named;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -66,7 +68,7 @@ public class Inventory implements Comparable<Inventory> {
     @ManyToOne
     @Getter @Setter
     @Property
-    @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "2")
+    @PropertyLayout(fieldSetId = DETAILS, sequence = "2")
     private Forest forest;
 
     @OneToMany(mappedBy = "inventory", cascade = CascadeType.ALL)
@@ -98,11 +100,11 @@ public class Inventory implements Comparable<Inventory> {
         return plot;
     }
 
-    private final static Comparator<Inventory> comparator =
+    private static final Comparator<Inventory> COMPARATOR =
             Comparator.comparing(Inventory::title);
 
     @Override
     public int compareTo(final Inventory other) {
-        return comparator.compare(this, other);
+        return COMPARATOR.compare(this, other);
     }
 }

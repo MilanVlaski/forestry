@@ -1,5 +1,9 @@
 package com.akimi.modules.forest_inventory.tree;
 
+import java.math.BigDecimal;
+import java.util.Collection;
+import java.util.List;
+
 import com.akimi.modules.forest_inventory.arborist.ArboristRepository;
 import com.akimi.modules.forest_inventory.forest.Forest;
 import com.akimi.modules.forest_inventory.inventory.Inventory;
@@ -8,19 +12,28 @@ import com.akimi.modules.forest_inventory.plot.Plot;
 import com.akimi.modules.forest_inventory.plot.PlotRepository;
 import com.akimi.modules.forest_inventory.tree.condition.Condition;
 import com.akimi.modules.forest_inventory.tree.species.Species;
-import jakarta.annotation.Priority;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
-import lombok.RequiredArgsConstructor;
-import lombok.val;
-import org.apache.causeway.applib.annotation.*;
+
+import org.apache.causeway.applib.annotation.Action;
+import org.apache.causeway.applib.annotation.ActionLayout;
+import org.apache.causeway.applib.annotation.DomainService;
+import org.apache.causeway.applib.annotation.MemberSupport;
+import org.apache.causeway.applib.annotation.Optionality;
+import org.apache.causeway.applib.annotation.Parameter;
+import org.apache.causeway.applib.annotation.ParameterLayout;
+import org.apache.causeway.applib.annotation.PriorityPrecedence;
+import org.apache.causeway.applib.annotation.Programmatic;
+import org.apache.causeway.applib.annotation.PromptStyle;
+import org.apache.causeway.applib.annotation.SemanticsOf;
 import org.apache.causeway.applib.services.repository.RepositoryService;
 import org.apache.causeway.extensions.secman.applib.user.dom.ApplicationUser;
 import org.apache.causeway.extensions.secman.applib.user.dom.ApplicationUserRepository;
 
-import java.math.BigDecimal;
-import java.util.Collection;
-import java.util.List;
+import lombok.RequiredArgsConstructor;
+import lombok.val;
+
+import jakarta.annotation.Priority;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 
 @Named(Tree.NAMESPACE + ".Trees")
 @DomainService
@@ -47,10 +60,15 @@ public class Trees {
     public Tree addTree(
             @Parameter @ParameterLayout final BigDecimal dbh,
             @Parameter @ParameterLayout final BigDecimal height,
-            @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout final Species species,
-            @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout final Condition condition,
-            @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout final Plot plot,
-            @Parameter(optionality = Optionality.OPTIONAL) @ParameterLayout final String notes
+
+            @Parameter(optionality = Optionality.OPTIONAL)
+            @ParameterLayout final Species species,
+            @Parameter(optionality = Optionality.OPTIONAL)
+            @ParameterLayout final Condition condition,
+            @Parameter(optionality = Optionality.OPTIONAL)
+            @ParameterLayout final Plot plot,
+            @Parameter(optionality = Optionality.OPTIONAL)
+            @ParameterLayout final String notes
     ) {
         val tree = new Tree(dbh, height, species, condition, notes);
         if (plot != null) {
@@ -161,7 +179,8 @@ public class Trees {
 
     @Programmatic
     private ApplicationUser getUser(String userName) {
-        return applicationUserRepository.findByUsername(userName).orElseThrow(() -> new IllegalStateException("User not found."));
+        return applicationUserRepository.findByUsername(userName)
+                .orElseThrow(() -> new IllegalStateException("User not found."));
     }
 
     @MemberSupport

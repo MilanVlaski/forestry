@@ -5,6 +5,12 @@ import java.util.Comparator;
 import java.util.Set;
 import java.util.TreeSet;
 
+import com.akimi.modules.forest_inventory.ForestInventoryModule;
+import com.akimi.modules.forest_inventory.inventory.Inventory;
+import com.akimi.modules.forest_inventory.tree.Tree;
+import com.akimi.modules.forest_inventory.tree.condition.Condition;
+import com.akimi.modules.forest_inventory.tree.species.Species;
+
 import org.apache.causeway.applib.annotation.Action;
 import org.apache.causeway.applib.annotation.ActionLayout;
 import org.apache.causeway.applib.annotation.BookmarkPolicy;
@@ -17,7 +23,6 @@ import org.apache.causeway.applib.annotation.ObjectSupport;
 import org.apache.causeway.applib.annotation.Optionality;
 import org.apache.causeway.applib.annotation.Parameter;
 import org.apache.causeway.applib.annotation.ParameterLayout;
-import org.apache.causeway.applib.annotation.PromptStyle;
 import org.apache.causeway.applib.annotation.Property;
 import org.apache.causeway.applib.annotation.PropertyLayout;
 import org.apache.causeway.applib.annotation.Publishing;
@@ -28,6 +33,9 @@ import org.apache.causeway.applib.layout.LayoutConstants;
 import org.apache.causeway.applib.services.repository.RepositoryService;
 import org.apache.causeway.persistence.jpa.applib.integration.CausewayEntityListener;
 
+import static org.apache.causeway.applib.annotation.PromptStyle.DIALOG_MODAL;
+import static org.apache.causeway.applib.layout.LayoutConstants.FieldSetId.DETAILS;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,11 +43,6 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.val;
 
-import com.akimi.modules.forest_inventory.ForestInventoryModule;
-import com.akimi.modules.forest_inventory.inventory.Inventory;
-import com.akimi.modules.forest_inventory.tree.Tree;
-import com.akimi.modules.forest_inventory.tree.condition.Condition;
-import com.akimi.modules.forest_inventory.tree.species.Species;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.persistence.CascadeType;
@@ -74,10 +77,10 @@ public class Plot implements Comparable<Plot> {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne
+    @SuppressWarnings("checkstyle:LineLength") @ManyToOne
     @Getter @Setter
     @Property
-    @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "2")
+    @PropertyLayout(fieldSetId = DETAILS, sequence = "2")
     private Inventory inventory;
 
     @OneToMany(mappedBy = "plot", cascade = CascadeType.ALL)
@@ -87,7 +90,7 @@ public class Plot implements Comparable<Plot> {
     private Set<Tree> trees = new TreeSet<>();
 
     @Action(semantics = SemanticsOf.NON_IDEMPOTENT)
-    @ActionLayout(associateWith = "trees", promptStyle = PromptStyle.DIALOG_MODAL)
+    @ActionLayout(associateWith = "trees", promptStyle = DIALOG_MODAL)
     public Plot addTree(
             @Parameter @ParameterLayout
             final BigDecimal dbh,
@@ -128,12 +131,12 @@ public class Plot implements Comparable<Plot> {
         this.inventory = inventory;
     }
 
-    private final static Comparator<Plot> comparator =
+    private static final Comparator<Plot> COMPARATOR =
             Comparator.comparing(Plot::title);
 
     @Override
     public int compareTo(final Plot other) {
-        return comparator.compare(this, other);
+        return COMPARATOR.compare(this, other);
     }
 
     public void addTree(Tree tree) {

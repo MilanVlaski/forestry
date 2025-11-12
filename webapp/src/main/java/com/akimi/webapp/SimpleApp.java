@@ -7,18 +7,14 @@ import org.springframework.context.annotation.Import;
 
 @SpringBootApplication
 @Import({
-    AppManifest.class
+        AppManifest.class
 //    , XrayEnable.class
 })
 // TODO rename class
 public class SimpleApp extends SpringBootServletInitializer {
 
-    /**
-     * @implNote this is to support the <em>Spring Boot Maven Plugin</em>, which auto-detects an
-     * entry point by searching for classes having a {@code main(...)}
-     */
     public static void main(String[] args) {
-        SpringApplication.run(new Class[] { SimpleApp.class }, args);
+        SpringApplication.run(new Class[]{SimpleApp.class}, args);
     }
 
 }

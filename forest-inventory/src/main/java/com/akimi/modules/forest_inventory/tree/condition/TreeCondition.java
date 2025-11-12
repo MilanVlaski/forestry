@@ -3,6 +3,8 @@ package com.akimi.modules.forest_inventory.tree.condition;
 import java.math.BigDecimal;
 import java.util.List;
 
+import com.akimi.modules.forest_inventory.tree.Tree;
+
 import org.apache.causeway.applib.annotation.Action;
 import org.apache.causeway.applib.annotation.ActionLayout;
 import org.apache.causeway.applib.annotation.DomainService;
@@ -13,7 +15,6 @@ import org.apache.causeway.applib.services.repository.RepositoryService;
 
 import lombok.RequiredArgsConstructor;
 
-import com.akimi.modules.forest_inventory.tree.Tree;
 import jakarta.annotation.Priority;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -21,7 +22,7 @@ import jakarta.inject.Named;
 @Named(Tree.NAMESPACE + ".Conditions")
 @DomainService
 @Priority(PriorityPrecedence.EARLY)
-@RequiredArgsConstructor(onConstructor_ = {@Inject} )
+@RequiredArgsConstructor(onConstructor_ = {@Inject})
 public class TreeCondition {
 
     @Action(semantics = SemanticsOf.NON_IDEMPOTENT)

@@ -2,6 +2,9 @@ package com.akimi.modules.simple.dom.so;
 
 import java.util.List;
 
+import com.akimi.modules.simple.SimpleModule;
+import com.akimi.modules.simple.types.Name;
+
 import org.apache.causeway.applib.annotation.Action;
 import org.apache.causeway.applib.annotation.ActionLayout;
 import org.apache.causeway.applib.annotation.DomainService;
@@ -13,8 +16,6 @@ import org.apache.causeway.persistence.jpa.applib.services.JpaSupportService;
 
 import lombok.RequiredArgsConstructor;
 
-import com.akimi.modules.simple.SimpleModule;
-import com.akimi.modules.simple.types.Name;
 import jakarta.annotation.Priority;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -23,7 +24,7 @@ import jakarta.persistence.TypedQuery;
 @Named(SimpleModule.NAMESPACE + ".SimpleObjects")
 @DomainService
 @Priority(PriorityPrecedence.EARLY)
-@RequiredArgsConstructor(onConstructor_ = {@Inject} )
+@RequiredArgsConstructor(onConstructor_ = {@Inject})
 public class SimpleObjects {
 
     final RepositoryService repositoryService;

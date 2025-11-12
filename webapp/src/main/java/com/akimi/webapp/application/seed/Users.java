@@ -16,11 +16,12 @@ public class Users {
             super(() -> "marco", () -> "pass", () -> AccountType.LOCAL, new RoleSupplier());
         }
 
-        private static class RoleSupplier implements Supplier<Can<String>> {
+        private static final class RoleSupplier implements Supplier<Can<String>> {
             @Override
             public Can<String> get() {
                 return Can.of(
-                        causewayConfiguration.getExtensions().getSecman().getSeed().getRegularUser().getRoleName(), // built-in stuff
+                        causewayConfiguration.getExtensions().getSecman()
+                                .getSeed().getRegularUser().getRoleName(),
                         Roles.ForestModuleSuperuserRole.ROLE_NAME
                 );
             }
@@ -34,11 +35,12 @@ public class Users {
             super(() -> "maria", () -> "pass", () -> AccountType.LOCAL, new RoleSupplier());
         }
 
-        private static class RoleSupplier implements Supplier<Can<String>> {
+        private static final class RoleSupplier implements Supplier<Can<String>> {
             @Override
             public Can<String> get() {
                 return Can.of(
-                        causewayConfiguration.getExtensions().getSecman().getSeed().getRegularUser().getRoleName(), // built-in stuff
+                        causewayConfiguration.getExtensions().getSecman()
+                                .getSeed().getRegularUser().getRoleName(),
                         Roles.ArboristRole.ROLE_NAME
                 );
             }

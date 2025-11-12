@@ -74,12 +74,12 @@ public class Condition implements Comparable<Condition> {
         this.level = level;
     }
 
-    private final static Comparator<Condition> comparator =
+    private static final Comparator<Condition> COMPARATOR =
             Comparator.comparing(Condition::getLevel);
 
 
     @Override
     public int compareTo(Condition other) {
-        return comparator.compare(this, other);
+        return COMPARATOR.compare(this, other);
     }
 }

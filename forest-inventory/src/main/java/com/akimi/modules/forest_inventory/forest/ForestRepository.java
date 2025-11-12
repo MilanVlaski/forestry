@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ForestRepository extends JpaRepository<Forest, Long> {
 
-    List<Forest> findByNameContaining(final String name);
+    List<Forest> findByNameContaining(String name);
 
-    Forest findByName(final String name);
+    Forest findByName(String name);
 
 }

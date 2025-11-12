@@ -8,9 +8,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.apache.causeway.applib.services.repository.RepositoryService;
-import org.apache.causeway.testing.fixtures.applib.fixturescripts.FixtureScript;
-
 import com.akimi.modules.forest_inventory.forest.Forest;
 import com.akimi.modules.forest_inventory.forest.Forests;
 import com.akimi.modules.forest_inventory.inventory.Inventory;
@@ -20,46 +17,65 @@ import com.akimi.modules.forest_inventory.tree.condition.Condition;
 import com.akimi.modules.forest_inventory.tree.condition.TreeCondition;
 import com.akimi.modules.forest_inventory.tree.species.Species;
 import com.akimi.modules.forest_inventory.tree.species.TreeSpecies;
+
+import org.apache.causeway.applib.services.repository.RepositoryService;
+import org.apache.causeway.testing.fixtures.applib.fixturescripts.FixtureScript;
+
 import jakarta.inject.Inject;
 
 public class CreateForestsAndEnumsAndSampleData extends FixtureScript {
 
+    // Can be made into script params
+    private static final int NO_INVENTORIES = 3;
+    private static final int NO_PLOTS = 5;
+    private static final int NO_TREES = 10;
+
     @Override
     protected void execute(ExecutionContext ec) {
         // TODO extract only this to a fixture script
-        var conditions = createAllConditions("Very Poor", "Poor", "Good", "Very Good", "Excellent");
-        var species = createAllSpecies("European beech", "Fagus sylvatica", "Silver fir", "Abies alba", "Norway spruce", "Picea abies",
-                "Oak", "Quercus robur", "Scots pine", "Pinus sylvestris", "European hornbeam", "Carpinus betulus",
+        var conditions = createAllConditions(
+                "Very Poor", "Poor", "Good", "Very Good", "Excellent"
+        );
+        var species = createAllSpecies(
+                "European beech", "Fagus sylvatica",
+                "Silver fir", "Abies alba",
+                "Norway spruce", "Picea abies",
+                "Oak", "Quercus robur",
+                "Scots pine", "Pinus sylvestris",
+                "European hornbeam", "Carpinus betulus",
                 "Silver birch", "Betula pendula");
-        var forests = createAllForests("Janj", "Lom", "Perućica");
+        var sampleForests = createAllForests("Janj", "Lom", "Perućica");
 
-        for (Forest forest : forests) {
-            var inventories = createInventories(3);
+        for (Forest forest : sampleForests) {
+            var inventories = createInventories(NO_INVENTORIES);
             inventories.forEach(i -> forest.addInventory(i));
 
             for (Inventory inventory : inventories) {
-                var plots = createPlots(5);
+                var plots = createPlots(NO_PLOTS);
                 plots.forEach(p -> inventory.addPlot(p));
 
                 for (Plot plot : plots) {
-                    var trees = createTrees(10, species, conditions);
+                    var trees = createTrees(NO_TREES, species, conditions);
                     trees.forEach(t -> plot.addTree(t));
                 }
             }
         }
 
-        forests.forEach(repositoryService::persist);
+        sampleForests.forEach(repositoryService::persist);
     }
 
-    Random random = new Random();
+    private final Random random = new Random();
 
-    private List<Tree> createTrees(int num, List<Species> species, List<Condition> conditions) {
+    private List<Tree> createTrees(int num, List<Species> species,
+                                   List<Condition> conditions) {
         var trees = new ArrayList<Tree>();
 
         for (int i = 0; i < num; i++) {
-            var dbh = randomBigDecimal(10, 40, 2);
-            var height = randomBigDecimal(1, 20, 2);
-            var tree = new Tree(dbh, height, pickRandomly(species), pickRandomly(conditions), null);
+            final var dbh = randomBigDecimal(10, 40, 2);
+            final var height = randomBigDecimal(1, 20, 2);
+            var tree = new Tree(dbh, height, pickRandomly(species),
+                    pickRandomly(conditions), null
+            );
             trees.add(tree);
             repositoryService.persist(tree);
         }
@@ -72,9 +88,9 @@ public class CreateForestsAndEnumsAndSampleData extends FixtureScript {
     }
 
     public BigDecimal randomBigDecimal(int min, int max, int scale) {
-        BigDecimal range = BigDecimal.valueOf(max - min);
-        BigDecimal fraction = BigDecimal.valueOf(random.nextDouble());
-        BigDecimal result = BigDecimal.valueOf(min).add(range.multiply(fraction));
+        var range = BigDecimal.valueOf(max - min);
+        var fraction = BigDecimal.valueOf(random.nextDouble());
+        var result = BigDecimal.valueOf(min).add(range.multiply(fraction));
         return result.setScale(scale, RoundingMode.HALF_UP);
     }
 
@@ -107,7 +123,9 @@ public class CreateForestsAndEnumsAndSampleData extends FixtureScript {
     List<Condition> createAllConditions(String... conditions) {
         var i = new AtomicInteger(1);
         return Arrays.stream(conditions)
-                .map(c -> treeCondition.create(c, BigDecimal.valueOf(i.getAndIncrement())))
+                .map(c -> treeCondition.create(
+                        c, BigDecimal.valueOf(i.getAndIncrement()))
+                )
                 .toList();
     }
 

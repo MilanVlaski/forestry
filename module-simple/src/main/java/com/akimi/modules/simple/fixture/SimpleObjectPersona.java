@@ -3,6 +3,9 @@ package com.akimi.modules.simple.fixture;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 
+import com.akimi.modules.simple.dom.so.SimpleObject;
+import com.akimi.modules.simple.dom.so.SimpleObjects;
+
 import org.springframework.core.io.ClassPathResource;
 
 import org.apache.causeway.applib.services.clock.ClockService;
@@ -20,12 +23,10 @@ import lombok.SneakyThrows;
 import lombok.val;
 import lombok.experimental.Accessors;
 
-import com.akimi.modules.simple.dom.so.SimpleObject;
-import com.akimi.modules.simple.dom.so.SimpleObjects;
 import jakarta.inject.Inject;
 
 @RequiredArgsConstructor
-public enum SimpleObject_persona implements Persona<SimpleObject, SimpleObject_persona.Builder> {
+public enum SimpleObjectPersona implements Persona<SimpleObject, SimpleObjectPersona.Builder> {
 
     FOO("Foo", "Foo.pdf"),
     BAR("Bar", "Bar.pdf"),
@@ -48,13 +49,14 @@ public enum SimpleObject_persona implements Persona<SimpleObject, SimpleObject_p
 
     @Override
     public SimpleObject findUsing(final ServiceRegistry serviceRegistry) {
-        return serviceRegistry.lookupService(SimpleObjects.class).map(x -> x.findByNameExact(name)).orElseThrow();
+        return serviceRegistry.lookupService(SimpleObjects.class).map(
+                x -> x.findByNameExact(name)).orElseThrow();
     }
 
     @Accessors(chain = true)
     public static class Builder extends BuilderScriptWithResult<SimpleObject> {
 
-        @Getter @Setter private SimpleObject_persona persona;
+        @Getter @Setter private SimpleObjectPersona persona;
 
         @Override
         protected SimpleObject buildResult(final ExecutionContext ec) {
@@ -67,13 +69,15 @@ public enum SimpleObject_persona implements Persona<SimpleObject, SimpleObject_p
                 simpleObject.updateAttachment(attachment);
             }
 
-            simpleObject.setLastCheckedIn(clockService.getClock().nowAsLocalDate().plusDays(fakeDataService.ints().between(-10, +10)));
+            simpleObject.setLastCheckedIn(
+                    clockService.getClock().nowAsLocalDate().
+                            plusDays(fakeDataService.ints().between(-10, +10)));
 
             return simpleObject;
         }
 
         @SneakyThrows
-        private byte[] toBytes(String fileName){
+        private byte[] toBytes(String fileName) {
             InputStream inputStream = new ClassPathResource(fileName, getClass()).getInputStream();
             ByteArrayOutputStream buffer = new ByteArrayOutputStream();
 
@@ -95,9 +99,9 @@ public enum SimpleObject_persona implements Persona<SimpleObject, SimpleObject_p
     }
 
     public static class PersistAll
-            extends PersonaEnumPersistAll<SimpleObject, SimpleObject_persona, Builder> {
+            extends PersonaEnumPersistAll<SimpleObject, SimpleObjectPersona, Builder> {
         public PersistAll() {
-            super(SimpleObject_persona.class);
+            super(SimpleObjectPersona.class);
         }
     }
 

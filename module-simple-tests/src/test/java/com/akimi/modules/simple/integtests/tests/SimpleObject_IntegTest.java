@@ -13,7 +13,7 @@ import org.apache.causeway.applib.services.wrapper.DisabledException;
 import org.apache.causeway.applib.services.wrapper.InvalidException;
 
 import com.akimi.modules.simple.dom.so.SimpleObject;
-import com.akimi.modules.simple.fixture.SimpleObject_persona;
+import com.akimi.modules.simple.fixture.SimpleObjectPersona;
 import com.akimi.modules.simple.integtests.SimpleModuleIntegTestAbstract;
 
 @Transactional
@@ -24,7 +24,7 @@ public class SimpleObject_IntegTest extends SimpleModuleIntegTestAbstract {
     @BeforeEach
     public void setUp() {
         // given
-        simpleObject = fixtureScripts.runPersona(SimpleObject_persona.FOO);
+        simpleObject = fixtureScripts.runPersona(SimpleObjectPersona.FOO);
     }
 
 

@@ -24,7 +24,7 @@ import lombok.val;
 
 import com.akimi.modules.simple.dom.so.SimpleObject;
 import com.akimi.modules.simple.dom.so.SimpleObjects;
-import com.akimi.modules.simple.fixture.SimpleObject_persona;
+import com.akimi.modules.simple.fixture.SimpleObjectPersona;
 import com.akimi.modules.simple.integtests.SimpleModuleIntegTestAbstract;
 
 @Transactional
@@ -40,14 +40,14 @@ public class SimpleObjects_IntegTest extends SimpleModuleIntegTestAbstract {
         public void happyCase() {
 
             // given
-            fixtureScripts.run(new SimpleObject_persona.PersistAll());
+            fixtureScripts.run(new SimpleObjectPersona.PersistAll());
             transactionService.flushTransaction();
 
             // when
             final List<SimpleObject> all = wrap(menu).listAll();
 
             // then
-            assertThat(all).hasSize(SimpleObject_persona.values().length);
+            assertThat(all).hasSize(SimpleObjectPersona.values().length);
         }
 
         @Test
@@ -78,7 +78,7 @@ public class SimpleObjects_IntegTest extends SimpleModuleIntegTestAbstract {
         public void whenAlreadyExists() {
 
             // given
-            fixtureScripts.runPersona(SimpleObject_persona.FIZZ);
+            fixtureScripts.runPersona(SimpleObjectPersona.FIZZ);
             interactionService.nextInteraction();
 
             // we execute this in its own transaction so that it can be discarded

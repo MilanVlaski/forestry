@@ -20,13 +20,14 @@ class CustomController {
 //                .orElse(Collections.<SimpleObject>emptyList());
 //    }
 //
-//    private <T> Optional<T> call(
-//            final String username,
-//            final Callable<T> callable) {
+//    private <T> Optional<T> call(final String username,
+//                                 final Callable<T> callable) {
 //
 //        return interactionService.call(
-//                    InteractionContext.ofUserWithSystemDefaults(UserMemento.ofName(username)),
-//                    () -> transactionalProcessor.callWithinCurrentTransactionElseCreateNew(callable)
+//                    InteractionContext.ofUserWithSystemDefaults(
+//                            UserMemento.ofName(username)),
+//                    () -> transactionalProcessor
+//                        .callWithinCurrentTransactionElseCreateNew(callable)
 //                )
 //                .ifFailureFail()
 //                .getValue();

@@ -4,6 +4,11 @@ import java.util.Comparator;
 import java.util.Set;
 import java.util.TreeSet;
 
+import com.akimi.modules.forest_inventory.ForestInventoryModule;
+import com.akimi.modules.forest_inventory.inventory.Inventory;
+import com.akimi.modules.forest_inventory.types.Name;
+import com.akimi.modules.forest_inventory.types.Notes;
+
 import org.springframework.lang.Nullable;
 
 import org.apache.causeway.applib.annotation.Action;
@@ -22,7 +27,6 @@ import org.apache.causeway.applib.annotation.Publishing;
 import org.apache.causeway.applib.annotation.TableDecorator;
 import org.apache.causeway.applib.annotation.Title;
 import org.apache.causeway.applib.jaxb.PersistentEntityAdapter;
-import org.apache.causeway.applib.layout.LayoutConstants;
 import org.apache.causeway.applib.services.message.MessageService;
 import org.apache.causeway.applib.services.repository.RepositoryService;
 import org.apache.causeway.applib.services.title.TitleService;
@@ -34,6 +38,8 @@ import org.apache.causeway.persistence.jpa.applib.types.BlobJpaEmbeddable;
 import static org.apache.causeway.applib.annotation.SemanticsOf.IDEMPOTENT;
 import static org.apache.causeway.applib.annotation.SemanticsOf.NON_IDEMPOTENT;
 import static org.apache.causeway.applib.annotation.SemanticsOf.NON_IDEMPOTENT_ARE_YOU_SURE;
+import static org.apache.causeway.applib.layout.LayoutConstants.FieldSetId.DETAILS;
+import static org.apache.causeway.applib.layout.LayoutConstants.FieldSetId.IDENTITY;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -42,10 +48,6 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.val;
 
-import com.akimi.modules.forest_inventory.ForestInventoryModule;
-import com.akimi.modules.forest_inventory.inventory.Inventory;
-import com.akimi.modules.forest_inventory.types.Name;
-import com.akimi.modules.forest_inventory.types.Notes;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.persistence.AttributeOverride;
@@ -69,26 +71,23 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @Entity
 @Table(schema = ForestInventoryModule.SCHEMA)
-@NamedQueries({
-        @NamedQuery(
-                name = Forest.NAMED_QUERY__FIND_BY_NAME_LIKE,
-                query = "SELECT f " +
-                        "FROM Forest f " +
-                        "WHERE f.name LIKE :name"
-        )
-})
+@NamedQueries(
+        {@NamedQuery(name = Forest.NAMED_QUERY_FIND_BY_NAME_LIKE,
+                query = "SELECT f FROM Forest f WHERE f.name LIKE :name")}
+)
 @EntityListeners(CausewayEntityListener.class)
 @Named(ForestInventoryModule.NAMESPACE + ".Forest")
 @DomainObject(entityChangePublishing = Publishing.ENABLED)
 @DomainObjectLayout(
         tableDecorator = TableDecorator.DatatablesNet.class,
-        bookmarking = BookmarkPolicy.AS_ROOT)
+        bookmarking = BookmarkPolicy.AS_ROOT
+)
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @XmlJavaTypeAdapter(PersistentEntityAdapter.class)
 @ToString(onlyExplicitlyIncluded = true)
 public class Forest implements Comparable<Forest> {
 
-    static final String NAMED_QUERY__FIND_BY_NAME_LIKE = "Forest.findByNameLike";
+    static final String NAMED_QUERY_FIND_BY_NAME_LIKE = "Forest.findByNameLike";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -119,23 +118,29 @@ public class Forest implements Comparable<Forest> {
     @Name
     @Column(length = Name.MAX_LEN, nullable = false, unique = true)
     @Getter @Setter @ToString.Include
-    @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.IDENTITY, sequence = "1")
+    @PropertyLayout(fieldSetId = IDENTITY, sequence = "1")
     private String name;
 
-    @Notes
-    @Column(length = Notes.MAX_LEN, nullable = true)
-    @Getter @Setter
-    @Property
-    @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "2")
+    @Notes @Column(length = Notes.MAX_LEN, nullable = true) @Getter @Setter
+    @Property @PropertyLayout(fieldSetId = DETAILS, sequence = "2")
     private String notes;
 
+    // TODO extract this into an annotation
     @AttributeOverrides({
-            @AttributeOverride(name = "name", column = @Column(name = "attachment_name")),
-            @AttributeOverride(name = "mimeType", column = @Column(name = "attachment_mimeType")),
-            @AttributeOverride(name = "bytes", column = @Column(name = "attachment_bytes"))
+            @AttributeOverride(
+                    name = "name",
+                    column = @Column(name = "attachment_name")
+            ),
+            @AttributeOverride(
+                    name = "mimeType",
+                    column = @Column(name = "attachment_mimeType")
+            ),
+            @AttributeOverride(
+                    name = "bytes",
+                    column = @Column(name = "attachment_bytes")
+            )
     })
-    @Embedded
-    private BlobJpaEmbeddable attachment;
+    @Embedded private BlobJpaEmbeddable attachment;
 
     @PdfJsViewer
     @Property(optionality = Optionality.OPTIONAL)
@@ -149,12 +154,11 @@ public class Forest implements Comparable<Forest> {
     }
 
 
-    @Action(semantics = IDEMPOTENT, commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
-    @ActionLayout(
-            associateWith = "name", promptStyle = PromptStyle.INLINE,
-            describedAs = "Updates the name of this object, certain characters (" + PROHIBITED_CHARACTERS + ") are not allowed.")
-    public Forest updateName(
-            @Name final String name) {
+    @Action(semantics = IDEMPOTENT)
+    @ActionLayout(associateWith = "name", promptStyle = PromptStyle.INLINE,
+            describedAs = "Updates the name of this object, certain characters"
+                    + " (" + PROHIBITED_CHARACTERS + ") are not allowed.")
+    public Forest updateName(@Name final String name) {
         setName(name);
         return this;
     }
@@ -168,7 +172,8 @@ public class Forest implements Comparable<Forest> {
     public String validate0UpdateName(final String newName) {
         for (char prohibitedCharacter : PROHIBITED_CHARACTERS.toCharArray()) {
             if (newName.contains("" + prohibitedCharacter)) {
-                return "Character '" + prohibitedCharacter + "' is not allowed.";
+                return "Character '" + prohibitedCharacter
+                        + "' is not allowed.";
             }
         }
         return null;
@@ -177,10 +182,10 @@ public class Forest implements Comparable<Forest> {
     static final String PROHIBITED_CHARACTERS = "&%$!";
 
 
-    @Action(semantics = IDEMPOTENT, commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
-    @ActionLayout(associateWith = "attachment", position = ActionLayout.Position.PANEL)
-    public Forest updateAttachment(
-            @Nullable final Blob attachment) {
+    @Action(semantics = IDEMPOTENT)
+    @ActionLayout(associateWith = "attachment",
+            position = ActionLayout.Position.PANEL)
+    public Forest updateAttachment(@Nullable final Blob attachment) {
         setAttachment(attachment);
         return this;
     }
@@ -190,10 +195,8 @@ public class Forest implements Comparable<Forest> {
         return getAttachment();
     }
 
-    @OneToMany(mappedBy = "forest", cascade = CascadeType.ALL)
-    @Collection
-    @CollectionLayout
-    @Getter
+    @OneToMany(mappedBy = "forest", cascade = CascadeType.ALL) @Collection
+    @CollectionLayout @Getter
     private Set<Inventory> inventories = new TreeSet<>();
 
     @Action(semantics = NON_IDEMPOTENT)
@@ -205,9 +208,7 @@ public class Forest implements Comparable<Forest> {
     }
 
     @Action(semantics = NON_IDEMPOTENT_ARE_YOU_SURE)
-    @ActionLayout(
-            fieldSetId = LayoutConstants.FieldSetId.IDENTITY,
-            position = ActionLayout.Position.PANEL,
+    @ActionLayout(fieldSetId = IDENTITY, position = ActionLayout.Position.PANEL,
             describedAs = "Deletes this object from the persistent datastore")
     public void delete() {
         final String title = titleService.titleOf(this);
@@ -216,12 +217,12 @@ public class Forest implements Comparable<Forest> {
     }
 
 
-    private final static Comparator<Forest> comparator =
-            Comparator.comparing(Forest::getName);
+    private static final Comparator<Forest> COMPARATOR
+            = Comparator.comparing(Forest::getName);
 
     @Override
     public int compareTo(final Forest other) {
-        return comparator.compare(this, other);
+        return COMPARATOR.compare(this, other);
     }
 
     public void addInventory(Inventory inventory) {

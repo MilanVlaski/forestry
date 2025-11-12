@@ -2,6 +2,8 @@ package com.akimi.modules.forest_inventory.arborist;
 
 import java.util.List;
 
+import com.akimi.modules.forest_inventory.ForestInventoryModule;
+
 import org.apache.causeway.applib.annotation.Action;
 import org.apache.causeway.applib.annotation.ActionLayout;
 import org.apache.causeway.applib.annotation.DomainService;
@@ -18,7 +20,6 @@ import org.apache.causeway.extensions.secman.jpa.user.dom.ApplicationUser;
 
 import lombok.RequiredArgsConstructor;
 
-import com.akimi.modules.forest_inventory.ForestInventoryModule;
 import jakarta.annotation.Priority;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -26,7 +27,7 @@ import jakarta.inject.Named;
 @Named(ForestInventoryModule.NAMESPACE + ".Arborists")
 @DomainService
 @Priority(PriorityPrecedence.EARLY)
-@RequiredArgsConstructor(onConstructor_ = {@Inject} )
+@RequiredArgsConstructor(onConstructor_ = {@Inject})
 public class Arborists {
 
     final UserRegistrationService userRegistrationService;
@@ -48,7 +49,8 @@ public class Arborists {
         userDetails.setEmailAddress(emailAddress);
 
         userRegistrationService.registerUser(userDetails);
-        ApplicationUser user = (ApplicationUser) userRepository.findByUsername(userDetails.getUsername())
+        var user = (ApplicationUser) userRepository
+                .findByUsername(userDetails.getUsername())
                 .orElseThrow(() -> new IllegalStateException("User not found"));
 
         // TODO replace magic 'arborist' string
