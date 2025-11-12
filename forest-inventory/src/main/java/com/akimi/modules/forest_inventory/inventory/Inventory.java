@@ -82,7 +82,7 @@ public class Inventory implements Comparable<Inventory> {
         plot.setInventory(this);
     }
 
-@ObjectSupport
+    @ObjectSupport
     public String title() {
         return "Inventory " + id;
     }
