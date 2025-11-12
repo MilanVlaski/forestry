@@ -15,12 +15,6 @@ public interface ArboristRepository
             + "r.name = 'arborist'")
     List<ApplicationUser> findAllArborists();
 
-    @Query("SELECT u FROM ApplicationUser u JOIN u.roles r WHERE "
-            + "r.name = 'arborist' AND u.username = :username")
-    List<ApplicationUser> findAllArboristsWithUsername(
-            @Param("username") String username
-    );
-
     @Query("""
             select distinct u.username
             from ApplicationUser u
