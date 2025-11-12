@@ -1,17 +1,22 @@
-- [ ] Add `gitlab.ci`
-- [ ] Length constraint? Do it with annotation.
-- [ ] Implement integration tests with ForestInventoryModule at `webapp-tests/src/test/java/domainapp/webapp/integtests/smoke/Smoke_IntegTest.java`
 - [ ] Make a @Name annotation that's truly applicable everywhere
   - [ ] Look at PetClinic name validation
+  - Name in Forest, Condition, Species, with a length param.
+- [ ] Implement integration tests with ForestInventoryModule at `webapp-tests/src/test/java/domainapp/webapp/integtests/smoke/Smoke_IntegTest.java`
 - [ ] Remove all DIALOG_SIDEBAR usages, as it's there by default according to my convention
 - [ ] Internationalization -> to Serbian.
-- [ ] Local Postgres database tests, with Flyway.
-  - I would have the schema get generated, and then copy it into Flyway. Seems a decent way to do it.
 - [ ] Recognize uniqueness exception with https://causeway.apache.org/refguide/3.3.0/applib/index/services/exceprecog/ExceptionRecognizer.html
   - [ ] Just make the message more friendly
+- [ ] Local Postgres database tests, with Flyway.
+  1. Local postgres with docker compose
+  2. `application-local-pg.properties` -> will have to see if `application.properties` is fully overridable.  If not, rename it to `application-local-h2.properties`.
+  3. `application-prod.gfproperties`
+- [ ] Makefile.
+  - I would have the schema get generated, and then copy it into Flyway. Seems a decent way to do it.
 - [ ] Custom color styling in tables when "Condition" is displayed
 - [ ] Customize urls of app (no /wicket for GUI). Research other places where it applies, like logical names.
 - [ ] Try to make a REST API with only viewModels. That would make it 100% customizable, using only mappings, and without a need for complex configuration.
+- [ ] After creating REST API, create a Vue.js frontend that connects to it.
+- [x] Add `gitlab.ci`
 - [x] Remove all @Property
 - [x] Have packages use groupId name
 - [x] Change project names in pom.xmls
