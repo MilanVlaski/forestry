@@ -5,10 +5,8 @@ import java.util.List;
 import com.akimi.modules.forest_inventory.tree.Tree;
 
 import org.apache.causeway.applib.annotation.Action;
-import org.apache.causeway.applib.annotation.ActionLayout;
 import org.apache.causeway.applib.annotation.DomainService;
 import org.apache.causeway.applib.annotation.PriorityPrecedence;
-import org.apache.causeway.applib.annotation.PromptStyle;
 import org.apache.causeway.applib.annotation.SemanticsOf;
 import org.apache.causeway.applib.services.repository.RepositoryService;
 
@@ -25,7 +23,6 @@ import jakarta.inject.Named;
 public class TreeSpecies {
 
     @Action(semantics = SemanticsOf.NON_IDEMPOTENT)
-    @ActionLayout(promptStyle = PromptStyle.DIALOG_SIDEBAR)
     public Species create(@Name String name, @Name String latinName) {
         return repositoryService.persist(new Species(name, latinName));
     }

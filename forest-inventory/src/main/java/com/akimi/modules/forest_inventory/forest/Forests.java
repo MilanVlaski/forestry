@@ -6,10 +6,8 @@ import com.akimi.modules.forest_inventory.ForestInventoryModule;
 import com.akimi.modules.forest_inventory.types.Name;
 
 import org.apache.causeway.applib.annotation.Action;
-import org.apache.causeway.applib.annotation.ActionLayout;
 import org.apache.causeway.applib.annotation.DomainService;
 import org.apache.causeway.applib.annotation.PriorityPrecedence;
-import org.apache.causeway.applib.annotation.PromptStyle;
 import org.apache.causeway.applib.annotation.SemanticsOf;
 import org.apache.causeway.applib.services.repository.RepositoryService;
 import org.apache.causeway.persistence.jpa.applib.services.JpaSupportService;
@@ -33,14 +31,12 @@ public class Forests {
 
 
     @Action(semantics = SemanticsOf.NON_IDEMPOTENT)
-    @ActionLayout(promptStyle = PromptStyle.DIALOG_SIDEBAR)
     public Forest create(
             @Name final String name) {
         return repositoryService.persist(Forest.withName(name));
     }
 
     @Action(semantics = SemanticsOf.SAFE)
-    @ActionLayout(promptStyle = PromptStyle.DIALOG_SIDEBAR)
     public List<Forest> findByName(
             @Name final String name
             ) {

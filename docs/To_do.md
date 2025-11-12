@@ -1,22 +1,22 @@
-- [x] Make a @Name annotation that's truly applicable everywhere
-  - [ ] BigDecimals that are too big on the left side raise a JDBC exception. Too big on the right just get cut rounded. 
-  - [x] Look at PetClinic name validation
-  - [x] Name in Forest, Condition, Species, with a length param.
-- [ ] Implement integration tests with ForestInventoryModule at `webapp-tests/src/test/java/domainapp/webapp/integtests/smoke/Smoke_IntegTest.java`
-- [ ] Remove all DIALOG_SIDEBAR usages, as it's there by default according to my convention
-- [ ] Internationalization -> to Serbian.
 - [ ] Recognize uniqueness exception with https://causeway.apache.org/refguide/3.3.0/applib/index/services/exceprecog/ExceptionRecognizer.html
   - [ ] Just make the message more friendly
+  - [ ] Also recognize exception in case BigDecimal is too big.
+- [ ] Implement integration tests with ForestInventoryModule at `webapp-tests/src/test/java/domainapp/webapp/integtests/smoke/Smoke_IntegTest.java`
+- [ ] Internationalization -> to Serbian.
 - [ ] Local Postgres database tests, with Flyway.
   1. Local postgres with docker compose
   2. `application-local-pg.properties` -> will have to see if `application.properties` is fully overridable.  If not, rename it to `application-local-h2.properties`.
   3. `application-prod.gfproperties`
 - [ ] Makefile.
-  - I would have the schema get generated, and then copy it into Flyway. Seems a decent way to do it.
 - [ ] Custom color styling in tables when "Condition" is displayed
 - [ ] Customize urls of app (no /wicket for GUI). Research other places where it applies, like logical names.
 - [ ] Try to make a REST API with only viewModels. That would make it 100% customizable, using only mappings, and without a need for complex configuration.
+- [x] Make a @Name annotation that's truly applicable everywhere
+  - [x] BigDecimals that are too big on the left side raise a JDBC exception. Too big on the right just get cut rounded. 
+  - [x] Look at PetClinic name validation
+  - [x] Name in Forest, Condition, Species, with a length param.
 - [ ] After creating REST API, create a Vue.js frontend that connects to it.
+- [x] Remove all DIALOG_SIDEBAR usages, as it's there by default according to my convention
 - [x] Add `gitlab.ci`
 - [x] Remove all @Property
 - [x] Have packages use groupId name

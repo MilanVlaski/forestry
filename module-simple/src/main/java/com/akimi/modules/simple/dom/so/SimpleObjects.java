@@ -6,10 +6,8 @@ import com.akimi.modules.simple.SimpleModule;
 import com.akimi.modules.simple.types.Name;
 
 import org.apache.causeway.applib.annotation.Action;
-import org.apache.causeway.applib.annotation.ActionLayout;
 import org.apache.causeway.applib.annotation.DomainService;
 import org.apache.causeway.applib.annotation.PriorityPrecedence;
-import org.apache.causeway.applib.annotation.PromptStyle;
 import org.apache.causeway.applib.annotation.SemanticsOf;
 import org.apache.causeway.applib.services.repository.RepositoryService;
 import org.apache.causeway.persistence.jpa.applib.services.JpaSupportService;
@@ -33,17 +31,13 @@ public class SimpleObjects {
 
 
     @Action(semantics = SemanticsOf.NON_IDEMPOTENT)
-    @ActionLayout(promptStyle = PromptStyle.DIALOG_SIDEBAR)
     public SimpleObject create(
             @Name final String name) {
         return repositoryService.persist(SimpleObject.withName(name));
     }
 
     @Action(semantics = SemanticsOf.SAFE)
-    @ActionLayout(promptStyle = PromptStyle.DIALOG_SIDEBAR)
-    public List<SimpleObject> findByName(
-            @Name final String name
-            ) {
+    public List<SimpleObject> findByName(@Name final String name) {
         return simpleObjectRepository.findByNameContaining(name);
     }
 

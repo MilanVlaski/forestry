@@ -27,7 +27,6 @@ public class Inventories {
     @Inject RepositoryService repositoryService;
 
     @Action(semantics = SemanticsOf.NON_IDEMPOTENT)
-    @ActionLayout(promptStyle = PromptStyle.DIALOG_SIDEBAR)
     public Inventory create() {
         return repositoryService.persist(new Inventory());
     }
