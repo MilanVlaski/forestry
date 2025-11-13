@@ -9,6 +9,8 @@ import com.akimi.modules.forest_inventory.ForestInventoryModule;
 import com.akimi.modules.forest_inventory.plot.Plot;
 import com.akimi.modules.forest_inventory.tree.condition.Condition;
 import com.akimi.modules.forest_inventory.tree.species.Species;
+import com.akimi.modules.forest_inventory.tree.types.Dbh;
+import com.akimi.modules.forest_inventory.tree.types.TreeHeight;
 import com.akimi.modules.forest_inventory.types.Notes;
 
 import static com.akimi.modules.forest_inventory.tree.Tree.NAMESPACE;
@@ -75,15 +77,15 @@ public class Tree implements Comparable<Tree> {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Dbh
     @Column(precision = 7, scale = 2, nullable = false)
     @Getter @Setter
-    @Property
     @PropertyLayout(fieldSetId = DETAILS, sequence = "1")
     private BigDecimal dbhCm;
 
+    @TreeHeight
     @Column(precision = 5, scale = 2, nullable = false)
     @Getter @Setter
-    @Property
     @PropertyLayout(fieldSetId = DETAILS, sequence = "2")
     private BigDecimal heightM;
 

@@ -33,6 +33,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Digits;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @Entity
@@ -59,6 +60,7 @@ public class Condition implements Comparable<Condition> {
     @PropertyLayout(fieldSetId = DETAILS, sequence = "1")
     private String name;
 
+    @Digits(integer = 1, fraction = 1)
     @Column(nullable = false, precision = 2, scale = 1)
     @Getter @Setter
     @Property

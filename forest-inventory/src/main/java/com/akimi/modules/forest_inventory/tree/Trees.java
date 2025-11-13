@@ -12,6 +12,8 @@ import com.akimi.modules.forest_inventory.plot.Plot;
 import com.akimi.modules.forest_inventory.plot.PlotRepository;
 import com.akimi.modules.forest_inventory.tree.condition.Condition;
 import com.akimi.modules.forest_inventory.tree.species.Species;
+import com.akimi.modules.forest_inventory.tree.types.Dbh;
+import com.akimi.modules.forest_inventory.tree.types.TreeHeight;
 import com.akimi.modules.forest_inventory.types.Notes;
 
 import org.apache.causeway.applib.annotation.Action;
@@ -57,8 +59,8 @@ public class Trees {
     @Action(semantics = SemanticsOf.NON_IDEMPOTENT)
     @ActionLayout(promptStyle = PromptStyle.DIALOG_MODAL)
     public Tree addTree(
-            BigDecimal dbh,
-            BigDecimal height,
+            @Dbh BigDecimal dbh,
+            @TreeHeight BigDecimal height,
             @Parameter(optionality = OPTIONAL)
             Species species,
             @Parameter(optionality = OPTIONAL)

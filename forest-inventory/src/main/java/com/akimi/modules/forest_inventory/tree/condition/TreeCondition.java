@@ -24,7 +24,8 @@ import jakarta.inject.Named;
 public class TreeCondition {
 
     @Action(semantics = SemanticsOf.NON_IDEMPOTENT)
-    public Condition create(@Name String condition, BigDecimal level) {
+    public Condition create(@Name String condition,
+                            @TreeConditionLevel BigDecimal level) {
         return repositoryService.persist(new Condition(condition, level));
     }
 
