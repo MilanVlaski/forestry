@@ -59,7 +59,8 @@ public class Condition implements Comparable<Condition> {
     private String name;
 
     @TreeConditionLevel
-    @Column(nullable = false, precision = 2, scale = 1)
+    @Column(nullable = false,
+            precision = TreeConditionLevel.PRECISION, scale = TreeConditionLevel.SCALE)
     @Getter @Setter
     @PropertyLayout(fieldSetId = DETAILS, sequence = "2")
     private BigDecimal level;

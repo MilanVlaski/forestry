@@ -12,7 +12,7 @@ import org.apache.causeway.applib.annotation.Property;
 
 import jakarta.validation.constraints.Digits;
 
-@Digits(integer = 1, fraction = 1)
+@Digits(integer = TreeConditionLevel.INTEGER, fraction = TreeConditionLevel.FRACTION)
 @Property
 @Parameter
 @ParameterLayout(named = "Level")
@@ -21,4 +21,9 @@ import jakarta.validation.constraints.Digits;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface TreeConditionLevel {
 
+    int INTEGER = 1;
+    int FRACTION = 1;
+
+    int PRECISION = INTEGER + FRACTION;
+    int SCALE = FRACTION;
 }

@@ -11,7 +11,7 @@ import org.apache.causeway.applib.annotation.Property;
 
 import jakarta.validation.constraints.Digits;
 
-@Digits(integer = 5, fraction = 2)
+@Digits(integer = Dbh.INTEGER, fraction = Dbh.FRACTION)
 @ParameterLayout(named = "DBH in cm", describedAs = "Diameter at breast height")
 @Parameter
 @Property
@@ -19,4 +19,10 @@ import jakarta.validation.constraints.Digits;
         ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Dbh {
+
+    int INTEGER = 5;
+    int FRACTION = 2;
+
+    int PRECISION = INTEGER + FRACTION;
+    int SCALE = FRACTION;
 }

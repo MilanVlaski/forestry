@@ -78,13 +78,13 @@ public class Tree implements Comparable<Tree> {
     private Long id;
 
     @Dbh
-    @Column(precision = 7, scale = 2, nullable = false)
+    @Column(precision = Dbh.PRECISION, scale = Dbh.SCALE, nullable = false)
     @Getter @Setter
     @PropertyLayout(fieldSetId = DETAILS, sequence = "1")
     private BigDecimal dbhCm;
 
     @TreeHeight
-    @Column(precision = 5, scale = 2, nullable = false)
+    @Column(precision = TreeHeight.PRECISION, scale = TreeHeight.SCALE, nullable = false)
     @Getter @Setter
     @PropertyLayout(fieldSetId = DETAILS, sequence = "2")
     private BigDecimal heightM;

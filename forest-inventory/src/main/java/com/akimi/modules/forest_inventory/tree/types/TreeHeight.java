@@ -11,7 +11,7 @@ import org.apache.causeway.applib.annotation.Property;
 
 import jakarta.validation.constraints.Digits;
 
-@Digits(integer = 3, fraction = 2)
+@Digits(integer = TreeHeight.INTEGER, fraction = TreeHeight.FRACTION)
 @Parameter
 @ParameterLayout(named = "Height in m", describedAs = "Tree height in meters")
 @Property
@@ -19,4 +19,10 @@ import jakarta.validation.constraints.Digits;
         ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface TreeHeight {
+
+    int INTEGER = 3;
+    int FRACTION = 2;
+
+    int PRECISION = INTEGER + FRACTION;
+    int SCALE = FRACTION;
 }
