@@ -34,6 +34,9 @@ causeway:
       translation:
         po:
           mode: disabled
+      exception-recognizer:
+        dae:
+          disable: true
 
   extensions:
     secman:
