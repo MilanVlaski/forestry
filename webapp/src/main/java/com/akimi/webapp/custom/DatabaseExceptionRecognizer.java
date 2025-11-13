@@ -40,6 +40,9 @@ import org.apache.causeway.core.runtime.CausewayModuleCoreRuntime;
 
 import jakarta.inject.Named;
 
+/**
+ * For data access errors.
+ */
 @Service
 @Named(DatabaseExceptionRecognizer.LOGICAL_TYPE_NAME)
 @jakarta.annotation.Priority(PriorityPrecedence.MIDPOINT)

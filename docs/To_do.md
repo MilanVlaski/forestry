@@ -1,6 +1,7 @@
-- [ ] Recognize uniqueness exception with https://causeway.apache.org/refguide/3.3.0/applib/index/services/exceprecog/ExceptionRecognizer.html
-  - [ ] Just make the message more friendly
-  - [ ] Also recognize exception in case BigDecimal is too big.
+- [x] Recognize uniqueness exception with https://causeway.apache.org/refguide/3.3.0/applib/index/services/exceprecog/ExceptionRecognizer.html
+  - [x] Just make the message more friendly
+  - [x] Also recognize exception in case BigDecimal is too big.
+- [ ] Recognize ConstraintViolationException -> see jakarta api, if there is a default message there
 - [ ] Implement integration tests with ForestInventoryModule at `webapp-tests/src/test/java/domainapp/webapp/integtests/smoke/Smoke_IntegTest.java`
 - [ ] Internationalization -> to Serbian.
 - [ ] Local Postgres database tests, with Flyway.

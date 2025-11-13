@@ -9,7 +9,6 @@ import com.akimi.modules.forest_inventory.tree.Tree;
 import org.apache.causeway.applib.annotation.BookmarkPolicy;
 import org.apache.causeway.applib.annotation.DomainObject;
 import org.apache.causeway.applib.annotation.DomainObjectLayout;
-import org.apache.causeway.applib.annotation.Property;
 import org.apache.causeway.applib.annotation.PropertyLayout;
 import org.apache.causeway.applib.annotation.Publishing;
 import org.apache.causeway.applib.annotation.TableDecorator;
@@ -33,7 +32,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Digits;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @Entity
@@ -60,10 +58,9 @@ public class Condition implements Comparable<Condition> {
     @PropertyLayout(fieldSetId = DETAILS, sequence = "1")
     private String name;
 
-    @Digits(integer = 1, fraction = 1)
+    @TreeConditionLevel
     @Column(nullable = false, precision = 2, scale = 1)
     @Getter @Setter
-    @Property
     @PropertyLayout(fieldSetId = DETAILS, sequence = "2")
     private BigDecimal level;
 
