@@ -12,10 +12,10 @@ import org.apache.causeway.applib.spec.AbstractSpecification;
 
 @Property(maxLength = LatinName.MAX_LEN, mustSatisfy = LatinName.Spec.class)
 @Parameter(maxLength = LatinName.MAX_LEN, mustSatisfy = LatinName.Spec.class)
-@ParameterLayout(named = "Name")
+@ParameterLayout(named = "Latin Name")
 @Target({ ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER, ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Name {
+public @interface LatinName {
 
     int MAX_LEN = 50;
 

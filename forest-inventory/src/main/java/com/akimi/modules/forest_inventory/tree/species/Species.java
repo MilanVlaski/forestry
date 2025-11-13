@@ -49,17 +49,18 @@ public class Species {
     private Long id;
 
     @Title
-    @Name
-    @Column(nullable = false, length = Name.MAX_LEN, unique = true)
+    @LatinName
+    @Column(nullable = false, length = LatinName.MAX_LEN, unique = true)
     @Getter @Setter
     @Property
     @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "1")
     private String name;
 
-    @Column(nullable = false, length = Name.MAX_LEN, unique = true)
+    @LatinName
+    @Column(nullable = false, length = LatinName.MAX_LEN, unique = true)
     @Getter @Setter
     @Property
-    @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "1")
+    @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "2")
     private String latinName;
 
 

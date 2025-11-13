@@ -23,7 +23,7 @@ import jakarta.inject.Named;
 public class TreeSpecies {
 
     @Action(semantics = SemanticsOf.NON_IDEMPOTENT)
-    public Species create(@Name String name, @Name String latinName) {
+    public Species create(@Name String name, @LatinName String latinName) {
         return repositoryService.persist(new Species(name, latinName));
     }
 
