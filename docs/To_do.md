@@ -1,7 +1,4 @@
-- [x] Recognize uniqueness exception with https://causeway.apache.org/refguide/3.3.0/applib/index/services/exceprecog/ExceptionRecognizer.html
-  - [x] Just make the message more friendly
-  - [x] Also recognize exception in case BigDecimal is too big.
-- [ ] Recognize ConstraintViolationException -> see jakarta api, if there is a default message there
+- [ ] Recognize ConstraintViolationException -> Waiting for the issue to be resolved. See jakarta api, if there is a default message there.
 - [ ] Implement integration tests with ForestInventoryModule at `webapp-tests/src/test/java/domainapp/webapp/integtests/smoke/Smoke_IntegTest.java`
 - [ ] Internationalization -> to Serbian.
 - [ ] Local Postgres database tests, with Flyway.
@@ -12,6 +9,9 @@
 - [ ] Custom color styling in tables when "Condition" is displayed
 - [ ] Customize urls of app (no /wicket for GUI). Research other places where it applies, like logical names.
 - [ ] Try to make a REST API with only viewModels. That would make it 100% customizable, using only mappings, and without a need for complex configuration.
+- [x] Recognize uniqueness exception with https://causeway.apache.org/refguide/3.3.0/applib/index/services/exceprecog/ExceptionRecognizer.html
+  - [x] Just make the message more friendly
+  - [x] Also recognize exception in case BigDecimal is too big.
 - [x] Make a @Name annotation that's truly applicable everywhere
   - [x] BigDecimals that are too big on the left side raise a JDBC exception. Too big on the right just get cut rounded. 
   - [x] Look at PetClinic name validation
