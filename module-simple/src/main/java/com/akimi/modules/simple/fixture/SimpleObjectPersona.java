@@ -26,7 +26,8 @@ import lombok.experimental.Accessors;
 import jakarta.inject.Inject;
 
 @RequiredArgsConstructor
-public enum SimpleObjectPersona implements Persona<SimpleObject, SimpleObjectPersona.Builder> {
+public enum SimpleObjectPersona implements Persona<SimpleObject,
+        SimpleObjectPersona.Builder> {
 
     FOO("Foo", "Foo.pdf"),
     BAR("Bar", "Bar.pdf"),
@@ -65,7 +66,8 @@ public enum SimpleObjectPersona implements Persona<SimpleObject, SimpleObjectPer
 
             if (persona.contentFileName != null) {
                 val bytes = toBytes(persona.contentFileName);
-                val attachment = new Blob(persona.contentFileName, "application/pdf", bytes);
+                val attachment = new Blob(persona.contentFileName,
+                        "application/pdf", bytes);
                 simpleObject.updateAttachment(attachment);
             }
 
@@ -78,7 +80,8 @@ public enum SimpleObjectPersona implements Persona<SimpleObject, SimpleObjectPer
 
         @SneakyThrows
         private byte[] toBytes(String fileName) {
-            InputStream inputStream = new ClassPathResource(fileName, getClass()).getInputStream();
+            InputStream inputStream = new ClassPathResource(fileName,
+                    getClass()).getInputStream();
             ByteArrayOutputStream buffer = new ByteArrayOutputStream();
 
             int nRead;

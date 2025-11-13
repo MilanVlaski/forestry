@@ -143,7 +143,8 @@ public class Tree implements Comparable<Tree> {
         this.createdAt = LocalDateTime.now();
         var userName = userService.currentUserName()
                 .orElseThrow(() -> new IllegalStateException("User not found."));
-        this.createdBy = (ApplicationUser) applicationUserRepository.findByUsername(userName)
+        this.createdBy = (ApplicationUser) applicationUserRepository
+                .findByUsername(userName)
                 .orElseThrow(() -> new IllegalStateException("User not found."));
     }
 

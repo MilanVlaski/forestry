@@ -10,10 +10,11 @@ import org.apache.causeway.applib.annotation.ParameterLayout;
 import org.apache.causeway.applib.annotation.Property;
 import org.apache.causeway.applib.spec.AbstractSpecification;
 
-@Property(maxLength = LatinName.MAX_LEN, mustSatisfy = LatinName.Spec.class)
-@Parameter(maxLength = LatinName.MAX_LEN, mustSatisfy = LatinName.Spec.class)
+@Property(maxLength = Name.MAX_LEN, mustSatisfy = LatinName.Spec.class)
+@Parameter(maxLength = Name.MAX_LEN, mustSatisfy = LatinName.Spec.class)
 @ParameterLayout(named = "Name")
-@Target({ ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER, ElementType.ANNOTATION_TYPE })
+@Target({ ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER,
+        ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Name {
 
@@ -24,7 +25,7 @@ public @interface Name {
     class Spec extends AbstractSpecification<String> {
         @Override public String satisfiesSafely(String candidate) {
             for (char prohibitedCharacter : PROHIBITED_CHARACTERS.toCharArray()) {
-                if( candidate.contains("" + prohibitedCharacter)) {
+                if (candidate.contains("" + prohibitedCharacter)) {
                     return "Character '" + prohibitedCharacter + "' is not allowed.";
                 }
             }

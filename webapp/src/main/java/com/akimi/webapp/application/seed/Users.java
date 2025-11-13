@@ -13,7 +13,8 @@ public class Users {
 
     public static class MarcoTheForestManager extends AbstractUserAndRolesFixtureScript {
         public MarcoTheForestManager() {
-            super(() -> "marco", () -> "pass", () -> AccountType.LOCAL, new RoleSupplier());
+            super(() -> "marco", () -> "pass",
+                    () -> AccountType.LOCAL, new RoleSupplier());
         }
 
         private static final class RoleSupplier implements Supplier<Can<String>> {
@@ -32,7 +33,8 @@ public class Users {
 
     public static class MariaTheArborist extends AbstractUserAndRolesFixtureScript {
         public MariaTheArborist() {
-            super(() -> "maria", () -> "pass", () -> AccountType.LOCAL, new RoleSupplier());
+            super(() -> "maria", () -> "pass",
+                    () -> AccountType.LOCAL, new RoleSupplier());
         }
 
         private static final class RoleSupplier implements Supplier<Can<String>> {
