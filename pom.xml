@@ -29,13 +29,6 @@
         <sql-formatter.version>2.0.4</sql-formatter.version>
     </properties>
 
-    <!--    <pluginRepositories>-->
-    <!--        <pluginRepository>-->
-    <!--            <id>central</id>-->
-    <!--            <url>https://repo.maven.apache.org/maven2</url>-->
-    <!--        </pluginRepository>-->
-    <!--    </pluginRepositories>-->
-
     <build>
         <extensions>
             <extension>

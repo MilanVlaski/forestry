@@ -30,7 +30,7 @@ jobs:
           cache: maven
 
       - name: Build and test
-        run: mvn -B -ntp --fail-at-end -Dstyle.color=always verify
+        run: make pipeline
 
       - name: Upload test reports
         if: always()

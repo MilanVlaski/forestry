@@ -1,14 +1,23 @@
-- [ ] Recognize ConstraintViolationException -> Waiting for the issue to be resolved. See jakarta api, if there is a default message there.
-- [ ] Implement integration tests with ForestInventoryModule at `webapp-tests/src/test/java/domainapp/webapp/integtests/smoke/Smoke_IntegTest.java`
-- [ ] Internationalization -> to Serbian.
+- [ ] `make deploy` -> either no flyway migration, or there is a correct flyway migration. When new migration is recognized, try to apply it, if it's incorrect, just rollback. Then deploy app.
+- [ ] `make schema-diff` -> 2 dbs, first runs with flyway scripts only, the second runs with JPA create-drop.
+- [ ] create maven wrapper
+- [ ] Makefile. -> [ ] Makefile into Readme
+  - `make` -> maven equivalent to gradle build
+  - `make run-local` -> local h2 no prototyping
+  - `make run` -> local h2 prototyping
+  - `make run-local-pg` local pg with docker compose
+  - `make pipeline` -> from `ci.yml`
+  - `make help` -> documents all of the above
 - [ ] Local Postgres database tests, with Flyway.
   1. Local postgres with docker compose
   2. `application-local-pg.properties` -> will have to see if `application.properties` is fully overridable.  If not, rename it to `application-local-h2.properties`.
-  3. `application-prod.gfproperties`
-- [ ] Makefile.
+  3. `application-prod.properties`
+- [ ] Implement integration tests with ForestInventoryModule at `webapp-tests/src/test/java/domainapp/webapp/integtests/smoke/Smoke_IntegTest.java`
+- [ ] Internationalization -> to Serbian.
 - [ ] Custom color styling in tables when "Condition" is displayed
 - [ ] Customize urls of app (no /wicket for GUI). Research other places where it applies, like logical names.
 - [ ] Try to make a REST API with only viewModels. That would make it 100% customizable, using only mappings, and without a need for complex configuration.
+- [x] Recognize ConstraintViolationException -> There was an issue with my usage of annotations.
 - [x] Recognize uniqueness exception with https://causeway.apache.org/refguide/3.3.0/applib/index/services/exceprecog/ExceptionRecognizer.html
   - [x] Just make the message more friendly
   - [x] Also recognize exception in case BigDecimal is too big.
