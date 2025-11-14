@@ -2,7 +2,7 @@
 
 ## Build the project
 build:
-	mvn clean install
+	mvn install
 
 ## Run locally with H2 database (no prototyping)
 run-local:
