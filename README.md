@@ -7,10 +7,18 @@
 A web application for tracking **forest inventory**. Using this to teach myself the [Apache Causeway framework](https://causeway.apache.org/). It follows the [Naked Objects](https://wiki.c2.com/?NakedObjects) philosophy, which involves exposing your classes, objects, or entities, directly to the user interface. 
 
 ## Quick Start
-To use the app, you must have JDK 21 installed, as well as Maven 3.6.0 or newer. We suggest installing both using [SDKMAN](https://sdkman.io/) for Linux, by running `sdk maven install` and `sdk install java`.
+To use the app, you must have:
+- JDK 21 or newer installed,
+- Maven 3.6.0 or newer.
 
-1. Run `mvn clean install`
-2. Run `PROTOTYPING=true mvn -pl webapp spring-boot:run`. On command prompt, it's `set PROTOTYPING=true`.
+We suggest installing both, using [SDKMAN](https://sdkman.io/) for Linux, by running `sdk maven install` and `sdk install java`.
+
+Run `make help` to get a bunch of useful commands. 
+
+To build the app, [GNU Make](https://www.gnu.org/software/make/) is used. Linux usually comes with GNU Make installed. On Windows, you can use your `git bash` to run `make` commands. Otherwise, please read the [Makefile](Makefile) for mvn commands that are useful.
+
+1. Run `make`
+2. Run `make run`.
 3. Browse to http://localhost:8080.
 4. Press `Generic UI (Wicket)`.
 5. Login using:
