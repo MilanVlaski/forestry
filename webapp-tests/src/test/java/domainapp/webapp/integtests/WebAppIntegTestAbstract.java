@@ -42,8 +42,6 @@ public abstract class WebAppIntegTestAbstract extends CausewayIntegrationTestAbs
         CausewayModuleSecurityBypass.class,
         CausewayModulePersistenceJpaEclipselink.class,
         CausewayModuleTestingFixturesApplib.class,
-
-        SimpleModule.class
     })
     @PropertySources({
         @PropertySource(CausewayPresets.H2InMemory_withUniqueSchema),
