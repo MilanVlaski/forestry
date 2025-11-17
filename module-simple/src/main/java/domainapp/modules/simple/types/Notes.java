@@ -16,7 +16,8 @@ import org.apache.causeway.applib.annotation.Where;
 @PropertyLayout(named = "Notes", multiLine = 10, hidden = Where.ALL_TABLES)
 @Parameter(maxLength = Notes.MAX_LEN)
 @ParameterLayout(named = "Notes", multiLine = 10)
-@Target({ ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER, ElementType.ANNOTATION_TYPE })
+@Target({ ElementType.METHOD, ElementType.FIELD,
+        ElementType.PARAMETER, ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Notes {
 

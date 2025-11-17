@@ -50,7 +50,8 @@ implements Persona<SimpleObject, SimpleObject_persona.Builder> {
 
     @Override
     public SimpleObject findUsing(final ServiceRegistry serviceRegistry) {
-        return serviceRegistry.lookupService(SimpleObjects.class).map(x -> x.findByNameExact(name)).orElseThrow();
+        return serviceRegistry.lookupService(SimpleObjects.class)
+                .map(x -> x.findByNameExact(name)).orElseThrow();
     }
 
     @Accessors(chain = true)
@@ -65,18 +66,21 @@ implements Persona<SimpleObject, SimpleObject_persona.Builder> {
 
             if (persona.contentFileName != null) {
                 val bytes = toBytes(persona.contentFileName);
-                val attachment = new Blob(persona.contentFileName, "application/pdf", bytes);
+                val attachment = new Blob(
+                        persona.contentFileName, "application/pdf", bytes);
                 simpleObject.updateAttachment(attachment);
             }
 
-            simpleObject.setLastCheckedIn(clockService.getClock().nowAsLocalDate().plusDays(fakeDataService.ints().between(-10, +10)));
+            simpleObject.setLastCheckedIn(clockService.getClock().nowAsLocalDate()
+                    .plusDays(fakeDataService.ints().between(-10, +10)));
 
             return simpleObject;
         }
 
         @SneakyThrows
-        private byte[] toBytes(String fileName){
-            InputStream inputStream = new ClassPathResource(fileName, getClass()).getInputStream();
+        private byte[] toBytes(String fileName) {
+            InputStream inputStream = new ClassPathResource(fileName,
+                    getClass()).getInputStream();
             ByteArrayOutputStream buffer = new ByteArrayOutputStream();
 
             int nRead;

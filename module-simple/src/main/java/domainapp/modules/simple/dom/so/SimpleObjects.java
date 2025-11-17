@@ -25,7 +25,7 @@ import domainapp.modules.simple.types.Name;
 @Named(SimpleModule.NAMESPACE + ".SimpleObjects")
 @DomainService
 @Priority(PriorityPrecedence.EARLY)
-@RequiredArgsConstructor(onConstructor_ = {@Inject} )
+@RequiredArgsConstructor(onConstructor_ = {@Inject})
 public class SimpleObjects {
 
     final RepositoryService repositoryService;
@@ -46,7 +46,8 @@ public class SimpleObjects {
     public List<SimpleObject> findByNameLike(
             @Name final String name) {
         return repositoryService.allMatches(
-                Query.named(SimpleObject.class, SimpleObject.NAMED_QUERY__FIND_BY_NAME_LIKE)
+                Query.named(SimpleObject.class,
+                                SimpleObject.NAMED_QUERY_FIND_BY_NAME_LIKE)
                      .withParameter("name", "%" + name + "%"));
     }
 

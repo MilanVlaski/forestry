@@ -51,7 +51,8 @@ public class SampleJob implements Job {
         return interactionService.call(
                 InteractionContext.ofUserWithSystemDefaults(
                         UserMemento.ofName(username)),
-                        () -> transactionalProcessor.callWithinCurrentTransactionElseCreateNew(callable)
+                        () -> transactionalProcessor
+                                .callWithinCurrentTransactionElseCreateNew(callable)
                 )
                 .ifFailureFail()
                 .getValue();

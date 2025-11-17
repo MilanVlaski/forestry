@@ -68,17 +68,18 @@ import domainapp.modules.simple.types.Notes;
 
 @Entity
 @Table(
-    schema= SimpleModule.SCHEMA,
-    uniqueConstraints = {
-        @UniqueConstraint(name = "SimpleObject__name__UNQ", columnNames = {"name"})
-    }
+        schema = SimpleModule.SCHEMA,
+        uniqueConstraints = {
+                @UniqueConstraint(name = "SimpleObject__name__UNQ",
+                        columnNames = {"name"})
+        }
 )
 @NamedQueries({
         @NamedQuery(
-                name = SimpleObject.NAMED_QUERY__FIND_BY_NAME_LIKE,
-                query = "SELECT so " +
-                        "FROM SimpleObject so " +
-                        "WHERE so.name LIKE :name"
+                name = SimpleObject.NAMED_QUERY_FIND_BY_NAME_LIKE,
+                query = "SELECT so "
+                        + "FROM SimpleObject so "
+                        + "WHERE so.name LIKE :name"
         )
 })
 @EntityListeners(CausewayEntityListener.class)
@@ -92,7 +93,7 @@ import domainapp.modules.simple.types.Notes;
 @ToString(onlyExplicitlyIncluded = true)
 public class SimpleObject implements Comparable<SimpleObject>, CalendarEventable {
 
-    static final String NAMED_QUERY__FIND_BY_NAME_LIKE = "SimpleObject.findByNameLike";
+    static final String NAMED_QUERY_FIND_BY_NAME_LIKE = "SimpleObject.findByNameLike";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -116,7 +117,6 @@ public class SimpleObject implements Comparable<SimpleObject>, CalendarEventable
     @Inject @Transient MessageService messageService;
 
 
-
     @Title
     @Name
     @Column(length = Name.MAX_LEN, nullable = false, name = "name")
@@ -127,14 +127,18 @@ public class SimpleObject implements Comparable<SimpleObject>, CalendarEventable
     @Notes
     @Column(length = Notes.MAX_LEN, nullable = true)
     @Getter @Setter
-    @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
+    @Property(commandPublishing = Publishing.ENABLED,
+            executionPublishing = Publishing.ENABLED)
     @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "2")
     private String notes;
 
     @AttributeOverrides({
-            @AttributeOverride(name="name",    column=@Column(name="attachment_name")),
-            @AttributeOverride(name="mimeType",column=@Column(name="attachment_mimeType")),
-            @AttributeOverride(name="bytes",   column=@Column(name="attachment_bytes"))
+            @AttributeOverride(
+                    name = "name", column = @Column(name = "attachment_name")),
+            @AttributeOverride(
+                    name = "mimeType", column = @Column(name = "attachment_mimeType")),
+            @AttributeOverride(
+                    name = "bytes", column = @Column(name = "attachment_bytes"))
     })
     @Embedded
     private BlobJpaEmbeddable attachment;
@@ -145,10 +149,10 @@ public class SimpleObject implements Comparable<SimpleObject>, CalendarEventable
     public Blob getAttachment() {
         return BlobJpaEmbeddable.toBlob(attachment);
     }
+
     public void setAttachment(final Blob attachment) {
         this.attachment = BlobJpaEmbeddable.fromBlob(attachment);
     }
-
 
 
     @Property(optionality = Optionality.OPTIONAL, editing = Editing.ENABLED)
@@ -166,49 +170,60 @@ public class SimpleObject implements Comparable<SimpleObject>, CalendarEventable
     @Override
     public CalendarEvent toCalendarEvent() {
         if (getLastCheckedIn() != null) {
-            long epochMillis = getLastCheckedIn().toEpochSecond(LocalTime.MIDNIGHT, ZoneOffset.systemDefault().getRules().getOffset(getLastCheckedIn().atStartOfDay())) * 1000L;
-            return new CalendarEvent(epochMillis, getCalendarName(), titleService.titleOf(this), getNotes());
+            long epochMillis = getLastCheckedIn().toEpochSecond(LocalTime.MIDNIGHT,
+                    ZoneOffset.systemDefault().getRules()
+                            .getOffset(getLastCheckedIn().atStartOfDay())) * 1000L;
+            return new CalendarEvent(epochMillis, getCalendarName(),
+                    titleService.titleOf(this), getNotes());
         } else {
             return null;
         }
     }
 
 
-    @Action(semantics = IDEMPOTENT, commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
+    @Action(semantics = IDEMPOTENT, commandPublishing = Publishing.ENABLED,
+            executionPublishing = Publishing.ENABLED)
     @ActionLayout(
             associateWith = "name", promptStyle = PromptStyle.INLINE,
-            describedAs = "Updates the name of this object, certain characters (" + PROHIBITED_CHARACTERS + ") are not allowed.")
+            describedAs = "Updates the name of this object, certain characters ("
+                    + PROHIBITED_CHARACTERS + ") are not allowed.")
     public SimpleObject updateName(
             @Name final String name) {
         setName(name);
         return this;
     }
-    @MemberSupport public String default0UpdateName() {
+
+    @MemberSupport
+    public String default0UpdateName() {
         return getName();
     }
-    @MemberSupport public String validate0UpdateName(final String newName) {
+
+    @MemberSupport
+    public String validate0UpdateName(final String newName) {
         for (char prohibitedCharacter : PROHIBITED_CHARACTERS.toCharArray()) {
-            if( newName.contains(""+prohibitedCharacter)) {
+            if (newName.contains("" + prohibitedCharacter)) {
                 return "Character '" + prohibitedCharacter + "' is not allowed.";
             }
         }
         return null;
     }
+
     static final String PROHIBITED_CHARACTERS = "&%$!";
 
 
-
-    @Action(semantics = IDEMPOTENT, commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
+    @Action(semantics = IDEMPOTENT, commandPublishing = Publishing.ENABLED,
+            executionPublishing = Publishing.ENABLED)
     @ActionLayout(associateWith = "attachment", position = ActionLayout.Position.PANEL)
     public SimpleObject updateAttachment(
             @Nullable final Blob attachment) {
         setAttachment(attachment);
         return this;
     }
-    @MemberSupport public Blob default0UpdateAttachment() {
+
+    @MemberSupport
+    public Blob default0UpdateAttachment() {
         return getAttachment();
     }
-
 
 
     @Action(semantics = NON_IDEMPOTENT_ARE_YOU_SURE)
@@ -223,13 +238,12 @@ public class SimpleObject implements Comparable<SimpleObject>, CalendarEventable
     }
 
 
-
-    private final static Comparator<SimpleObject> comparator =
+    private static final Comparator<SimpleObject> COMPARATOR =
             Comparator.comparing(SimpleObject::getName);
 
     @Override
     public int compareTo(final SimpleObject other) {
-        return comparator.compare(this, other);
+        return COMPARATOR.compare(this, other);
     }
 
 }

@@ -12,7 +12,8 @@ import org.apache.causeway.applib.annotation.Property;
 @Property(maxLength = Name.MAX_LEN)
 @Parameter(maxLength = Name.MAX_LEN)
 @ParameterLayout(named = "Name")
-@Target({ ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER, ElementType.ANNOTATION_TYPE })
+@Target({ ElementType.METHOD, ElementType.FIELD,
+        ElementType.PARAMETER, ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Name {
 
