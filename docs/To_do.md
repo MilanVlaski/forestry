@@ -1,0 +1,72 @@
+- [ ] Integration tests are spitting out SQL syntax errors. Weird.
+- [ ] Curl smoke test before deploying to prod
+- [ ] Ideal flyway test is to clone the production database schema into an ephemeral clone in the pipeline, and run whatever necessary migrations on it. Second best, is to perform that locally, if necessary, with local data, etc. And the compromise is to:
+- [ ] Create a new database and run all of the migrations on it
+- [ ] Actually, it's better to create a TestContainers, use a persistent postgres setup, and run integration tests on it.
+  - [ ] `make deploy` -> either no flyway migration, or there is  a correct flyway migration. When new migration is recognized, try to apply it, if it's incorrect, just rollback. Then deploy app.
+- [ ] `make schema-diff` -> 2 dbs, first runs with flyway scripts only, the second runs with JPA create-drop.
+- [ ] create maven wrapper
+- [ ] Local Postgres database tests, with Flyway.
+  1. Local postgres with docker compose
+  2. `application-local-pg.properties` -> will have to see if `application.properties` is fully overridable.  If not, rename it to `application-local-h2.properties`.
+  3. `application-prod.properties`
+- [ ] Implement integration tests with ForestInventoryModule at `webapp-tests/src/test/java/domainapp/webapp/integtests/smoke/Smoke_IntegTest.java`
+- [ ] Internationalization -> to Serbian.
+- [ ] Custom color styling in tables when "Condition" is displayed
+- [ ] Customize urls of app (no /wicket for GUI). Research other places where it applies, like logical names.
+- [ ] Try to make a REST API with only viewModels. That would make it 100% customizable, using only mappings, and without a need for complex configuration.
+- [x] Makefile. -> [ ] Makefile into Readme
+  - `make` -> maven equivalent to gradle build
+  - `make run-local` -> local h2 no prototyping
+  - `make run` -> local h2 prototyping
+  - `make run-local-pg` local pg with docker compose
+  - `make pipeline` -> from `ci.yml`
+  - `make help` -> documents all of the above
+- [x] Recognize ConstraintViolationException -> There was an issue with my usage of annotations.
+- [x] Recognize uniqueness exception with https://causeway.apache.org/refguide/3.3.0/applib/index/services/exceprecog/ExceptionRecognizer.html
+  - [x] Just make the message more friendly
+  - [x] Also recognize exception in case BigDecimal is too big.
+- [x] Make a @Name annotation that's truly applicable everywhere
+  - [x] BigDecimals that are too big on the left side raise a JDBC exception. Too big on the right just get cut rounded. 
+  - [x] Look at PetClinic name validation
+  - [x] Name in Forest, Condition, Species, with a length param.
+- [ ] After creating REST API, create a Vue.js frontend that connects to it.
+- [x] Remove all DIALOG_SIDEBAR usages, as it's there by default according to my convention
+- [x] Add `gitlab.ci`
+- [x] Remove all @Property
+- [x] Have packages use groupId name
+- [x] Change project names in pom.xmls
+- [x] Update readme 
+- [x] SemanticsOf.SAFE_AND_REQUEST_CACHABLE on Condition and Species.
+- [x] Remove Arborists entity
+- [x] Create homepage viewmodel which lists out the Forests.
+  - search tab 
+  - [x] search -> searches by Forest + Inventory + Plot. Each is required. -> Triple dependent choices is not possible. Can be hacked with autocomplete maybe, but I would prefer not to.
+    - [x] allTreesInForest
+    - [x] allTreesOfInventory
+    - [x] allTreesInPlot
+    - [x] allTreesCreatedByUser
+    - [x] allTreesCreatedByArborist (filter by createdBy.role)
+- [x] Use Paging on Trees `@CollectionLayout(paged=15)`
+  - or It is also possible to specify a global default for the page size of parented collections, using the causeway.applib.annotation.collection-layout.paged configuration property.
+- [x] Test if ApplicationUser can be referenced by other entities-> It can!
+- [x] Add a function so that ForestManager can register Arborists
+- [x] Add ForestManager, which has permission to use Arborists functions. -> Already exists as `forest-superuser`
+  - Arborists.register() implemented with ApplicationUserRepository. Granting the ArboristRole.
+- [x] Read the schema of  the menubars.layout.xml
+- [x] Can sort Trees by plot, but not by Condition
+  - It's because of implementing `Comparable`!
+- [x] Add autocomplete to Plot, in addTree function, searching by id.
+- [x] Add security fixturescript to admin menubar
+- [x] Make forest.name unique, condition and species too
+- [x] Find out if there is a way to define a single X.layout.xml, without placing it in each entity package.
+- [x] Add Species and Condition and a `data.sql`
+- [x] Create Forest
+- [x] Assign Plot to Tree tree.assignToPlot. assignToOtherPlot if already has plot
+- [x] Add inventory.id to .columnorder.txt of inventory. Same for plot.
+- [x] Add validation for forest.name (and anywhere else where name exists)
+- [x] Put metadata behind the details, for Inventory, Plot and Tree. Achievable by copying the *.layout.xmls.
+- [x] Make .columnOrder.txt
+- [x] List species and condition. CRUD.
+- [x] Make a forest fixture script, and run it at startup
+- [x] Create inventory and add Plots
