@@ -16,7 +16,6 @@ import org.apache.causeway.security.bypass.CausewayModuleSecurityBypass;
 import org.apache.causeway.testing.fixtures.applib.CausewayModuleTestingFixturesApplib;
 import org.apache.causeway.testing.integtestsupport.applib.CausewayIntegrationTestAbstract;
 
-import domainapp.modules.simple.SimpleModule;
 import domainapp.webapp.application.ApplicationModule;
 
 @SpringBootTest(
