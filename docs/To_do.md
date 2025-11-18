@@ -1,15 +1,11 @@
-- [ ] Integration tests are spitting out SQL syntax errors. Weird.
-- [ ] Curl smoke test before deploying to prod
-- [ ] Ideal flyway test is to clone the production database schema into an ephemeral clone in the pipeline, and run whatever necessary migrations on it. Second best, is to perform that locally, if necessary, with local data, etc. And the compromise is to:
-- [ ] Create a new database and run all of the migrations on it
-- [ ] Actually, it's better to create a TestContainers, use a persistent postgres setup, and run integration tests on it.
-  - [ ] `make deploy` -> either no flyway migration, or there is  a correct flyway migration. When new migration is recognized, try to apply it, if it's incorrect, just rollback. Then deploy app.
-- [ ] `make schema-diff` -> 2 dbs, first runs with flyway scripts only, the second runs with JPA create-drop.
-- [ ] create maven wrapper
-- [ ] Local Postgres database tests, with Flyway.
-  1. Local postgres with docker compose
-  2. `application-local-pg.properties` -> will have to see if `application.properties` is fully overridable.  If not, rename it to `application-local-h2.properties`.
-  3. `application-prod.properties`
+- [ ] Make app deployable
+  - [x] Build with jib
+  - [x] Run the image locally
+  - [x] Deploy to GAR (google artifact registry). Check that it's there.
+  - [x] Add admin password through environment variable
+  - [x] Deploy an h2 version, NOT prototyping , so I don't have to fiddle with G Cloud SQL
+  - [ ] Cloud run...
+  - [ ] Deploy a flyway + PostgreSQL version
 - [ ] Implement integration tests with ForestInventoryModule at `webapp-tests/src/test/java/domainapp/webapp/integtests/smoke/Smoke_IntegTest.java`
 - [ ] Internationalization -> to Serbian.
 - [ ] Custom color styling in tables when "Condition" is displayed

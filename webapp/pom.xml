@@ -82,6 +82,26 @@
                     </requiresUnpack>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>io.github.git-commit-id</groupId>
+                <artifactId>git-commit-id-maven-plugin</artifactId>
+                <version>9.0.2</version>
+                <executions>
+                    <execution>
+                        <id>get-the-git-infos</id>
+                        <goals>
+                            <goal>revision</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                    </execution>
+                </executions>
+                <configuration>
+                    <generateGitPropertiesFile>true</generateGitPropertiesFile>
+                    <generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties</generateGitPropertiesFilename>
+                    <commitIdGenerationMode>full</commitIdGenerationMode>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
@@ -272,6 +292,50 @@
                 </dependency>
             </dependencies>
         </profile>
+
+        <profile>
+            <id>deploy-to-google-artifact-registry</id>
+            <activation>
+                <property>
+                    <name>gar</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <!-- Jib Docker build plugin -->
+                    <plugin>
+                        <groupId>com.google.cloud.tools</groupId>
+                        <artifactId>jib-maven-plugin</artifactId>
+                        <configuration>
+                            <from>
+                                <image>eclipse-temurin:21.0.2_13-jdk-alpine</image>
+                            </from>
+                            <container>
+                                <jvmFlags>
+                                    <jvmFlag>-Xmx512m</jvmFlag>
+                                </jvmFlags>
+                                <mainClass>domainapp.webapp.SimpleApp</mainClass>
+                                <ports>
+                                    <port>8080</port>
+                                </ports>
+                            </container>
+                            <to>
+                                <image>europe-west3-docker.pkg.dev/forestry-webapp/forestry/webapp</image>
+                                <tags>
+                                    <tag>${git.closest.tag.name}-${git.commit.id.abbrev}</tag>
+                                </tags>
+                                <auth>
+                                    <username>${env.REGISTRY_USERNAME}</username>
+                                    <password>${env.REGISTRY_PASSWORD}</password>
+                                </auth>
+                            </to>
+                        </configuration>
+                    </plugin>
+
+                </plugins>
+            </build>
+        </profile>
+
 
         <profile>
             <id>deploy-to-docker-io</id>
