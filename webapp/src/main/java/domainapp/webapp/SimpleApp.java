@@ -5,8 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Import;
 
-import org.apache.causeway.core.config.presets.CausewayPresets;
-
 @SpringBootApplication
 @Import({
     AppManifest.class
@@ -15,7 +13,6 @@ import org.apache.causeway.core.config.presets.CausewayPresets;
 public class SimpleApp extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
-        CausewayPresets.prototyping();
         SpringApplication.run(new Class[] {SimpleApp.class}, args);
     }
 
