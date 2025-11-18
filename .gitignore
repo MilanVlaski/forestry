@@ -47,3 +47,5 @@ create-db-schema.sql
 test.http
 node_modules
 .aider*
+
+image-manager-key.json
