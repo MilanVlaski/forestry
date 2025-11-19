@@ -49,3 +49,4 @@ node_modules
 .aider*
 
 image-manager-key.json
+deployer-key.json
