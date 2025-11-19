@@ -1,4 +1,4 @@
-.PHONY: build run pipeline run-prod-container help
+.PHONY: build run pipeline run-prod-container publish deploy help
 
 ## Build the project
 build:
@@ -19,8 +19,19 @@ prod-container-run:
 
 ## Publishes forestry-webapp docker image to Google Artifact Registry.
 ## Make sure to export REGISTRY_USERNAME and REGISTRY_PASSWORD.
-deploy:
+publish:
 	./mvnw -pl webapp -Dgar git-commit-id:revision jib:build
+
+## Deploys to Cloud Run.
+## Make sure to export REGISTRY_USERNAME, REGISTRY_PASSWORD and DEPLOYER_KEY.
+IMAGE_NAME := $(shell ./mvnw -q help:evaluate -Dexpression=jib.to.image -DforceStdout)
+TAG := $(shell ./mvnw -q help:evaluate -Dexpression=jib.to.image.tags.tag -DforceStdout | head -n1)
+FULL_IMAGE := $(IMAGE_NAME):$(TAG)
+deploy:
+	gcloud auth activate-service-account --key-file=$(DEPLOYER_KEY)
+	gcloud config set project forestry-webapp
+	./mvnw -pl webapp -Dgar git-commit-id:revision jib:build
+	gcloud run deploy forestry-webapp --image "$(FULL_IMAGE)" --region europe-west3
 
 ## Show all targets with descriptions
 help:
