@@ -19,19 +19,21 @@ prod-container-run:
 
 ## Publishes forestry-webapp docker image to Google Artifact Registry.
 ## Make sure to export REGISTRY_USERNAME and REGISTRY_PASSWORD.
+GIT_TAG := $(shell git describe --tags --abbrev=0 2>/dev/null || git rev-parse --short HEAD)
+GIT_SHA := $(shell git rev-parse --short HEAD)
+REVISION := $(GIT_TAG)-$(GIT_SHA)
+IMAGE := europe-west3-docker.pkg.dev/forestry-webapp/forestry/webapp:$(REVISION)
+export IMAGE
 publish:
-	./mvnw -pl webapp -Dgar git-commit-id:revision jib:build
+	./mvnw -pl webapp -Dgar jib:build
 
 ## Deploys to Cloud Run.
 ## Make sure to export REGISTRY_USERNAME, REGISTRY_PASSWORD and DEPLOYER_KEY.
-IMAGE_NAME := $(shell ./mvnw -q help:evaluate -Dexpression=jib.to.image -DforceStdout)
-TAG := $(shell ./mvnw -q help:evaluate -Dexpression=jib.to.image.tags.tag -DforceStdout | head -n1)
-FULL_IMAGE := $(IMAGE_NAME):$(TAG)
 deploy:
-	gcloud auth activate-service-account --key-file=$(DEPLOYER_KEY)
-	gcloud config set project forestry-webapp
-	./mvnw -pl webapp -Dgar git-commit-id:revision jib:build
-	gcloud run deploy forestry-webapp --image "$(FULL_IMAGE)" --region europe-west3
+	./mvnw -pl webapp -Dgar jib:build
+#	gcloud auth activate-service-account --key-file=$(DEPLOYER_KEY)
+#	gcloud run deploy forestry-webapp --image "$(IMAGE)" --region europe-west3
+
 
 ## Show all targets with descriptions
 help:
