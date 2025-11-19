@@ -4,6 +4,7 @@
   - [x] Deploy to GAR (google artifact registry). Check that it's there.
   - [x] Add admin password through environment variable
   - [x] Deploy an h2 version, NOT prototyping , so I don't have to fiddle with G Cloud SQL
+  - [x] Make deploy and test it
   - [ ] Cloud run...
   - [ ] Deploy a flyway + PostgreSQL version
 - [ ] Implement integration tests with ForestInventoryModule at `webapp-tests/src/test/java/domainapp/webapp/integtests/smoke/Smoke_IntegTest.java`

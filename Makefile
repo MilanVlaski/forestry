@@ -18,7 +18,7 @@ prod-container-run:
 	docker run -p 8080:8080 -e ADMIN_PASSWORD=supersecret -e SPRING_PROFILES_ACTIVE=prod forestry-webapp:local
 
 ## Publishes forestry-webapp docker image to Google Artifact Registry.
-## Make sure to export REGISTRY_USER and REGISTRY_PASSWORD.
+## Make sure to export REGISTRY_USERNAME and REGISTRY_PASSWORD.
 deploy:
 	./mvnw -pl webapp -Dgar git-commit-id:revision jib:build
 
