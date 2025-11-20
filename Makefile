@@ -33,7 +33,7 @@ deploy:
 	./mvnw -pl webapp -Dgar jib:build
 	gcloud auth activate-service-account --key-file=$(DEPLOYER_KEY)
 	gcloud run deploy forestry-webapp --image "$(IMAGE)" --region europe-west3 \
-	--set-env-vars ADMIN_PASSWORD="$(ADMIN_PASSWORD)",SPRING_PROFILES_ACTIVE=prod,LOG_LEVEL=debug
+	--set-env-vars ADMIN_PASSWORD="$(ADMIN_PASSWORD)",SPRING_PROFILES_ACTIVE=prod
 
 
 ## Show all targets with descriptions
