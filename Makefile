@@ -28,11 +28,12 @@ publish:
 	./mvnw -pl webapp -Dgar jib:build
 
 ## Deploys to Cloud Run.
-## Make sure to export REGISTRY_USERNAME, REGISTRY_PASSWORD and DEPLOYER_KEY.
+## Make sure to export REGISTRY_USERNAME, REGISTRY_PASSWORD, DEPLOYER_KEY and ADMIN_PASSWORD.
 deploy:
 	./mvnw -pl webapp -Dgar jib:build
-#	gcloud auth activate-service-account --key-file=$(DEPLOYER_KEY)
-#	gcloud run deploy forestry-webapp --image "$(IMAGE)" --region europe-west3
+	gcloud auth activate-service-account --key-file=$(DEPLOYER_KEY)
+	gcloud run deploy forestry-webapp --image "$(IMAGE)" --region europe-west3 \
+	--set-env-vars ADMIN_PASSWORD="$(ADMIN_PASSWORD)",SPRING_PROFILES_ACTIVE=prod,LOG_LEVEL=debug
 
 
 ## Show all targets with descriptions
