@@ -1,3 +1,9 @@
+- [ ] Use service account to deploy, instead of depending on oauth. Find docs about permissions to deploy.
+- [ ] Make versions in pom.xml inherit from <revision> based on [this](https://stackoverflow.com/questions/10582054/maven-project-version-inheritance-do-i-have-to-specify-the-parent-version)
+- [ ] Use postgres + flyway
+- [ ] Add proper versioning on deploy
+- [x] Find the latest way to load configuration from secret manager
+- [x] Read about audit logging, and limit it to what is realistic.
 - [ ] Make app deployable
   - [x] Build with jib
   - [x] Run the image locally
@@ -17,7 +23,6 @@
   - `make` -> maven equivalent to gradle build
   - `make run-local` -> local h2 no prototyping
   - `make run` -> local h2 prototyping
-  - `make run-local-pg` local pg with docker compose
   - `make pipeline` -> from `ci.yml`
   - `make help` -> documents all of the above
 - [x] Recognize ConstraintViolationException -> There was an issue with my usage of annotations.
