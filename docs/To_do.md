@@ -1,4 +1,4 @@
-- [ ] Use service account to deploy, instead of depending on oauth. Find docs about permissions to deploy.
+- [x] Use service account to deploy, instead of depending on oauth. Find docs about permissions to deploy.
 - [ ] Make versions in pom.xml inherit from <revision> based on [this](https://stackoverflow.com/questions/10582054/maven-project-version-inheritance-do-i-have-to-specify-the-parent-version)
 - [ ] Use postgres + flyway
 - [ ] Add proper versioning on deploy
