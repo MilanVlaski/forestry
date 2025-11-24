@@ -58,7 +58,7 @@
         <logger name="org.apache.causeway.core.runtimeservices.publish.ExecutionPublisherDefault" level="debug"/>
         <logger name="org.apache.causeway.applib.services.queryresultscache.QueryResultsCache" level="debug"/>
 
-        <Root level="${env:LOG_LEVEL:-info}">
+        <Root level="info">
             <AppenderRef ref="Console"/>
         </Root>
     </Loggers>
