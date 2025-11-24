@@ -178,31 +178,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.apache.causeway.extensions</groupId>
-            <artifactId>causeway-extensions-sessionlog-persistence-jpa</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.causeway.extensions</groupId>
-            <artifactId>causeway-extensions-audittrail-persistence-jpa</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.causeway.extensions</groupId>
-            <artifactId>causeway-extensions-commandlog-persistence-jpa</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.causeway.extensions</groupId>
-            <artifactId>causeway-extensions-executionlog-persistence-jpa</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.causeway.extensions</groupId>
-            <artifactId>causeway-extensions-executionoutbox-persistence-jpa</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>org.apache.causeway.viewer</groupId>
             <artifactId>causeway-viewer-graphql-viewer</artifactId>
         </dependency>
@@ -212,10 +187,6 @@
             <artifactId>spring-boot-actuator-autoconfigure</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-quartz</artifactId>
-        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
