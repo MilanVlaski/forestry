@@ -32,10 +32,9 @@ gar-deploy:
 
 ## Deploy to App Engine.
 ## Make sure to export DEPLOYER_KEY.
-GIT_TAG := $(shell git describe --tags --abbrev=0 2>/dev/null || git rev-parse --short HEAD)
-GIT_SHA := $(shell git rev-parse --short HEAD)
-REVISION := $(GIT_TAG)-$(GIT_SHA)
-export REVISION
+deploy: GIT_TAG = $(shell git describe --tags --abbrev=0 2>/dev/null || git rev-parse --short HEAD)
+deploy: GIT_SHA = $(shell git rev-parse --short HEAD)
+deploy: export REVISION = $(GIT_TAG)-$(GIT_SHA)
 deploy:
 	gcloud auth activate-service-account --key-file=$(DEPLOYER_KEY)
 	./mvnw -pl webapp package appengine:deploy
