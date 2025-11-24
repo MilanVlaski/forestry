@@ -3,7 +3,6 @@ package domainapp.webapp;
 import org.apache.causeway.extensions.layoutloaders.github.CausewayModuleExtLayoutLoadersGithub;
 
 
-import org.apache.causeway.viewer.graphql.viewer.CausewayModuleViewerGraphqlViewer;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -47,7 +46,7 @@ import domainapp.webapp.custom.CustomModule;
         CausewayModuleViewerRestfulObjectsJaxrsResteasy.class,
         CausewayModuleViewerWicketViewer.class,
 
-        CausewayModuleViewerGraphqlViewer.class,
+//        CausewayModuleViewerGraphqlViewer.class,
 
         CausewayModuleTestingFixturesApplib.class,
         CausewayModuleTestingH2ConsoleUi.class,
