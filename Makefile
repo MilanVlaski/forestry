@@ -1,5 +1,4 @@
 .PHONY: build run pipeline run-prod-container publish deploy gar-deploy help gar-push
-GIT_TAG = $(shell git describe --tags --abbrev=0 2>/dev/null || git rev-parse --short HEAD)
 
 ## Build the project
 build:
@@ -46,6 +45,7 @@ jar-run:
 	java -jar webapp/target/appengine-staging/webapp-3.4.0-exec.jar
 
 ## Sets the maven version to the latest git tag.
+version: GIT_TAG = $(shell git describe --tags --abbrev=0 2>/dev/null || git rev-parse --short HEAD)
 version:
 	./mvnw versions:set -DnewVersion=$(GIT_TAG)
 
