@@ -90,7 +90,7 @@
                 <configuration>
                     <projectId>forestry-webapp</projectId>
                     <!-- When autogenerate gcloud version becomes a problem, just put ${env.REVISION} here -->
-                    <version>GCLOUD_CONFIG</version>
+                    <version>${env.G_VERSION}</version>
                     <artifact>target/webapp-${project.version}-exec.jar</artifact>
                 </configuration>
             </plugin>
