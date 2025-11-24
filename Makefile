@@ -1,4 +1,5 @@
 .PHONY: build run pipeline run-prod-container publish deploy gar-deploy help gar-push
+GIT_TAG = $(shell git describe --tags --abbrev=0 2>/dev/null || git rev-parse --short HEAD)
 
 ## Build the project
 build:
@@ -32,7 +33,6 @@ gar-deploy:
 
 ## Deploy to App Engine.
 ## Make sure to export DEPLOYER_KEY.
-#deploy: GIT_TAG = $(shell git describe --tags --abbrev=0 2>/dev/null || git rev-parse --short HEAD)
 deploy: GIT_SHA = $(shell git rev-parse --short HEAD)
 deploy: BUILD_SUFFIX = $(if $(GITHUB_RUN_NUMBER),-$(GITHUB_RUN_NUMBER),)
 deploy: export G_VERSION = $(GIT_SHA)$(BUILD_SUFFIX)
@@ -45,6 +45,9 @@ jar-run:
 	./mvnw -pl webapp -am package
 	java -jar webapp/target/appengine-staging/webapp-3.4.0-exec.jar
 
+## Sets the maven version to the latest git tag.
+version:
+	./mvnw versions:set -DnewVersion=$(GIT_TAG)
 
 ## Show all targets with descriptions
 help:
