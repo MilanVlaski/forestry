@@ -1,23 +1,28 @@
-- [ ] Trim down dependencies
-- [ ] Use postgres + flyway
-- [ ] Add proper versioning on deploy
+- [ ] Add testing coverage library. Display it on the README.
+- [ ] Deploy via CI, activated by flag in commit msg.
+- [ ] Implement integration tests with ForestInventoryModule at `webapp-tests/src/test/java/domainapp/webapp/integtests/smoke/Smoke_IntegTest.java`
+- [ ] Internationalization -> to Serbian.
+- [ ] Custom color styling in tables when "Condition" is displayed
+- [ ] Customize urls of app (no /wicket for GUI). Research other places where it applies, like logical names.
+- [ ] Try to make a REST API with only viewModels. That would make it 100% customizable, using only mappings, and without a need for complex configuration.
+- [x] Add proper versioning on deploy
 - [x] Find the latest way to load configuration from secret manager
 - [x] Read about audit logging, and limit it to what is realistic.
-- [ ] Make app deployable
+- [x] Make app deployable
   - [x] Build with jib
   - [x] Run the image locally
   - [x] Deploy to GAR (google artifact registry). Check that it's there.
   - [x] Add admin password through environment variable
   - [x] Deploy an h2 version, NOT prototyping , so I don't have to fiddle with G Cloud SQL
   - [x] Make deploy and test it
-  - [ ] Cloud PostgreSQL with Flyway
-  - [ ] Cloud run...
-  - [ ] Deploy a flyway + PostgreSQL version
-- [ ] Implement integration tests with ForestInventoryModule at `webapp-tests/src/test/java/domainapp/webapp/integtests/smoke/Smoke_IntegTest.java`
-- [ ] Internationalization -> to Serbian.
-- [ ] Custom color styling in tables when "Condition" is displayed
-- [ ] Customize urls of app (no /wicket for GUI). Research other places where it applies, like logical names.
-- [ ] Try to make a REST API with only viewModels. That would make it 100% customizable, using only mappings, and without a need for complex configuration.
+  - [x] Cloud PostgreSQL with Flyway
+  - [x] Deploy a flyway + PostgreSQL version
+- [x] Trim down dependencies
+- [x] Use postgres + flyway
+  - [x] Make new DB, and have it use IAM, like so: https://docs.cloud.google.com/sql/docs/postgres/create-instance#gcloud
+  - [x] Give cloudsql roles to my service account
+  - [x] Put the DB names into secret configuration
+  - [x] GRANT DB permissions to the user from [here](https://chatgpt.com/c/6925625f-5f1c-8331-92ac-a48a2119d014)
 - [x] Makefile. -> [ ] Makefile into Readme
   - `make` -> maven equivalent to gradle build
   - `make run-local` -> local h2 no prototyping

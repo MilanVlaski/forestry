@@ -1,9 +1,10 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="SimpleApp (jpa)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <option name="ACTIVE_PROFILES" value="dev" />
     <module name="webapp" />
     <option name="SHORTEN_COMMAND_LINE" value="ARGS_FILE" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="domainapp.webapp.SimpleApp" />
-    <option name="VM_PARAMETERS" value="-javaagent:../lib/spring-instrument.jar" />
+    <option name="VM_PARAMETERS" value="-javaagent:../lib/spring-instrument.jar -DPROTOTYPING=true " />
     <option name="WORKING_DIRECTORY" value="file://$MODULE_WORKING_DIR$" />
     <method v="2">
       <option name="Make" enabled="true" />

@@ -6,7 +6,7 @@ build:
 
 ## Run locally with H2 database (prototyping enabled)
 run:
-	PROTOTYPING=true ./mvnw -pl webapp spring-boot:run
+	PROTOTYPING=true SPRING_PROFILES_ACTIVE=dev ./mvnw -pl webapp spring-boot:run
 
 ## Run the CI pipeline locally
 pipeline:

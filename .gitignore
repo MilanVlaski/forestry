@@ -51,3 +51,4 @@ node_modules
 image-manager-key.json
 deployer-key.json
 appengine-deployer.json
+V0__grants.sql

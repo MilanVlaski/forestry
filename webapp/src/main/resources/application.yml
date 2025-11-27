@@ -1,7 +1,7 @@
 #
 # Recommend use for static configuration that does not change between environments.
 #
-# See also config/application.properties
+# See also config/application-dev.properties
 #
 causeway:
 
@@ -27,6 +27,7 @@ causeway:
       introspector:
         lock-after-full-introspection: true
         mode: full
+        policy: encapsulation_enabled
       validator:
         allow-deprecated: false
 
@@ -125,7 +126,7 @@ eclipselink:
   # -javaagent:lib/spring-instrument-5.3.8.jar
   weaving: false
   # if weaving subproperties are required, then specify all eclipselink.weaving
-  # properties using application.properties instead (it's not possible to
+  # properties using application-dev.properties instead (it's not possible to
   # specify both eclipselink.weaving property and its subproperties using yaml syntax)
 
 resteasy:
