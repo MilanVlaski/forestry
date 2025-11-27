@@ -4,6 +4,9 @@
 build:
 	./mvnw install
 
+clean:
+	./mvnw clean
+
 ## Run locally with H2 database (prototyping enabled)
 run:
 	PROTOTYPING=true SPRING_PROFILES_ACTIVE=dev ./mvnw -pl webapp spring-boot:run
@@ -12,23 +15,6 @@ run:
 pipeline:
 	./mvnw -B -ntp --fail-at-end -Dstyle.color=always verify
 
-## Creates a docker image locally, and runs it, with admin name `secman-admin` and password 'supersecret'.
-prod-container-run:
-	./mvnw -pl webapp compile jib:dockerBuild -Dimage=forestry-webapp:local
-	docker run -p 8080:8080 -e ADMIN_PASSWORD=supersecret -e SPRING_PROFILES_ACTIVE=prod forestry-webapp:local
-
-## Publishes forestry-webapp docker image to Google Artifact Registry.
-## Make sure to export REGISTRY_USERNAME and REGISTRY_PASSWORD.
-publish:
-	./mvnw -pl webapp -Dgar jib:build
-
-## Deploys to Cloud Run.
-## Make sure to export REGISTRY_USERNAME, REGISTRY_PASSWORD, DEPLOYER_KEY and ADMIN_PASSWORD.
-gar-deploy:
-#	./mvnw -pl webapp -Dgar jib:build
-#	gcloud auth activate-service-account --key-file=$(DEPLOYER_KEY)
-#	gcloud run deploy forestry-webapp --image "$(IMAGE)" --region europe-west3 \
-#	--set-env-vars ADMIN_PASSWORD="$(ADMIN_PASSWORD)",SPRING_PROFILES_ACTIVE=prod
 
 ## Deploy to App Engine.
 ## Make sure to export DEPLOYER_KEY.
@@ -38,11 +24,6 @@ deploy: export G_VERSION = $(GIT_SHA)$(BUILD_SUFFIX)
 deploy:
 	gcloud auth activate-service-account --key-file=$(DEPLOYER_KEY)
 	./mvnw -pl webapp package appengine:deploy
-
-## Packages and runs the jar that will go to Google App Engine.
-jar-run:
-	./mvnw -pl webapp -am package
-	java -jar webapp/target/appengine-staging/webapp-3.4.0-exec.jar
 
 ## Sets the maven version to the latest git tag.
 version: GIT_TAG = $(shell git describe --tags --abbrev=0 2>/dev/null || git rev-parse --short HEAD)
@@ -61,3 +42,16 @@ gar-push:
 #	@echo $$DEPLOYER_KEY | docker login -u _json_key --password-stdin https://$$(echo $(IMAGE) | awk -F/ '{print $$1}')
 #	docker build -t $(IMAGE) -f Dockerfile .
 #	docker push $(IMAGE)
+
+## Publishes forestry-webapp docker image to Google Artifact Registry.
+## Make sure to export REGISTRY_USERNAME and REGISTRY_PASSWORD.
+#publish:
+	#./mvnw -pl webapp -Dgar jib:build
+
+## Deploys to Cloud Run.
+## Make sure to export REGISTRY_USERNAME, REGISTRY_PASSWORD, DEPLOYER_KEY and ADMIN_PASSWORD.
+#gar-deploy:
+#	./mvnw -pl webapp -Dgar jib:build
+#	gcloud auth activate-service-account --key-file=$(DEPLOYER_KEY)
+#	gcloud run deploy forestry-webapp --image "$(IMAGE)" --region europe-west3 \
+#	--set-env-vars ADMIN_PASSWORD="$(ADMIN_PASSWORD)",SPRING_PROFILES_ACTIVE=prod
