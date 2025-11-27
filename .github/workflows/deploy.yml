@@ -41,5 +41,8 @@ jobs:
           if [ -n "${GITHUB_RUN_NUMBER}" ]; then SUFFIX="-$GITHUB_RUN_NUMBER"; else SUFFIX=""; fi
           echo "G_VERSION=${SHA}${SUFFIX}" >> $GITHUB_ENV
 
-      - name: Deploy to App Engine
-        run: ./mvnw -pl webapp -B -ntp -DskipTests package com.google.cloud.tools:appengine-maven-plugin:2.8.1:deploy
+      - name: Build webapp and deps
+        run: ./mvnw -pl webapp -am -B -ntp -DskipTests package
+
+      - name: Deploy webapp to App Engine
+        run: ./mvnw -pl webapp -B -ntp -DskipTests com.google.cloud.tools:appengine-maven-plugin:2.8.1:deploy
