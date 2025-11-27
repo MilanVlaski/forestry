@@ -42,4 +42,4 @@ jobs:
           echo "G_VERSION=${SHA}${SUFFIX}" >> $GITHUB_ENV
 
       - name: Deploy to App Engine
-        run: ./mvnw -pl webapp -am -B -ntp -DskipTests package com.google.cloud.tools:appengine-maven-plugin:2.8.1:deploy
+        run: ./mvnw -pl webapp -B -ntp -DskipTests package com.google.cloud.tools:appengine-maven-plugin:2.8.1:deploy
