@@ -23,7 +23,7 @@ deploy: BUILD_SUFFIX = $(if $(GITHUB_RUN_NUMBER),-$(GITHUB_RUN_NUMBER),)
 deploy: export G_VERSION = $(GIT_SHA)$(BUILD_SUFFIX)
 deploy:
 	gcloud auth activate-service-account --key-file=$(DEPLOYER_KEY)
-	./mvnw -pl webapp package appengine:deploy
+	./mvnw -pl webapp -am package appengine:deploy
 
 ## Sets the maven version to the latest git tag.
 version: GIT_TAG = $(shell git describe --tags --abbrev=0 2>/dev/null || git rev-parse --short HEAD)
