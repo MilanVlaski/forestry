@@ -25,7 +25,7 @@ import domainapp.webapp.application.ApplicationModule;
             ApplicationModule.class,
     }
 )
-@ActiveProfiles("test")
+@ActiveProfiles({"test", "dev"})
 public abstract class WebAppIntegTestAbstract extends CausewayIntegrationTestAbstract {
 
     /**

@@ -21,7 +21,7 @@ import domainapp.modules.simple.SimpleModule;
 @SpringBootTest(
         classes = SimpleModuleIntegTestAbstract.TestApp.class
 )
-@ActiveProfiles("test")
+@ActiveProfiles({"test", "dev"})
 public abstract class SimpleModuleIntegTestAbstract extends CausewayIntegrationTestAbstractWithFixtures {
 
     /**
