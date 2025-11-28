@@ -37,7 +37,7 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>webapp</artifactId>
-            <scope>test</scope>
+<!--            <scope>test</scope>-->
         </dependency>
 
         <!-- TESTING -->
