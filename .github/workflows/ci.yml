@@ -43,3 +43,15 @@ jobs:
             **/target/surefire-unittest-reports/**
             **/target/surefire-integtest-reports**
 
+      # Generate coverage badges (instructions + branches)
+      - name: Generate JaCoCo Badges
+        uses: cicirello/jacoco-badge-generator@v3
+        with:
+          jacoco-csv-file: coverage-report/target/site/jacoco-aggregate/jacoco.csv
+          generate-branches-badge: true
+
+      # Commit updated badges back to the repo
+      - name: Commit badges
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Update coverage badges"
