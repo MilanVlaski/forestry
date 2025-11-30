@@ -3,6 +3,9 @@
 
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/MilanVlaski/forestry/blob/main/LICENSE)
 [![CI](https://github.com/MilanVlaski/forestry/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/MilanVlaski/forestry/actions/workflows/ci.yml)
+![Coverage](.github/badges/jacoco.svg)
+![Branches](.github/badges/branches.svg)
+
 
 A web application for tracking **forest inventory**. Using this to teach myself the [Apache Causeway framework](https://causeway.apache.org/). It follows the [Naked Objects](https://wiki.c2.com/?NakedObjects) philosophy, which involves exposing your classes, objects, or entities, directly to the user interface.
 
